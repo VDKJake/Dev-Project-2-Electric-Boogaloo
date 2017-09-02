@@ -1,6 +1,6 @@
 ﻿namespace PHP_SRePS
 {
-    partial class Form1
+    partial class loginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,12 +33,13 @@
             this.login = new System.Windows.Forms.Button();
             this.username = new System.Windows.Forms.TextBox();
             this.password = new System.Windows.Forms.TextBox();
+            this.title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(27, 21);
+            this.usernameLabel.Location = new System.Drawing.Point(27, 57);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(55, 13);
             this.usernameLabel.TabIndex = 0;
@@ -65,7 +66,7 @@
             // 
             // username
             // 
-            this.username.Location = new System.Drawing.Point(150, 21);
+            this.username.Location = new System.Drawing.Point(150, 57);
             this.username.Name = "username";
             this.username.Size = new System.Drawing.Size(100, 20);
             this.username.TabIndex = 3;
@@ -77,18 +78,29 @@
             this.password.Size = new System.Drawing.Size(100, 20);
             this.password.TabIndex = 4;
             // 
-            // Form1
+            // title
             // 
+            this.title.AutoSize = true;
+            this.title.Location = new System.Drawing.Point(118, 13);
+            this.title.Name = "title";
+            this.title.Size = new System.Drawing.Size(33, 13);
+            this.title.TabIndex = 5;
+            this.title.Text = "Login";
+            // 
+            // loginForm
+            // 
+            this.AcceptButton = this.login;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(281, 193);
+            this.Controls.Add(this.title);
             this.Controls.Add(this.password);
             this.Controls.Add(this.username);
             this.Controls.Add(this.login);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
-            this.Name = "Form1";
-            this.Text = "PHP-SRePS";
+            this.Name = "loginForm";
+            this.Text = "PHP-SRePS - Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,6 +113,7 @@
         private System.Windows.Forms.Button login;
         private System.Windows.Forms.TextBox username;
         private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Label title;
     }
 }
 
