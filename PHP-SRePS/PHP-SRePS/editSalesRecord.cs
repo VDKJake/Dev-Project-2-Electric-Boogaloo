@@ -145,7 +145,7 @@ namespace PHP_SRePS
             if (_saleid == 0 || _productid == 0 || _quantity == 0 || _customer == string.Empty || _user == string.Empty || _date == null)
                 return;
 
-            //Get values from the listbox
+            //Get values from the selected listbox item
             int _saleidForm = 0;
             int _productidForm = 0;
             int _quantityForm = 0;
@@ -200,6 +200,7 @@ namespace PHP_SRePS
             cmd.Parameters["@currentQuantity"].Value = _quantityForm;
             cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
+            //Display a confirmation box - if yes then run the query
             var editCheck = MessageBox.Show("Are you sure to edit this item?\n" + _saleid + ", " + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
             if (editCheck == DialogResult.Yes)
             {

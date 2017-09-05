@@ -58,5 +58,13 @@ namespace PHP_SRePS
             get { return _user; }
             set { _user = value; }
         }
+
+        private void reports_Click(object sender, EventArgs e)
+        {
+            generateReports reports = new generateReports();
+            reports.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
+            this.Hide();
+            reports.Show();
+        }
     }
 }

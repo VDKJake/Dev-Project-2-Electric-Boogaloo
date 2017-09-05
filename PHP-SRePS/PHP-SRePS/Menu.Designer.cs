@@ -33,6 +33,7 @@
             this.CloseButton = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
             this.loggedIn = new System.Windows.Forms.Label();
+            this.reports = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addSale
@@ -83,11 +84,22 @@
             this.loggedIn.TabIndex = 4;
             this.loggedIn.Text = "Logged in as: ";
             // 
+            // reports
+            // 
+            this.reports.Location = new System.Drawing.Point(252, 79);
+            this.reports.Name = "reports";
+            this.reports.Size = new System.Drawing.Size(113, 23);
+            this.reports.TabIndex = 5;
+            this.reports.Text = "Generate Reports";
+            this.reports.UseVisualStyleBackColor = true;
+            this.reports.Click += new System.EventHandler(this.reports_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(413, 261);
+            this.Controls.Add(this.reports);
             this.Controls.Add(this.loggedIn);
             this.Controls.Add(this.title);
             this.Controls.Add(this.CloseButton);
@@ -107,5 +119,6 @@
         private System.Windows.Forms.Button CloseButton;
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label loggedIn;
+        private System.Windows.Forms.Button reports;
     }
 }
