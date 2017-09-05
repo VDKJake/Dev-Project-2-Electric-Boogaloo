@@ -49,7 +49,7 @@ namespace PHP_SRePS
                 string _customer = (string)sdr["Customer"];
 
                 //Concat the variables into a single string
-                string item = string.Format("{0} \t {1}   \t {2} \t {3} \t {4} \t {5}", _saleid, _productid, _userid, date, _quantity, _customer);
+                string item = string.Format("{0} \t {1} \t {2} \t {3} \t {4} \t {5}", _saleid, _productid, _userid, date, _quantity, _customer);
                 //Insert the entry into the table
                 salesRecords.Items.Add(item);
             }
