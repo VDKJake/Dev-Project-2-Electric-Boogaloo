@@ -31,12 +31,12 @@
             this.monthlyReport = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.weeklyReport = new System.Windows.Forms.Button();
-            this.pickMonth = new System.Windows.Forms.ComboBox();
-            this.pickYear = new System.Windows.Forms.TextBox();
             this.startDate = new System.Windows.Forms.DateTimePicker();
             this.weeklyLabel = new System.Windows.Forms.Label();
             this.monthLabel = new System.Windows.Forms.Label();
+            this.pickMonth = new System.Windows.Forms.ComboBox();
             this.yearLabel = new System.Windows.Forms.Label();
+            this.pickYear = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // monthlyReport
@@ -69,36 +69,6 @@
             this.weeklyReport.UseVisualStyleBackColor = true;
             this.weeklyReport.Click += new System.EventHandler(this.weeklyReport_Click);
             // 
-            // pickMonth
-            // 
-            this.pickMonth.FormattingEnabled = true;
-            this.pickMonth.Items.AddRange(new object[] {
-            "January",
-            "Febuary",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"});
-            this.pickMonth.Location = new System.Drawing.Point(221, 112);
-            this.pickMonth.Name = "pickMonth";
-            this.pickMonth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pickMonth.Size = new System.Drawing.Size(95, 21);
-            this.pickMonth.TabIndex = 4;
-            // 
-            // pickYear
-            // 
-            this.pickYear.Location = new System.Drawing.Point(361, 113);
-            this.pickYear.Name = "pickYear";
-            this.pickYear.Size = new System.Drawing.Size(47, 20);
-            this.pickYear.TabIndex = 5;
-            this.pickYear.TextChanged += new System.EventHandler(this.pickYear_TextChanged);
-            // 
             // startDate
             // 
             this.startDate.CustomFormat = "dd/MM/yyyy";
@@ -126,6 +96,29 @@
             this.monthLabel.TabIndex = 8;
             this.monthLabel.Text = "Month:";
             // 
+            // pickMonth
+            // 
+            this.pickMonth.FormattingEnabled = true;
+            this.pickMonth.Items.AddRange(new object[] {
+            "January",
+            "Febuary",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.pickMonth.Location = new System.Drawing.Point(221, 112);
+            this.pickMonth.Name = "pickMonth";
+            this.pickMonth.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pickMonth.Size = new System.Drawing.Size(95, 21);
+            this.pickMonth.TabIndex = 4;
+            this.pickMonth.SelectedIndexChanged += new System.EventHandler(this.pickMonth_SelectedIndexChanged);
+            // 
             // yearLabel
             // 
             this.yearLabel.AutoSize = true;
@@ -134,6 +127,16 @@
             this.yearLabel.Size = new System.Drawing.Size(32, 13);
             this.yearLabel.TabIndex = 9;
             this.yearLabel.Text = "Year:";
+            // 
+            // pickYear
+            // 
+            this.pickYear.Location = new System.Drawing.Point(361, 113);
+            this.pickYear.MaxLength = 4;
+            this.pickYear.Name = "pickYear";
+            this.pickYear.Size = new System.Drawing.Size(47, 20);
+            this.pickYear.TabIndex = 5;
+            this.pickYear.Text = "yyyy";
+            this.pickYear.TextChanged += new System.EventHandler(this.pickYear_TextChanged);
             // 
             // generateReports
             // 
@@ -161,11 +164,11 @@
         private System.Windows.Forms.Button monthlyReport;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button weeklyReport;
-        private System.Windows.Forms.ComboBox pickMonth;
-        private System.Windows.Forms.TextBox pickYear;
         private System.Windows.Forms.DateTimePicker startDate;
         private System.Windows.Forms.Label weeklyLabel;
         private System.Windows.Forms.Label monthLabel;
+        private System.Windows.Forms.ComboBox pickMonth;
         private System.Windows.Forms.Label yearLabel;
+        private System.Windows.Forms.TextBox pickYear;
     }
 }
