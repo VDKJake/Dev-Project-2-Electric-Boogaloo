@@ -53,8 +53,15 @@ namespace PHP_SRePS
             weekEnd = startDate.Value.AddDays(7).ToString();
 
             databaseConnect(connection);
-            string scmd = "SELECT * FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + weekStart + " AND " + weekEnd + ";";
+            string scmd = "SELECT productID, COUNT(saleID), SUM(quantity) FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + weekStart + " AND " + weekEnd + " GROUP BY productID;";
 
+            SqlCommand cmd = new SqlCommand(scmd, connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Do some stuff here
+            }
 
             databaseDisconnect(connection);
         }
@@ -128,7 +135,15 @@ namespace PHP_SRePS
             monthEnd = monthEnd + pickYear.Text;
 
             databaseConnect(connection);
-            string scmnd = "SELECT * FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + monthStart + " AND " + monthEnd + ";";
+            string scmd = "SELECT productID, COUNT(saleID), SUM(quantity) FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + monthStart + " AND " + monthEnd + " GROUP BY productID;";
+
+            SqlCommand cmd = new SqlCommand(scmd, connection);
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                //Do some stuff
+            }
 
 
             databaseDisconnect(connection);
