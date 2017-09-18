@@ -10,28 +10,18 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.OleDb;
 using System.Data.SqlClient;
+//Temp using for Debug.WriteLine
+using System.Diagnostics;
 
 namespace PHP_SRePS
 {
     public partial class generateReports : Form
     {
-        SqlConnection connection;
+        string _selectedMonth;
 
         public generateReports()
         {
             InitializeComponent();
-        }
-
-        private void databaseConnect(SqlConnection con)
-        {
-            con = new SqlConnection();
-            con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
-            con.Open();
-        }
-
-        private void databaseDisconnect(SqlConnection con)
-        {
-            con.Close();
         }
 
         private void generateReports_Load(object sender, EventArgs e)
@@ -46,131 +36,154 @@ namespace PHP_SRePS
 
         private void weeklyReport_Click(object sender, EventArgs e)
         {
-            string weekStart;
-            string weekEnd;
+            DateTime weekStart = startDate.Value;
+            DateTime weekEnd = startDate.Value.AddDays(7);
 
-            weekStart = startDate.ToString();
-            weekEnd = startDate.Value.AddDays(7).ToString();
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
+            string scmd = "SELECT ProductID, COUNT(SaleID) AS SaleID, SUM(Quantity) AS Quantity FROM dbo.SaleRecords WHERE SaleDate BETWEEN @weekStart AND @weekEnd GROUP BY ProductID;";
 
-            databaseConnect(connection);
-            string scmd = "SELECT productID, COUNT(saleID), SUM(quantity) FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + weekStart + " AND " + weekEnd + " GROUP BY productID;";
-
-            SqlCommand cmd = new SqlCommand(scmd, connection);
+            SqlCommand cmd = new SqlCommand(scmd, con);
+            cmd.Parameters.Add("@weekStart", SqlDbType.Date);
+            cmd.Parameters.Add("@weekEnd", SqlDbType.Date);
+            cmd.Parameters["@weekStart"].Value = weekStart;
+            cmd.Parameters["@weekEnd"].Value = weekEnd;
+            con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
             //Until proper UI gets added
             string tempOutput = "Weekly Report: " + weekStart + " to " + weekEnd + ".\n";
 
+
             while (reader.Read())
             {
-                string product = (string)reader[0];
-                string saleCount = (string)reader[1];
-                string quantitySold = (string)reader[2];
+                int product = (int)reader["ProductID"];
+                int saleCount = (int)reader["SaleID"];
+                int quantitySold = (int)reader["Quantity"];
 
-                tempOutput = tempOutput + product + " - " + saleCount + " - " + quantitySold + "\n";
+                tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
             }
+            
 
             //Until proper UI gets added
-            Console.WriteLine(tempOutput);
+            if (reader.HasRows)
+                Debug.WriteLine(tempOutput);
+            else
+                Debug.WriteLine("No sales during this week\n");
 
             reader.Close();
-
-            databaseDisconnect(connection);
+            con.Close();
         }
 
         private void monthlyReport_Click(object sender, EventArgs e)
         {
-            string monthStart;
-            string monthEnd;
+            DateTime monthStart;
+            DateTime monthEnd;
+
+            int number;
+            bool result;
+            int year;
 
             if (pickYear.Text.Length != 4)
             {
-                MessageBox.Show("Year must be in the following format: yyyy");
+                MessageBox.Show("Year must be in the following numerical format: yyyy");
+                return;
+            }
+            else if (result = int.TryParse(pickYear.Text, out number))
+                year = number;
+            else
+            {
+                MessageBox.Show("The year must be a number");
                 return;
             }
 
             switch (pickMonth.SelectedItem.ToString())
             {
                 case "January":
-                    monthStart = "01/01/";
-                    monthEnd = "31/01/";
+                    monthStart = Convert.ToDateTime("01/01/" + year);
+                    monthEnd = Convert.ToDateTime("31/01/" + year);
                     break;
                 case "February":
-                    monthStart = "01/02/";
-                    monthEnd = "29/02/";
+                    monthStart = Convert.ToDateTime("01/02/" + year);
+                    monthEnd = Convert.ToDateTime("29/02/" + year);
                     break;
                 case "March":
-                    monthStart = "01/03/";
-                    monthEnd = "31/03/";
+                    monthStart = Convert.ToDateTime("01/03/" + year);
+                    monthEnd = Convert.ToDateTime("31/03/" + year);
                     break;
                 case "April":
-                    monthStart = "01/04/";
-                    monthEnd = "30/04/";
+                    monthStart = Convert.ToDateTime("01/04/" + year);
+                    monthEnd = Convert.ToDateTime("30/04/" + year);
                     break;
                 case "May":
-                    monthStart = "01/05/";
-                    monthEnd = "31/05/";
+                    monthStart = Convert.ToDateTime("01/05/" + year);
+                    monthEnd = Convert.ToDateTime("31/05/" + year);
                     break;
                 case "June":
-                    monthStart = "01/06/";
-                    monthEnd = "30/06/";
+                    monthStart = Convert.ToDateTime("01/06/" + year);
+                    monthEnd = Convert.ToDateTime("30/06/" + year);
                     break;
                 case "July":
-                    monthStart = "01/07/";
-                    monthEnd = "31/07/";
+                    monthStart = Convert.ToDateTime("01/07/" + year);
+                    monthEnd = Convert.ToDateTime("31/07/" + year);
                     break;
                 case "August":
-                    monthStart = "01/08/";
-                    monthEnd = "31/08/";
+                    monthStart = Convert.ToDateTime("01/08/" + year);
+                    monthEnd = Convert.ToDateTime("31/08/" + year);
                     break;
                 case "September":
-                    monthStart = "01/09/";
-                    monthEnd = "30/09/";
+                    monthStart = Convert.ToDateTime("01/09/" + year);
+                    monthEnd = Convert.ToDateTime("30/09/" + year);
                     break;
                 case "October":
-                    monthStart = "01/10/";
-                    monthEnd = "31/10/";
+                    monthStart = Convert.ToDateTime("01/10/" + year);
+                    monthEnd = Convert.ToDateTime("31/10/" + year);
                     break;
                 case "November":
-                    monthStart = "01/11/";
-                    monthEnd = "30/11/";
+                    monthStart = Convert.ToDateTime("01/11/" + year);
+                    monthEnd = Convert.ToDateTime("30/11/" + year);
                     break;
                 case "December":
-                    monthStart = "01/12/";
-                    monthEnd = "31/12/";
+                    monthStart = Convert.ToDateTime("01/12/" + year);
+                    monthEnd = Convert.ToDateTime("31/12/" + year);
                     break;
                 default:
                     MessageBox.Show("Please Select a Month.");
                     return;
             }
 
-            monthStart = monthStart + pickYear.Text;
-            monthEnd = monthEnd + pickYear.Text;
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
+            string scmd = "SELECT ProductID, COUNT(SaleID) AS SaleID, SUM(Quantity) AS Quantity FROM dbo.SaleRecords WHERE SaleDate BETWEEN @monthStart AND @monthEnd GROUP BY ProductID;";
 
-            databaseConnect(connection);
-            string scmd = "SELECT productID, COUNT(saleID), SUM(quantity) FROM dbo.SaleRecords WHERE SaleDate BETWEEN " + monthStart + " AND " + monthEnd + " GROUP BY productID;";
-
-            SqlCommand cmd = new SqlCommand(scmd, connection);
+            SqlCommand cmd = new SqlCommand(scmd, con);
+            cmd.Parameters.Add("@monthStart", SqlDbType.Date);
+            cmd.Parameters.Add("@monthEnd", SqlDbType.Date);
+            cmd.Parameters["@monthStart"].Value = monthStart;
+            cmd.Parameters["@monthEnd"].Value = monthEnd;
+            con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
 
             //Until proper UI gets added
-            string tempOutput = "Monthly Report: " + pickMonth.SelectedText.ToString() + ", " + pickYear.Text + ".\n";
+            string tempOutput = "Monthly Report: " + _selectedMonth + " " + pickYear.Text + ".\n";
 
             while (reader.Read())
             {
-                string product = (string)reader[0];
-                string saleCount = (string)reader[1];
-                string quantitySold = (string)reader[2];
+                int product = (int)reader["ProductID"];
+                int saleCount = (int)reader["SaleID"];
+                int quantitySold = (int)reader["Quantity"];
 
-                tempOutput = tempOutput + product + " - " + saleCount + " - " + quantitySold + "\n";
+                tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
             }
 
             //Until proper UI gets added
-            Console.WriteLine(tempOutput);
+            if (reader.HasRows)
+                Debug.WriteLine(tempOutput);
+            else
+                Debug.WriteLine("No sales during this month");
 
             reader.Close();
-
-            databaseDisconnect(connection);
+            con.Close();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -180,7 +193,7 @@ namespace PHP_SRePS
 
         private void pickMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            _selectedMonth = pickMonth.SelectedItem.ToString();
         }
     }
 }

@@ -28,11 +28,11 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            con.Open();
             //Command to retrive sales records from database
             string scmd = "SELECT * FROM dbo.saleRecords";
             SqlCommand cmd = new SqlCommand(scmd, con);
             //Execute the command as a reader
+            con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             //While there is data in the reader output the data into a list
             string inital = "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer";
@@ -53,6 +53,7 @@ namespace PHP_SRePS
                 //Insert the entry into the table
                 salesRecords.Items.Add(item);
             }
+            con.Close();
         }
 
         private void backButton_Click(object sender, EventArgs e)

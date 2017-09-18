@@ -26,8 +26,8 @@ namespace PHP_SRePS
             //Connect to the database
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True");
 
-            //Set SQL query to check if there is an data entry matching the provided username and password
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM Users WHERE UserID='" + username.Text + "' AND  Password='" + password.Text + "';", con);
+            //Set SQL query to check if there is an data entry matching the provided username and password (case sensitive)
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT(*) FROM Users WHERE UserID='" + username.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS AND  Password='" + password.Text + "' COLLATE SQL_Latin1_General_CP1_CS_AS;", con);
 
             //Create an empty virtual data table
             DataTable dt = new DataTable();

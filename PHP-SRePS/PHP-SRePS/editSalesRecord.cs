@@ -28,11 +28,12 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            con.Open();
+            
             //Command to retrive sales records from database
             string scmd = "SELECT * FROM dbo.saleRecords";
             SqlCommand cmd = new SqlCommand(scmd, con);
             //Execute the command as a reader
+            con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             //While there is data in the reader output the data into a list
             string inital = "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer";
@@ -53,6 +54,7 @@ namespace PHP_SRePS
                 //Insert the entry into the table
                 salesRecords.Items.Add(item);
             }
+            con.Close();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -84,7 +86,7 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            con.Open();
+            
             //Prep query
             string scmd = "UPDATE dbo.SaleRecords SET SaleID = @saleid, ProductID = @productid, UserID = @userid, SaleDate = @date, Quantity = @quantity, Customer = @customer WHERE SaleID = @currentSaleID AND ProductID = @currentProductid AND UserID = @currentUserid AND SaleDate = @currentDate AND Quantity = @currentQuantity AND Customer = @currentCustomer";
             SqlCommand cmd = new SqlCommand(scmd, con);
@@ -204,6 +206,7 @@ namespace PHP_SRePS
             var editCheck = MessageBox.Show("Are you sure to edit this item?\n" + _saleid + ", " + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
             if (editCheck == DialogResult.Yes)
             {
+                con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
