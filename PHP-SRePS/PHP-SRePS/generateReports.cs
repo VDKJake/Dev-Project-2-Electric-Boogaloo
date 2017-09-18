@@ -58,10 +58,22 @@ namespace PHP_SRePS
             SqlCommand cmd = new SqlCommand(scmd, connection);
             SqlDataReader reader = cmd.ExecuteReader();
 
+            //Until proper UI gets added
+            string tempOutput = "Weekly Report: " + weekStart + " to " + weekEnd + ".\n";
+
             while (reader.Read())
             {
-                //Do some stuff here
+                string product = (string)reader[0];
+                string saleCount = (string)reader[1];
+                string quantitySold = (string)reader[2];
+
+                tempOutput = tempOutput + product + " - " + saleCount + " - " + quantitySold + "\n";
             }
+
+            //Until proper UI gets added
+            Console.WriteLine(tempOutput);
+
+            reader.Close();
 
             databaseDisconnect(connection);
         }
@@ -74,6 +86,7 @@ namespace PHP_SRePS
             if (pickYear.Text.Length != 4)
             {
                 MessageBox.Show("Year must be in the following format: yyyy");
+                return;
             }
 
             switch (pickMonth.SelectedItem.ToString())
@@ -140,11 +153,22 @@ namespace PHP_SRePS
             SqlCommand cmd = new SqlCommand(scmd, connection);
             SqlDataReader reader = cmd.ExecuteReader();
 
+            //Until proper UI gets added
+            string tempOutput = "Monthly Report: " + pickMonth.SelectedText.ToString() + ", " + pickYear.Text + ".\n";
+
             while (reader.Read())
             {
-                //Do some stuff
+                string product = (string)reader[0];
+                string saleCount = (string)reader[1];
+                string quantitySold = (string)reader[2];
+
+                tempOutput = tempOutput + product + " - " + saleCount + " - " + quantitySold + "\n";
             }
 
+            //Until proper UI gets added
+            Console.WriteLine(tempOutput);
+
+            reader.Close();
 
             databaseDisconnect(connection);
         }
