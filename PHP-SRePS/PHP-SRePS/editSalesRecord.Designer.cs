@@ -48,7 +48,7 @@
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(239, 435);
+            this.editButton.Location = new System.Drawing.Point(149, 372);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(75, 23);
             this.editButton.TabIndex = 2;
@@ -58,7 +58,7 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(598, 435);
+            this.backButton.Location = new System.Drawing.Point(508, 372);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 3;
@@ -69,7 +69,7 @@
             // saleIDLabel
             // 
             this.saleIDLabel.AutoSize = true;
-            this.saleIDLabel.Location = new System.Drawing.Point(109, 364);
+            this.saleIDLabel.Location = new System.Drawing.Point(19, 301);
             this.saleIDLabel.Name = "saleIDLabel";
             this.saleIDLabel.Size = new System.Drawing.Size(42, 13);
             this.saleIDLabel.TabIndex = 4;
@@ -78,7 +78,7 @@
             // productIDLabel
             // 
             this.productIDLabel.AutoSize = true;
-            this.productIDLabel.Location = new System.Drawing.Point(236, 364);
+            this.productIDLabel.Location = new System.Drawing.Point(146, 301);
             this.productIDLabel.Name = "productIDLabel";
             this.productIDLabel.Size = new System.Drawing.Size(58, 13);
             this.productIDLabel.TabIndex = 5;
@@ -87,7 +87,7 @@
             // userIDLabel
             // 
             this.userIDLabel.AutoSize = true;
-            this.userIDLabel.Location = new System.Drawing.Point(351, 364);
+            this.userIDLabel.Location = new System.Drawing.Point(261, 301);
             this.userIDLabel.Name = "userIDLabel";
             this.userIDLabel.Size = new System.Drawing.Size(43, 13);
             this.userIDLabel.TabIndex = 6;
@@ -96,7 +96,7 @@
             // saleDateLabel
             // 
             this.saleDateLabel.AutoSize = true;
-            this.saleDateLabel.Location = new System.Drawing.Point(474, 364);
+            this.saleDateLabel.Location = new System.Drawing.Point(384, 301);
             this.saleDateLabel.Name = "saleDateLabel";
             this.saleDateLabel.Size = new System.Drawing.Size(54, 13);
             this.saleDateLabel.TabIndex = 7;
@@ -105,7 +105,7 @@
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(595, 364);
+            this.quantityLabel.Location = new System.Drawing.Point(505, 301);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(46, 13);
             this.quantityLabel.TabIndex = 8;
@@ -114,7 +114,7 @@
             // customerLabel
             // 
             this.customerLabel.AutoSize = true;
-            this.customerLabel.Location = new System.Drawing.Point(715, 364);
+            this.customerLabel.Location = new System.Drawing.Point(625, 301);
             this.customerLabel.Name = "customerLabel";
             this.customerLabel.Size = new System.Drawing.Size(51, 13);
             this.customerLabel.TabIndex = 9;
@@ -122,49 +122,49 @@
             // 
             // saleID
             // 
-            this.saleID.Location = new System.Drawing.Point(112, 380);
+            this.saleID.Location = new System.Drawing.Point(22, 317);
             this.saleID.Name = "saleID";
             this.saleID.Size = new System.Drawing.Size(100, 20);
             this.saleID.TabIndex = 10;
             // 
             // productID
             // 
-            this.productID.Location = new System.Drawing.Point(239, 380);
+            this.productID.Location = new System.Drawing.Point(149, 317);
             this.productID.Name = "productID";
             this.productID.Size = new System.Drawing.Size(100, 20);
             this.productID.TabIndex = 11;
             // 
             // userID
             // 
-            this.userID.Location = new System.Drawing.Point(354, 380);
+            this.userID.Location = new System.Drawing.Point(264, 317);
             this.userID.Name = "userID";
             this.userID.Size = new System.Drawing.Size(100, 20);
             this.userID.TabIndex = 12;
             // 
             // saleDate
             // 
-            this.saleDate.Location = new System.Drawing.Point(477, 380);
+            this.saleDate.Location = new System.Drawing.Point(387, 317);
             this.saleDate.Name = "saleDate";
             this.saleDate.Size = new System.Drawing.Size(100, 20);
             this.saleDate.TabIndex = 13;
             // 
             // quantity
             // 
-            this.quantity.Location = new System.Drawing.Point(598, 380);
+            this.quantity.Location = new System.Drawing.Point(508, 317);
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(100, 20);
             this.quantity.TabIndex = 14;
             // 
             // customer
             // 
-            this.customer.Location = new System.Drawing.Point(718, 380);
+            this.customer.Location = new System.Drawing.Point(628, 317);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(100, 20);
             this.customer.TabIndex = 15;
             // 
             // removeButton
             // 
-            this.removeButton.Location = new System.Drawing.Point(423, 435);
+            this.removeButton.Location = new System.Drawing.Point(333, 372);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 16;
@@ -175,9 +175,9 @@
             // salesRecords
             // 
             this.salesRecords.FormattingEnabled = true;
-            this.salesRecords.Location = new System.Drawing.Point(112, 75);
+            this.salesRecords.Location = new System.Drawing.Point(22, 12);
             this.salesRecords.Name = "salesRecords";
-            this.salesRecords.Size = new System.Drawing.Size(706, 95);
+            this.salesRecords.Size = new System.Drawing.Size(706, 264);
             this.salesRecords.TabIndex = 17;
             this.salesRecords.SelectedIndexChanged += new System.EventHandler(this.salesRecords_SelectedIndexChanged);
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 488);
+            this.ClientSize = new System.Drawing.Size(750, 413);
             this.Controls.Add(this.salesRecords);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.customer);

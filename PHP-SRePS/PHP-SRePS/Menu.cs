@@ -27,9 +27,12 @@ namespace PHP_SRePS
         private void addSale_Click(object sender, EventArgs e)
         {
             addSaleRecord add = new addSaleRecord();
-            add.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
             add.User = _user;
-            this.Hide();
+            add.TopLevel = false;
+            add.AutoScroll = true;
+            add.FormBorderStyle = FormBorderStyle.None;
+            panel.Controls.Clear();
+            panel.Controls.Add(add);
             add.Show();
         }
 
@@ -37,9 +40,23 @@ namespace PHP_SRePS
         private void editSales_Click(object sender, EventArgs e)
         {
             editSalesRecord edit = new editSalesRecord();
-            edit.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
-            this.Hide();
+            edit.TopLevel = false;
+            edit.AutoScroll = true;
+            edit.FormBorderStyle = FormBorderStyle.None;
+            panel.Controls.Clear();
+            panel.Controls.Add(edit);
             edit.Show();
+        }
+
+        private void reports_Click(object sender, EventArgs e)
+        {
+            generateReports reports = new generateReports();
+            reports.TopLevel = false;
+            reports.AutoScroll = true;
+            reports.FormBorderStyle = FormBorderStyle.None;
+            panel.Controls.Clear();
+            panel.Controls.Add(reports);
+            reports.Show();
         }
 
         private void logout_Click(object sender, EventArgs e)
@@ -47,24 +64,10 @@ namespace PHP_SRePS
             this.Close();
         }
 
-        //Show this window again when another is closed
-        private void otherForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Show();
-        }
-
         public string User
         {
             get { return _user; }
             set { _user = value; }
-        }
-
-        private void reports_Click(object sender, EventArgs e)
-        {
-            generateReports reports = new generateReports();
-            reports.FormClosed += new FormClosedEventHandler(otherForm_FormClosed);
-            this.Hide();
-            reports.Show();
         }
     }
 }

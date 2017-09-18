@@ -34,6 +34,7 @@
             this.title = new System.Windows.Forms.Label();
             this.loggedIn = new System.Windows.Forms.Label();
             this.reports = new System.Windows.Forms.Button();
+            this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // addSale
@@ -94,11 +95,19 @@
             this.reports.UseVisualStyleBackColor = true;
             this.reports.Click += new System.EventHandler(this.reports_Click);
             // 
+            // panel
+            // 
+            this.panel.Location = new System.Drawing.Point(399, 12);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(820, 594);
+            this.panel.TabIndex = 6;
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 261);
+            this.ClientSize = new System.Drawing.Size(1231, 618);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.reports);
             this.Controls.Add(this.loggedIn);
             this.Controls.Add(this.title);
@@ -120,5 +129,6 @@
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label loggedIn;
         private System.Windows.Forms.Button reports;
+        private System.Windows.Forms.Panel panel;
     }
 }
