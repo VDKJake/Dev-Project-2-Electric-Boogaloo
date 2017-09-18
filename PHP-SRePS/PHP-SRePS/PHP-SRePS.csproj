@@ -68,6 +68,12 @@
     <Compile Include="addSalesRecord.Designer.cs">
       <DependentUpon>addSalesRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="displayRecords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="displayRecords.Designer.cs">
+      <DependentUpon>displayRecords.cs</DependentUpon>
+    </Compile>
     <Compile Include="editSalesRecord.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </Compile>
     <EmbeddedResource Include="addSalesRecord.resx">
       <DependentUpon>addSalesRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="displayRecords.resx">
+      <DependentUpon>displayRecords.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editSalesRecord.resx">
       <DependentUpon>editSalesRecord.cs</DependentUpon>

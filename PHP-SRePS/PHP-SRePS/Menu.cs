@@ -59,6 +59,17 @@ namespace PHP_SRePS
             reports.Show();
         }
 
+        private void displayRecords_Click(object sender, EventArgs e)
+        {
+            displayRecords display = new displayRecords();
+            display.TopLevel = false;
+            display.AutoScroll = true;
+            display.FormBorderStyle = FormBorderStyle.None;
+            panel.Controls.Clear();
+            panel.Controls.Add(display);
+            display.Show();
+        }
+
         private void logout_Click(object sender, EventArgs e)
         {
             this.Close();

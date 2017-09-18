@@ -35,6 +35,7 @@
             this.loggedIn = new System.Windows.Forms.Label();
             this.reports = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
+            this.displayRecords = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addSale
@@ -102,11 +103,22 @@
             this.panel.Size = new System.Drawing.Size(820, 594);
             this.panel.TabIndex = 6;
             // 
+            // displayRecords
+            // 
+            this.displayRecords.Location = new System.Drawing.Point(251, 124);
+            this.displayRecords.Name = "displayRecords";
+            this.displayRecords.Size = new System.Drawing.Size(113, 22);
+            this.displayRecords.TabIndex = 7;
+            this.displayRecords.Text = "Display Records";
+            this.displayRecords.UseVisualStyleBackColor = true;
+            this.displayRecords.Click += new System.EventHandler(this.displayRecords_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 618);
+            this.Controls.Add(this.displayRecords);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.reports);
             this.Controls.Add(this.loggedIn);
@@ -130,5 +142,6 @@
         private System.Windows.Forms.Label loggedIn;
         private System.Windows.Forms.Button reports;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.Button displayRecords;
     }
 }
