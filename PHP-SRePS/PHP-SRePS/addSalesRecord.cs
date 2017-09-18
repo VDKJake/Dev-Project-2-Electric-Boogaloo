@@ -27,7 +27,7 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            con.Open();
+
             //Set the SQL command to a string for sercurity and create the command
             string scmd = "INSERT INTO dbo.SaleRecords (SaleID, ProductID, UserID, SaleDate, Quantity, Customer) VALUES (@saleID, @productID, @user, @date, @quantity, @customer);";
             SqlCommand cmd = new SqlCommand(scmd, con);
@@ -89,6 +89,7 @@ namespace PHP_SRePS
             cmd.Parameters["@customer"].Value = _customer;
 
             //Execute query and then close the connection
+            con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
             //Display a confimation message for the added entry
