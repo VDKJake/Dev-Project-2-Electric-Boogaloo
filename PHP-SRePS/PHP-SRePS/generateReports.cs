@@ -52,7 +52,7 @@ namespace PHP_SRePS
             SqlDataReader reader = cmd.ExecuteReader();
 
             //Until proper UI gets added
-            string tempOutput = "Weekly Report: " + weekStart + " to " + weekEnd + ".\n";
+            string tempOutput = "Weekly Report: " + weekStart.ToShortDateString() + " to " + weekEnd.ToShortDateString() + ".\n";
 
 
             while (reader.Read())
@@ -63,13 +63,13 @@ namespace PHP_SRePS
 
                 tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
             }
-            
+
 
             //Until proper UI gets added
             if (reader.HasRows)
-                Debug.WriteLine(tempOutput);
+                output.Text = tempOutput;
             else
-                Debug.WriteLine("No sales during this week\n");
+                output.Text = "No sales during this week";
 
             reader.Close();
             con.Close();
@@ -105,7 +105,10 @@ namespace PHP_SRePS
                     break;
                 case "February":
                     monthStart = Convert.ToDateTime("01/02/" + year);
-                    monthEnd = Convert.ToDateTime("29/02/" + year);
+                    if (year % 4 == 0)
+                        monthEnd = Convert.ToDateTime("29/02/" + year);
+                    else
+                        monthEnd = Convert.ToDateTime("28/02/" + year);
                     break;
                 case "March":
                     monthStart = Convert.ToDateTime("01/03/" + year);
@@ -178,9 +181,9 @@ namespace PHP_SRePS
 
             //Until proper UI gets added
             if (reader.HasRows)
-                Debug.WriteLine(tempOutput);
+                output.Text = tempOutput;
             else
-                Debug.WriteLine("No sales during this month");
+                output.Text = "No sales during this month";
 
             reader.Close();
             con.Close();
