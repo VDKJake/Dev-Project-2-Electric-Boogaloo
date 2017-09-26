@@ -213,6 +213,13 @@ namespace PHP_SRePS
             else
                 return;
 
+            saleDate.Clear();
+            customer.Clear();
+            quantity.Clear();
+            saleID.Clear();
+            productID.Clear();
+            userID.Clear();
+
             //"Refresh" the listbox
             UpdateListbox();
         }
@@ -292,6 +299,13 @@ namespace PHP_SRePS
                 }
                 else
                     return;
+
+                saleDate.Clear();
+                customer.Clear();
+                quantity.Clear();
+                saleID.Clear();
+                productID.Clear();
+                userID.Clear();
 
                 UpdateListbox();
             }

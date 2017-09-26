@@ -37,7 +37,7 @@ namespace PHP_SRePS
         private void weeklyReport_Click(object sender, EventArgs e)
         {
             DateTime weekStart = startDate.Value;
-            DateTime weekEnd = startDate.Value.AddDays(7);
+            DateTime weekEnd = startDate.Value.AddDays(6);
 
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
