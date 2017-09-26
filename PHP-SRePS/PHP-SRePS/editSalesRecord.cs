@@ -36,7 +36,7 @@ namespace PHP_SRePS
             con.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             //While there is data in the reader output the data into a list
-            string inital = "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer";
+            string inital = "Sale ID \t Product ID \t User ID \t Sale Date \t Quantity \t Customer";
             salesRecords.Items.Add(inital);
             while (sdr.Read())
             {
@@ -50,7 +50,7 @@ namespace PHP_SRePS
                 string _customer = (string)sdr["Customer"];
 
                 //Concat the variables into a single string
-                string item = string.Format("{0} \t {1} \t {2} \t {3} \t {4} \t {5}", _saleid, _productid, _userid, date, _quantity, _customer);
+                string item = string.Format("{0} \t {1} \t\t {2} \t {3} \t {4} \t {5}", _saleid, _productid, _userid, date, _quantity, _customer);
                 //Insert the entry into the table
                 salesRecords.Items.Add(item);
             }
@@ -67,11 +67,20 @@ namespace PHP_SRePS
             //Get the currently selected element of the ListBox
             string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
             //Check to see if its the first entry (table headers), if so return else output the values to the text boxes
-            if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
+            if (_selected == "Sale ID \t Product ID \t User ID \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
+            {
+                saleID.Clear();
+                productID.Clear();
+                userID.Clear();
+                saleDate.Clear();
+                quantity.Clear();
+                customer.Clear();
                 return;
+            }
             else
             {
-                string[] _output = _selected.Split('\t');
+                string[] s = new string[] { "\t", "\t\t" };
+                string[] _output = _selected.Split(s, StringSplitOptions.RemoveEmptyEntries);
                 saleID.Text = _output[0].Trim();
                 productID.Text = _output[1].Trim();
                 userID.Text = _output[2].Trim();
@@ -156,12 +165,13 @@ namespace PHP_SRePS
             DateTime _dateForm = DateTime.Today;
 
             string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
-            if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
+            if (_selected == "Sale ID \t Product ID \t User ID \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
                 MessageBox.Show("Please select a valid entry");
             else
             {
                 bool resultForm;
-                string[] _output = _selected.Split('\t');
+                string[] s = new string[] { "\t", "\t\t" };
+                string[] _output = _selected.Split(s, StringSplitOptions.RemoveEmptyEntries);
                 if (resultForm = int.TryParse(_output[0].Trim(), out number))
                     _saleidForm = number;
                 else

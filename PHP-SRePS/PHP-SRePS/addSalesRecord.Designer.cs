@@ -31,19 +31,19 @@
             this.addSalesRecord = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.title = new System.Windows.Forms.Label();
-            this.saleIDLabel = new System.Windows.Forms.Label();
             this.productIDLabel = new System.Windows.Forms.Label();
             this.quantityLabel = new System.Windows.Forms.Label();
             this.customerLabel = new System.Windows.Forms.Label();
-            this.saleID = new System.Windows.Forms.TextBox();
             this.productID = new System.Windows.Forms.TextBox();
             this.quantity = new System.Windows.Forms.TextBox();
             this.customer = new System.Windows.Forms.TextBox();
+            this.addProduct = new System.Windows.Forms.Button();
+            this.products = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // addSalesRecord
             // 
-            this.addSalesRecord.Location = new System.Drawing.Point(76, 240);
+            this.addSalesRecord.Location = new System.Drawing.Point(51, 504);
             this.addSalesRecord.Name = "addSalesRecord";
             this.addSalesRecord.Size = new System.Drawing.Size(115, 23);
             this.addSalesRecord.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(272, 240);
+            this.backButton.Location = new System.Drawing.Point(214, 504);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 1;
@@ -64,34 +64,25 @@
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(159, 27);
+            this.title.Location = new System.Drawing.Point(139, 29);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(102, 13);
             this.title.TabIndex = 2;
             this.title.Text = "Add a Sales Record";
             // 
-            // saleIDLabel
-            // 
-            this.saleIDLabel.AutoSize = true;
-            this.saleIDLabel.Location = new System.Drawing.Point(73, 68);
-            this.saleIDLabel.Name = "saleIDLabel";
-            this.saleIDLabel.Size = new System.Drawing.Size(42, 13);
-            this.saleIDLabel.TabIndex = 3;
-            this.saleIDLabel.Text = "Sale ID";
-            // 
             // productIDLabel
             // 
             this.productIDLabel.AutoSize = true;
-            this.productIDLabel.Location = new System.Drawing.Point(73, 113);
+            this.productIDLabel.Location = new System.Drawing.Point(73, 91);
             this.productIDLabel.Name = "productIDLabel";
-            this.productIDLabel.Size = new System.Drawing.Size(58, 13);
+            this.productIDLabel.Size = new System.Drawing.Size(44, 13);
             this.productIDLabel.TabIndex = 4;
-            this.productIDLabel.Text = "Product ID";
+            this.productIDLabel.Text = "Product";
             // 
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(73, 155);
+            this.quantityLabel.Location = new System.Drawing.Point(181, 91);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(46, 13);
             this.quantityLabel.TabIndex = 5;
@@ -100,53 +91,64 @@
             // customerLabel
             // 
             this.customerLabel.AutoSize = true;
-            this.customerLabel.Location = new System.Drawing.Point(73, 200);
+            this.customerLabel.Location = new System.Drawing.Point(53, 63);
             this.customerLabel.Name = "customerLabel";
             this.customerLabel.Size = new System.Drawing.Size(51, 13);
             this.customerLabel.TabIndex = 6;
             this.customerLabel.Text = "Customer";
             // 
-            // saleID
-            // 
-            this.saleID.Location = new System.Drawing.Point(247, 61);
-            this.saleID.Name = "saleID";
-            this.saleID.Size = new System.Drawing.Size(100, 20);
-            this.saleID.TabIndex = 7;
-            // 
             // productID
             // 
-            this.productID.Location = new System.Drawing.Point(247, 106);
+            this.productID.Location = new System.Drawing.Point(51, 107);
             this.productID.Name = "productID";
             this.productID.Size = new System.Drawing.Size(100, 20);
             this.productID.TabIndex = 8;
             // 
             // quantity
             // 
-            this.quantity.Location = new System.Drawing.Point(247, 148);
+            this.quantity.Location = new System.Drawing.Point(175, 107);
             this.quantity.Name = "quantity";
-            this.quantity.Size = new System.Drawing.Size(100, 20);
+            this.quantity.Size = new System.Drawing.Size(52, 20);
             this.quantity.TabIndex = 9;
             // 
             // customer
             // 
-            this.customer.Location = new System.Drawing.Point(247, 193);
+            this.customer.Location = new System.Drawing.Point(189, 56);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(100, 20);
             this.customer.TabIndex = 10;
+            // 
+            // addProduct
+            // 
+            this.addProduct.Location = new System.Drawing.Point(246, 105);
+            this.addProduct.Name = "addProduct";
+            this.addProduct.Size = new System.Drawing.Size(75, 23);
+            this.addProduct.TabIndex = 11;
+            this.addProduct.Text = "Add Product";
+            this.addProduct.UseVisualStyleBackColor = true;
+            this.addProduct.Click += new System.EventHandler(this.addProduct_Click);
+            // 
+            // products
+            // 
+            this.products.FormattingEnabled = true;
+            this.products.Location = new System.Drawing.Point(51, 146);
+            this.products.Name = "products";
+            this.products.Size = new System.Drawing.Size(238, 329);
+            this.products.TabIndex = 12;
             // 
             // addSaleRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 294);
+            this.ClientSize = new System.Drawing.Size(350, 555);
+            this.Controls.Add(this.products);
+            this.Controls.Add(this.addProduct);
             this.Controls.Add(this.customer);
             this.Controls.Add(this.quantity);
             this.Controls.Add(this.productID);
-            this.Controls.Add(this.saleID);
             this.Controls.Add(this.customerLabel);
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.productIDLabel);
-            this.Controls.Add(this.saleIDLabel);
             this.Controls.Add(this.title);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.addSalesRecord);
@@ -162,13 +164,13 @@
         private System.Windows.Forms.Button addSalesRecord;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label title;
-        private System.Windows.Forms.Label saleIDLabel;
         private System.Windows.Forms.Label productIDLabel;
         private System.Windows.Forms.Label quantityLabel;
         private System.Windows.Forms.Label customerLabel;
-        private System.Windows.Forms.TextBox saleID;
         private System.Windows.Forms.TextBox productID;
         private System.Windows.Forms.TextBox quantity;
         private System.Windows.Forms.TextBox customer;
+        private System.Windows.Forms.Button addProduct;
+        private System.Windows.Forms.ListBox products;
     }
 }

@@ -16,10 +16,15 @@ namespace PHP_SRePS
     public partial class addSaleRecord : Form
     {
         private string _user;
+        private int height;
+        private int tbCount = 1;
+        private TextBox current;
 
         public addSaleRecord()
         {
             InitializeComponent();
+            height = productID.Top + 28;
+            current = productID;
         }
 
         private void addSalesRecord_Click(object sender, EventArgs e)
@@ -48,13 +53,13 @@ namespace PHP_SRePS
             int _quantity = 0;
             string _customer = string.Empty;
             DateTime _date= DateTime.Today;
-            if (result = int.TryParse(saleID.Text, out number))
-                _saleid = number;
-            else
-            {
-                MessageBox.Show("The sale ID must be a number");
-                return;
-            }
+            //if (result = int.tryparse(saleid.text, out number))
+            //    _saleid = number;
+            //else
+            //{
+            //    messagebox.show("the sale id must be a number");
+            //    return;
+            //}
 
             if (result = int.TryParse(productID.Text, out number))
                 _productid = number;
@@ -95,7 +100,7 @@ namespace PHP_SRePS
             //Display a confimation message for the added entry
             MessageBox.Show("Successfully added: \nSale ID:" + _saleid + "\nProduct ID: " + _productid + "\nUser ID: " + _user + "\nDate: " + _date + "\nQuantity: " + _quantity + "\nCustomer: " + _customer);
             //reset all textboxes to display nothing
-            saleID.Text = string.Empty;
+            //saleID.Text = string.Empty;
             productID.Text = string.Empty;
             quantity.Text = string.Empty;
             customer.Text = string.Empty;
@@ -109,6 +114,28 @@ namespace PHP_SRePS
         public string User
         {
             set { _user = value; }
+        }
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+            bool result;
+            int number;
+            int _qty;
+
+            if (result = int.TryParse(quantity.Text, out number))
+                _qty = number;
+            else
+            {
+                MessageBox.Show("The quantity must be a number");
+                return;
+            }
+            if(productID.Text == string.Empty)
+                MessageBox.Show("Please enter a product");
+
+            string add = productID.Text + "\t" + _qty;
+            products.Items.Add(add);
+            quantity.Clear();
+            productID.Clear();
         }
     }
 }
