@@ -13,15 +13,28 @@ namespace PHP_SRePS
     public partial class Menu : Form
     {
         private string _user;
+        private int tabNo = 0;
 
         public Menu()
         {
             InitializeComponent();
+            // This code needs to be fixed an optimized
+            // Adds the forms to the panel pages
+            addSaleRecord add = new addSaleRecord();
+            editSalesRecord edit = new editSalesRecord();
+            displayRecords display = new displayRecords();
+            generateReports reports = new generateReports();
+            
+            SetTab(add);
+            SetTab(edit);
+            SetTab(display);
+            SetTab(reports);
         }
 
         protected override void OnShown(EventArgs e)
         {
             loggedIn.Text = "Logged in as: " + _user;
+            welcomeLabel.Text = "Welcome, " + _user;
         }
 
         private void addSale_Click(object sender, EventArgs e)
@@ -72,13 +85,30 @@ namespace PHP_SRePS
 
         private void logout_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+        }
+
+        // Sets the next tab page to the inputted form
+        private void SetTab(Form form)
+        {
+            tabNo += 1;
+            form.TopLevel = false;
+            form.Visible = true;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Location = new Point(266, 171); // Position needs to be changed, just a temporary one for now
+            tabControl1.TabPages[tabNo].Controls.Add(form);
         }
 
         public string User
         {
             get { return _user; }
             set { _user = value; }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

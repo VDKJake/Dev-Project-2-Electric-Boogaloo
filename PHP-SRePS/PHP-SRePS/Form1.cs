@@ -43,7 +43,10 @@ namespace PHP_SRePS
                 menu.Show();
             }
             else
-                MessageBox.Show("Invalid username or password");
+            {
+                errorLabel.Text = "Invalid username or password";
+                errorTimer.Start();
+            }
         }
 
         void otherForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -51,6 +54,11 @@ namespace PHP_SRePS
             this.Show();
             username.Text = null;
             password.Text = null;
+        }
+
+        private void errorTimer_Tick(object sender, EventArgs e)
+        {
+            errorLabel.Text = "";
         }
     }
 }
