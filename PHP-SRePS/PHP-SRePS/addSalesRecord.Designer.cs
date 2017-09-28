@@ -43,6 +43,7 @@
             // 
             // addSalesRecord
             // 
+            this.addSalesRecord.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addSalesRecord.Location = new System.Drawing.Point(76, 240);
             this.addSalesRecord.Name = "addSalesRecord";
             this.addSalesRecord.Size = new System.Drawing.Size(115, 23);
@@ -53,6 +54,7 @@
             // 
             // backButton
             // 
+            this.backButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.backButton.Location = new System.Drawing.Point(272, 240);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
@@ -63,6 +65,7 @@
             // 
             // title
             // 
+            this.title.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.title.AutoSize = true;
             this.title.Location = new System.Drawing.Point(159, 27);
             this.title.Name = "title";
@@ -72,6 +75,7 @@
             // 
             // saleIDLabel
             // 
+            this.saleIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saleIDLabel.AutoSize = true;
             this.saleIDLabel.Location = new System.Drawing.Point(73, 68);
             this.saleIDLabel.Name = "saleIDLabel";
@@ -81,6 +85,7 @@
             // 
             // productIDLabel
             // 
+            this.productIDLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.productIDLabel.AutoSize = true;
             this.productIDLabel.Location = new System.Drawing.Point(73, 113);
             this.productIDLabel.Name = "productIDLabel";
@@ -90,6 +95,7 @@
             // 
             // quantityLabel
             // 
+            this.quantityLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.Location = new System.Drawing.Point(73, 155);
             this.quantityLabel.Name = "quantityLabel";
@@ -99,6 +105,7 @@
             // 
             // customerLabel
             // 
+            this.customerLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customerLabel.AutoSize = true;
             this.customerLabel.Location = new System.Drawing.Point(73, 200);
             this.customerLabel.Name = "customerLabel";
@@ -108,6 +115,7 @@
             // 
             // saleID
             // 
+            this.saleID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.saleID.Location = new System.Drawing.Point(247, 61);
             this.saleID.Name = "saleID";
             this.saleID.Size = new System.Drawing.Size(100, 20);
@@ -115,6 +123,7 @@
             // 
             // productID
             // 
+            this.productID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.productID.Location = new System.Drawing.Point(247, 106);
             this.productID.Name = "productID";
             this.productID.Size = new System.Drawing.Size(100, 20);
@@ -122,6 +131,7 @@
             // 
             // quantity
             // 
+            this.quantity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.quantity.Location = new System.Drawing.Point(247, 148);
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(100, 20);
@@ -129,6 +139,7 @@
             // 
             // customer
             // 
+            this.customer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customer.Location = new System.Drawing.Point(247, 193);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(100, 20);

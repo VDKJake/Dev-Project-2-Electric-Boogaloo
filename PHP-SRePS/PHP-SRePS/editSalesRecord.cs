@@ -296,5 +296,17 @@ namespace PHP_SRePS
                 UpdateListbox();
             }
         }
+
+        private void editSalesRecord_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the '_PHP_SRePSDataSet.SaleRecords' table. You can move, or remove it, as needed.
+            this.saleRecordsTableAdapter.Fill(this._PHP_SRePSDataSet.SaleRecords);
+
+        }
+
+        private void salesDataGrid_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace PHP_SRePS
         public Menu()
         {
             InitializeComponent();
-            // This code needs to be fixed an optimized
+            // This code needs to be fixed and optimized
             // Adds the forms to the panel pages
             addSaleRecord add = new addSaleRecord();
             editSalesRecord edit = new editSalesRecord();
@@ -96,8 +96,11 @@ namespace PHP_SRePS
             form.TopLevel = false;
             form.Visible = true;
             form.FormBorderStyle = FormBorderStyle.None;
-            form.Location = new Point(266, 171); // Position needs to be changed, just a temporary one for now
+            //form.Location = new Point(266, 171); // Position needs to be changed, just a temporary one for now
             tabControl1.TabPages[tabNo].Controls.Add(form);
+            //form.Size = tabControl1.TabPages[tabNo].Size;
+            form.Location = new Point((tabControl1.TabPages[tabNo].Size.Width / 2) - (form.Size.Width / 2), (tabControl1.TabPages[tabNo].Size.Height / 2) - (form.Size.Height / 2));
+            form.Anchor = (AnchorStyles.None);
         }
 
         public string User
@@ -106,7 +109,7 @@ namespace PHP_SRePS
             set { _user = value; }
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
