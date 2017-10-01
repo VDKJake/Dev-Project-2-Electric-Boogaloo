@@ -67,8 +67,8 @@ namespace PHP_SRePS
             }
 
             if (reader.HasRows)
-                //Output to file
-
+                System.IO.File.WriteAllText(@"C:\Users\Public\WeeklyReport" + weekStart.ToShortDateString() + "-" + weekEnd.ToShortDateString()+".txt", csvOutput);
+                //Temporary Location
 
             //Until proper UI gets added
             if (reader.HasRows)
@@ -187,7 +187,8 @@ namespace PHP_SRePS
             }
 
             if (reader.HasRows)
-                //Output to file
+                System.IO.File.WriteAllText(@"C:\Users\Public\MonthlyReport" + _selectedMonth + pickYear.Text + ".txt", csvOutput);
+                //Temp Location
 
             //Until proper UI gets added
             if (reader.HasRows)
