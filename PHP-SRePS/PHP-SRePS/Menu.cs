@@ -80,5 +80,16 @@ namespace PHP_SRePS
             get { return _user; }
             set { _user = value; }
         }
+
+        private void predictedSales_Click(object sender, EventArgs e)
+        {
+            PredictedSales predicted = new PredictedSales();
+            predicted.TopLevel = false;
+            predicted.AutoScroll = true;
+            predicted.FormBorderStyle = FormBorderStyle.None;
+            panel.Controls.Clear();
+            panel.Controls.Add(predicted);
+            predicted.Show();
+        }
     }
 }

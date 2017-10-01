@@ -36,6 +36,7 @@
             this.reports = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.Panel();
             this.displayRecords = new System.Windows.Forms.Button();
+            this.predictedSales = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // addSale
@@ -113,11 +114,22 @@
             this.displayRecords.UseVisualStyleBackColor = true;
             this.displayRecords.Click += new System.EventHandler(this.displayRecords_Click);
             // 
+            // predictedSales
+            // 
+            this.predictedSales.Location = new System.Drawing.Point(251, 170);
+            this.predictedSales.Name = "predictedSales";
+            this.predictedSales.Size = new System.Drawing.Size(113, 23);
+            this.predictedSales.TabIndex = 8;
+            this.predictedSales.Text = "Predicted Sales";
+            this.predictedSales.UseVisualStyleBackColor = true;
+            this.predictedSales.Click += new System.EventHandler(this.predictedSales_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 618);
+            this.Controls.Add(this.predictedSales);
             this.Controls.Add(this.displayRecords);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.reports);
@@ -143,5 +155,6 @@
         private System.Windows.Forms.Button reports;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.Button displayRecords;
+        private System.Windows.Forms.Button predictedSales;
     }
 }
