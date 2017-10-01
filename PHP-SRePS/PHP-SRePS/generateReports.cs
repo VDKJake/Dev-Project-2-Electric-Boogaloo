@@ -53,6 +53,7 @@ namespace PHP_SRePS
 
             //Until proper UI gets added
             string tempOutput = "Weekly Report: " + weekStart.ToShortDateString() + " to " + weekEnd.ToShortDateString() + ".\n";
+            string csvOutput = "Weekly Report: " + weekStart.ToShortDateString() + " to " + weekEnd.ToShortDateString() + ".\nProductID, SaleCount, QuanititySold";
 
 
             while (reader.Read())
@@ -62,7 +63,11 @@ namespace PHP_SRePS
                 int quantitySold = (int)reader["Quantity"];
 
                 tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
+                csvOutput += "\n" + product + ", " + saleCount + ", " + quantitySold;
             }
+
+            if (reader.HasRows)
+                //Output to file
 
 
             //Until proper UI gets added
@@ -169,6 +174,7 @@ namespace PHP_SRePS
 
             //Until proper UI gets added
             string tempOutput = "Monthly Report: " + _selectedMonth + " " + pickYear.Text + ".\n";
+            string csvOutput = "Monthly Report: " + _selectedMonth + " " + pickYear.Text + "\nProductID, SaleCount, QuanititySold";
 
             while (reader.Read())
             {
@@ -177,7 +183,11 @@ namespace PHP_SRePS
                 int quantitySold = (int)reader["Quantity"];
 
                 tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
+                csvOutput += "\n" + product + ", " + saleCount + ", " + quantitySold;
             }
+
+            if (reader.HasRows)
+                //Output to file
 
             //Until proper UI gets added
             if (reader.HasRows)
