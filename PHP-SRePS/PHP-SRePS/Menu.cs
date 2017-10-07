@@ -113,9 +113,24 @@ namespace PHP_SRePS
             set { _user = value; }
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void CloseButton_MouseDown(object sender, MouseEventArgs e)
         {
+            CloseButton.Image = logoutImages.Images[2];
+        }
 
+        private void CloseButton_MouseHover(object sender, EventArgs e)
+        {
+            CloseButton.Image = logoutImages.Images[1];
+        }
+
+        private void CloseButton_MouseLeave(object sender, EventArgs e)
+        {
+            CloseButton.Image = logoutImages.Images[0];
+        }
+
+        private void CloseButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            CloseButton.Image = logoutImages.Images[0];
         }
     }
 }

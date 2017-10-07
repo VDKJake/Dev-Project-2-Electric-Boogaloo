@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addSaleRecord));
             this.addSalesRecord = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            this.title = new System.Windows.Forms.Label();
             this.productIDLabel = new System.Windows.Forms.Label();
             this.quantityLabel = new System.Windows.Forms.Label();
             this.customerLabel = new System.Windows.Forms.Label();
@@ -40,21 +41,26 @@
             this.products = new System.Windows.Forms.ListBox();
             this.productList = new System.Windows.Forms.ComboBox();
             this.removeProduct = new System.Windows.Forms.Button();
+            this.addImages = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // addSalesRecord
             // 
-            this.addSalesRecord.Location = new System.Drawing.Point(51, 552);
+            this.addSalesRecord.Location = new System.Drawing.Point(116, 480);
             this.addSalesRecord.Name = "addSalesRecord";
-            this.addSalesRecord.Size = new System.Drawing.Size(115, 23);
+            this.addSalesRecord.Size = new System.Drawing.Size(110, 50);
             this.addSalesRecord.TabIndex = 0;
             this.addSalesRecord.Text = "Add Sales Record";
             this.addSalesRecord.UseVisualStyleBackColor = true;
             this.addSalesRecord.Click += new System.EventHandler(this.addSalesRecord_Click);
+            this.addSalesRecord.MouseDown += new System.Windows.Forms.MouseEventHandler(this.addSalesRecord_MouseDown);
+            this.addSalesRecord.MouseLeave += new System.EventHandler(this.addSalesRecord_MouseLeave);
+            this.addSalesRecord.MouseHover += new System.EventHandler(this.addSalesRecord_MouseHover);
+            this.addSalesRecord.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addSalesRecord_MouseUp);
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(214, 552);
+            this.backButton.Location = new System.Drawing.Point(264, 507);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 1;
@@ -62,19 +68,10 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // title
-            // 
-            this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(139, 29);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(102, 13);
-            this.title.TabIndex = 2;
-            this.title.Text = "Add a Sales Record";
-            // 
             // productIDLabel
             // 
             this.productIDLabel.AutoSize = true;
-            this.productIDLabel.Location = new System.Drawing.Point(73, 91);
+            this.productIDLabel.Location = new System.Drawing.Point(72, 51);
             this.productIDLabel.Name = "productIDLabel";
             this.productIDLabel.Size = new System.Drawing.Size(44, 13);
             this.productIDLabel.TabIndex = 4;
@@ -83,7 +80,7 @@
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(181, 91);
+            this.quantityLabel.Location = new System.Drawing.Point(180, 51);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(46, 13);
             this.quantityLabel.TabIndex = 5;
@@ -92,29 +89,29 @@
             // customerLabel
             // 
             this.customerLabel.AutoSize = true;
-            this.customerLabel.Location = new System.Drawing.Point(53, 63);
+            this.customerLabel.Location = new System.Drawing.Point(63, 20);
             this.customerLabel.Name = "customerLabel";
-            this.customerLabel.Size = new System.Drawing.Size(51, 13);
+            this.customerLabel.Size = new System.Drawing.Size(82, 13);
             this.customerLabel.TabIndex = 6;
-            this.customerLabel.Text = "Customer";
+            this.customerLabel.Text = "Customer Name";
             // 
             // quantity
             // 
-            this.quantity.Location = new System.Drawing.Point(175, 107);
+            this.quantity.Location = new System.Drawing.Point(174, 67);
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(52, 20);
             this.quantity.TabIndex = 9;
             // 
             // customer
             // 
-            this.customer.Location = new System.Drawing.Point(189, 56);
+            this.customer.Location = new System.Drawing.Point(165, 16);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(100, 20);
             this.customer.TabIndex = 10;
             // 
             // addProduct
             // 
-            this.addProduct.Location = new System.Drawing.Point(246, 105);
+            this.addProduct.Location = new System.Drawing.Point(245, 65);
             this.addProduct.Name = "addProduct";
             this.addProduct.Size = new System.Drawing.Size(75, 23);
             this.addProduct.TabIndex = 11;
@@ -125,7 +122,7 @@
             // products
             // 
             this.products.FormattingEnabled = true;
-            this.products.Location = new System.Drawing.Point(51, 146);
+            this.products.Location = new System.Drawing.Point(50, 106);
             this.products.Name = "products";
             this.products.Size = new System.Drawing.Size(238, 329);
             this.products.TabIndex = 12;
@@ -135,14 +132,14 @@
             this.productList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.productList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productList.FormattingEnabled = true;
-            this.productList.Location = new System.Drawing.Point(45, 106);
+            this.productList.Location = new System.Drawing.Point(44, 66);
             this.productList.Name = "productList";
             this.productList.Size = new System.Drawing.Size(121, 21);
             this.productList.TabIndex = 13;
             // 
             // removeProduct
             // 
-            this.removeProduct.Location = new System.Drawing.Point(91, 481);
+            this.removeProduct.Location = new System.Drawing.Point(90, 441);
             this.removeProduct.Name = "removeProduct";
             this.removeProduct.Size = new System.Drawing.Size(136, 23);
             this.removeProduct.TabIndex = 14;
@@ -150,11 +147,19 @@
             this.removeProduct.UseVisualStyleBackColor = true;
             this.removeProduct.Click += new System.EventHandler(this.removeProduct_Click);
             // 
+            // addImages
+            // 
+            this.addImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("addImages.ImageStream")));
+            this.addImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.addImages.Images.SetKeyName(0, "btn_AddBase.png");
+            this.addImages.Images.SetKeyName(1, "btn_AddHover.png");
+            this.addImages.Images.SetKeyName(2, "btn_AddClick.png");
+            // 
             // addSaleRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 587);
+            this.ClientSize = new System.Drawing.Size(350, 542);
             this.Controls.Add(this.removeProduct);
             this.Controls.Add(this.productList);
             this.Controls.Add(this.products);
@@ -164,7 +169,6 @@
             this.Controls.Add(this.customerLabel);
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.productIDLabel);
-            this.Controls.Add(this.title);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.addSalesRecord);
             this.Name = "addSaleRecord";
@@ -178,7 +182,6 @@
 
         private System.Windows.Forms.Button addSalesRecord;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label productIDLabel;
         private System.Windows.Forms.Label quantityLabel;
         private System.Windows.Forms.Label customerLabel;
@@ -188,5 +191,6 @@
         private System.Windows.Forms.ListBox products;
         private System.Windows.Forms.ComboBox productList;
         private System.Windows.Forms.Button removeProduct;
+        private System.Windows.Forms.ImageList addImages;
     }
 }

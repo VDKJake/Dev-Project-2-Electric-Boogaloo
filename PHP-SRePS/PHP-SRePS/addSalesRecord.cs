@@ -16,6 +16,7 @@ namespace PHP_SRePS
     public partial class addSaleRecord : Form
     {
         private string _user;
+        public editSalesRecord edit;
 
         public addSaleRecord()
         {
@@ -102,6 +103,7 @@ namespace PHP_SRePS
             quantity.Text = string.Empty;
             customer.Text = string.Empty;
             products.Items.Clear();
+            edit.ReloadData();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -152,6 +154,26 @@ namespace PHP_SRePS
         {
             if(products.SelectedIndex > 0)
                 products.Items.RemoveAt(products.SelectedIndex);
+        }
+
+        private void addSalesRecord_MouseDown(object sender, MouseEventArgs e)
+        {
+            addSalesRecord.Image = addImages.Images[2];
+        }
+
+        private void addSalesRecord_MouseHover(object sender, EventArgs e)
+        {
+            addSalesRecord.Image = addImages.Images[1];
+        }
+
+        private void addSalesRecord_MouseLeave(object sender, EventArgs e)
+        {
+            addSalesRecord.Image = addImages.Images[0];
+        }
+
+        private void addSalesRecord_MouseUp(object sender, MouseEventArgs e)
+        {
+            addSalesRecord.Image = addImages.Images[0];
         }
     }
 }

@@ -44,20 +44,21 @@
             this.quantity = new System.Windows.Forms.TextBox();
             this.customer = new System.Windows.Forms.TextBox();
             this.removeButton = new System.Windows.Forms.Button();
-            this.btnImages = new System.Windows.Forms.ImageList(this.components);
             this.salesRecords = new System.Windows.Forms.ListBox();
             this.saleRecordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pHPSRePSDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._PHP_SRePSDataSet = new PHP_SRePS._PHP_SRePSDataSet();
             this.saleRecordsTableAdapter = new PHP_SRePS._PHP_SRePSDataSetTableAdapters.SaleRecordsTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.saleRecordsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.saleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleRecordsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.editImages = new System.Windows.Forms.ImageList(this.components);
+            this.removeImages = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.saleRecordsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHPSRePSDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PHP_SRePSDataSet)).BeginInit();
@@ -71,14 +72,17 @@
             this.editButton.FlatAppearance.BorderSize = 0;
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.ImageIndex = 1;
-            this.editButton.ImageList = this.btnImages;
+            this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
             this.editButton.Location = new System.Drawing.Point(247, 349);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(110, 50);
             this.editButton.TabIndex = 2;
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            this.editButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.editButton_MouseDown);
+            this.editButton.MouseLeave += new System.EventHandler(this.editButton_MouseLeave);
+            this.editButton.MouseHover += new System.EventHandler(this.editButton_MouseHover);
+            this.editButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.editButton_MouseUp);
             // 
             // saleIDLabel
             // 
@@ -188,21 +192,17 @@
             this.removeButton.FlatAppearance.BorderSize = 0;
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removeButton.ImageIndex = 0;
-            this.removeButton.ImageList = this.btnImages;
+            this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
             this.removeButton.Location = new System.Drawing.Point(380, 349);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(110, 50);
             this.removeButton.TabIndex = 16;
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
-            // btnImages
-            // 
-            this.btnImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("btnImages.ImageStream")));
-            this.btnImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.btnImages.Images.SetKeyName(0, "btn_Remove.png");
-            this.btnImages.Images.SetKeyName(1, "btn_Edit.png");
+            this.removeButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.removeButton_MouseDown);
+            this.removeButton.MouseLeave += new System.EventHandler(this.removeButton_MouseLeave);
+            this.removeButton.MouseHover += new System.EventHandler(this.removeButton_MouseHover);
+            this.removeButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.removeButton_MouseUp);
             // 
             // salesRecords
             // 
@@ -255,11 +255,6 @@
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             // 
-            // saleRecordsBindingSource1
-            // 
-            this.saleRecordsBindingSource1.DataMember = "SaleRecords";
-            this.saleRecordsBindingSource1.DataSource = this.pHPSRePSDataSetBindingSource;
-            // 
             // saleIDDataGridViewTextBoxColumn
             // 
             this.saleIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -307,6 +302,27 @@
             this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
             this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
             this.customerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // saleRecordsBindingSource1
+            // 
+            this.saleRecordsBindingSource1.DataMember = "SaleRecords";
+            this.saleRecordsBindingSource1.DataSource = this.pHPSRePSDataSetBindingSource;
+            // 
+            // editImages
+            // 
+            this.editImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("editImages.ImageStream")));
+            this.editImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.editImages.Images.SetKeyName(0, "btn_EditBase.png");
+            this.editImages.Images.SetKeyName(1, "btn_EditHover.png");
+            this.editImages.Images.SetKeyName(2, "btn_EditClick.png");
+            // 
+            // removeImages
+            // 
+            this.removeImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("removeImages.ImageStream")));
+            this.removeImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.removeImages.Images.SetKeyName(0, "btn_RemoveBase.png");
+            this.removeImages.Images.SetKeyName(1, "btn_RemoveHover.png");
+            this.removeImages.Images.SetKeyName(2, "btn_RemoveClick.png");
             // 
             // editSalesRecord
             // 
@@ -367,12 +383,13 @@
         private _PHP_SRePSDataSetTableAdapters.SaleRecordsTableAdapter saleRecordsTableAdapter;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource saleRecordsBindingSource1;
-        private System.Windows.Forms.ImageList btnImages;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn userIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn saleDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ImageList editImages;
+        private System.Windows.Forms.ImageList removeImages;
     }
 }

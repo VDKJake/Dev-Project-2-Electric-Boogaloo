@@ -60,5 +60,25 @@ namespace PHP_SRePS
         {
             errorLabel.Text = "";
         }
+
+        private void login_MouseEnter(object sender, EventArgs e)
+        {
+            login.Image = loginImages.Images[1];
+        }
+
+        private void login_MouseLeave(object sender, EventArgs e)
+        {
+            login.Image = loginImages.Images[0];
+        }
+
+        private void login_MouseDown(object sender, MouseEventArgs e)
+        {
+            login.Image = loginImages.Images[2];
+        }
+
+        private void login_MouseUp(object sender, MouseEventArgs e)
+        {
+            login.Image = loginImages.Images[0];
+        }
     }
 }

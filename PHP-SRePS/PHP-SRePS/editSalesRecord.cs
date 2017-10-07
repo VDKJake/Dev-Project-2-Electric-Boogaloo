@@ -361,5 +361,45 @@ namespace PHP_SRePS
         {
             saleRecordsTableAdapter.Fill(_PHP_SRePSDataSet.SaleRecords);
         }
+
+        private void editButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            editButton.Image = editImages.Images[2];
+        }
+
+        private void editButton_MouseHover(object sender, EventArgs e)
+        {
+            editButton.Image = editImages.Images[1];
+        }
+
+        private void editButton_MouseLeave(object sender, EventArgs e)
+        {
+            editButton.Image = editImages.Images[0];
+        }
+
+        private void editButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            editButton.Image = editImages.Images[0];
+        }
+
+        private void removeButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            removeButton.Image = removeImages.Images[2];
+        }
+
+        private void removeButton_MouseHover(object sender, EventArgs e)
+        {
+            removeButton.Image = removeImages.Images[1];
+        }
+
+        private void removeButton_MouseLeave(object sender, EventArgs e)
+        {
+            removeButton.Image = removeImages.Images[0];
+        }
+
+        private void removeButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            removeButton.Image = removeImages.Images[0];
+        }
     }
 }

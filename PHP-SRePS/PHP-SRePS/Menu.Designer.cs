@@ -52,6 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabImages = new System.Windows.Forms.ImageList(this.components);
             this.panel = new System.Windows.Forms.Panel();
+            this.logoutImages = new System.Windows.Forms.ImageList(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -84,21 +85,27 @@
             // CloseButton
             // 
             this.CloseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.CloseButton.Location = new System.Drawing.Point(12, 583);
+            this.CloseButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("CloseButton.BackgroundImage")));
+            this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CloseButton.Location = new System.Drawing.Point(12, 579);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.Size = new System.Drawing.Size(75, 27);
             this.CloseButton.TabIndex = 2;
-            this.CloseButton.Text = "Logout";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.logout_Click);
+            this.CloseButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CloseButton_MouseDown);
+            this.CloseButton.MouseLeave += new System.EventHandler(this.CloseButton_MouseLeave);
+            this.CloseButton.MouseHover += new System.EventHandler(this.CloseButton_MouseHover);
+            this.CloseButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CloseButton_MouseUp);
             // 
             // loggedIn
             // 
             this.loggedIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.loggedIn.AutoSize = true;
-            this.loggedIn.Location = new System.Drawing.Point(93, 589);
+            this.loggedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loggedIn.Location = new System.Drawing.Point(93, 586);
             this.loggedIn.Name = "loggedIn";
-            this.loggedIn.Size = new System.Drawing.Size(74, 13);
+            this.loggedIn.Size = new System.Drawing.Size(88, 13);
             this.loggedIn.TabIndex = 4;
             this.loggedIn.Text = "Logged in as: ";
             // 
@@ -142,7 +149,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1212, 565);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -318,6 +324,14 @@
             this.panel.Size = new System.Drawing.Size(820, 594);
             this.panel.TabIndex = 6;
             // 
+            // logoutImages
+            // 
+            this.logoutImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("logoutImages.ImageStream")));
+            this.logoutImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.logoutImages.Images.SetKeyName(0, "btn_LogoutBase.png");
+            this.logoutImages.Images.SetKeyName(1, "btn_LogoutHover.png");
+            this.logoutImages.Images.SetKeyName(2, "btn_LogoutClick.png");
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,5 +389,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ImageList tabImages;
+        private System.Windows.Forms.ImageList logoutImages;
     }
 }

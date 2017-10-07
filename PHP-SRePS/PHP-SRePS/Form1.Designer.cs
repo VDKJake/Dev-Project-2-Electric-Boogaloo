@@ -39,12 +39,14 @@
             this.errorLabel = new System.Windows.Forms.Label();
             this.errorTimer = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.loginImages = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.usernameLabel.Location = new System.Drawing.Point(82, 246);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(86, 17);
@@ -55,6 +57,7 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.passwordLabel.Location = new System.Drawing.Point(82, 287);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(82, 17);
@@ -63,13 +66,24 @@
             // 
             // login
             // 
-            this.login.Location = new System.Drawing.Point(156, 347);
+            this.login.BackColor = System.Drawing.Color.Transparent;
+            this.login.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.login.FlatAppearance.BorderSize = 0;
+            this.login.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.login.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.login.ForeColor = System.Drawing.Color.Transparent;
+            this.login.Image = ((System.Drawing.Image)(resources.GetObject("login.Image")));
+            this.login.Location = new System.Drawing.Point(157, 342);
             this.login.Name = "login";
-            this.login.Size = new System.Drawing.Size(75, 23);
+            this.login.Size = new System.Drawing.Size(60, 24);
             this.login.TabIndex = 2;
-            this.login.Text = "Login";
-            this.login.UseVisualStyleBackColor = true;
+            this.login.UseVisualStyleBackColor = false;
             this.login.Click += new System.EventHandler(this.login_Click);
+            this.login.MouseDown += new System.Windows.Forms.MouseEventHandler(this.login_MouseDown);
+            this.login.MouseEnter += new System.EventHandler(this.login_MouseEnter);
+            this.login.MouseLeave += new System.EventHandler(this.login_MouseLeave);
+            this.login.MouseUp += new System.Windows.Forms.MouseEventHandler(this.login_MouseUp);
             // 
             // username
             // 
@@ -88,10 +102,11 @@
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(150, 190);
+            this.title.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
+            this.title.Location = new System.Drawing.Point(139, 188);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(91, 32);
+            this.title.Size = new System.Drawing.Size(104, 37);
             this.title.TabIndex = 5;
             this.title.Text = "Login";
             // 
@@ -120,6 +135,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(258, 160);
             this.panel1.TabIndex = 7;
+            // 
+            // loginImages
+            // 
+            this.loginImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("loginImages.ImageStream")));
+            this.loginImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.loginImages.Images.SetKeyName(0, "btn_LoginBase.png");
+            this.loginImages.Images.SetKeyName(1, "btn_LoginHover.png");
+            this.loginImages.Images.SetKeyName(2, "btn_LoginClick.png");
             // 
             // loginForm
             // 
@@ -153,6 +176,7 @@
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Timer errorTimer;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ImageList loginImages;
     }
 }
 
