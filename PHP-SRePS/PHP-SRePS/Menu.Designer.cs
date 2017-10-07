@@ -124,6 +124,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -132,11 +135,11 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabControl1.ImageList = this.tabImages;
-            this.tabControl1.ItemSize = new System.Drawing.Size(201, 30);
-            this.tabControl1.Location = new System.Drawing.Point(12, 41);
+            this.tabControl1.ItemSize = new System.Drawing.Size(201, 50);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1212, 536);
+            this.tabControl1.Size = new System.Drawing.Size(1212, 565);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -147,19 +150,21 @@
             this.tabPage1.Controls.Add(this.welcomeLabel);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.tabPage1.ImageKey = "(none)";
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.ImageKey = "btn_Home.png";
+            this.tabPage1.Location = new System.Drawing.Point(4, 54);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage1.Size = new System.Drawing.Size(1204, 507);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home";
             // 
             // welcomeLabel
             // 
             this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.BackColor = System.Drawing.Color.Transparent;
             this.welcomeLabel.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomeLabel.Location = new System.Drawing.Point(284, 49);
+            this.welcomeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
+            this.welcomeLabel.Location = new System.Drawing.Point(194, 39);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(314, 75);
             this.welcomeLabel.TabIndex = 9;
@@ -169,20 +174,20 @@
             // 
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Location = new System.Drawing.Point(21, 20);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 160);
+            this.panel1.Size = new System.Drawing.Size(167, 167);
             this.panel1.TabIndex = 8;
             // 
             // tabPage2
             // 
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.ImageKey = "(none)";
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.ImageKey = "btn_Add.png";
+            this.tabPage2.Location = new System.Drawing.Point(4, 54);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage2.Size = new System.Drawing.Size(1204, 507);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Sales";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -191,6 +196,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.label2.Location = new System.Drawing.Point(18, 18);
             this.label2.Margin = new System.Windows.Forms.Padding(15);
             this.label2.Name = "label2";
@@ -201,10 +207,11 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.ImageKey = "btn_Edit.png";
+            this.tabPage3.Location = new System.Drawing.Point(4, 54);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage3.Size = new System.Drawing.Size(1204, 507);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Sales";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -213,6 +220,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.label1.Location = new System.Drawing.Point(18, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(15);
             this.label1.Name = "label1";
@@ -223,10 +231,11 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 34);
+            this.tabPage4.ImageKey = "btn_View.png";
+            this.tabPage4.Location = new System.Drawing.Point(4, 54);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage4.Size = new System.Drawing.Size(1204, 507);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "View Sales";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -235,6 +244,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.label3.Location = new System.Drawing.Point(18, 18);
             this.label3.Margin = new System.Windows.Forms.Padding(15);
             this.label3.Name = "label3";
@@ -245,10 +255,11 @@
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.label4);
-            this.tabPage5.Location = new System.Drawing.Point(4, 34);
+            this.tabPage5.ImageKey = "btn_Reports.png";
+            this.tabPage5.Location = new System.Drawing.Point(4, 54);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage5.Size = new System.Drawing.Size(1204, 507);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Sales Reports";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -257,6 +268,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.label4.Location = new System.Drawing.Point(18, 18);
             this.label4.Margin = new System.Windows.Forms.Padding(15);
             this.label4.Name = "label4";
@@ -267,10 +279,11 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label5);
-            this.tabPage6.Location = new System.Drawing.Point(4, 34);
+            this.tabPage6.ImageKey = "btn_Est.png";
+            this.tabPage6.Location = new System.Drawing.Point(4, 54);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1204, 498);
+            this.tabPage6.Size = new System.Drawing.Size(1204, 507);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Sales Estimations";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -279,6 +292,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
             this.label5.Location = new System.Drawing.Point(18, 18);
             this.label5.Margin = new System.Windows.Forms.Padding(15);
             this.label5.Name = "label5";
@@ -290,7 +304,12 @@
             // 
             this.tabImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("tabImages.ImageStream")));
             this.tabImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.tabImages.Images.SetKeyName(0, "Button.png");
+            this.tabImages.Images.SetKeyName(0, "btn_Add.png");
+            this.tabImages.Images.SetKeyName(1, "btn_Edit.png");
+            this.tabImages.Images.SetKeyName(2, "btn_Est.png");
+            this.tabImages.Images.SetKeyName(3, "btn_Home.png");
+            this.tabImages.Images.SetKeyName(4, "btn_Reports.png");
+            this.tabImages.Images.SetKeyName(5, "btn_View.png");
             // 
             // panel
             // 

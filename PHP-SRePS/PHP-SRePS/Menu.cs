@@ -14,27 +14,31 @@ namespace PHP_SRePS
     {
         private string _user;
         private int tabNo = 0;
+        private addSaleRecord add = new addSaleRecord();
+        private editSalesRecord edit = new editSalesRecord();
+        private displayRecords display = new displayRecords();
+        private generateReports reportsTab = new generateReports();
 
         public Menu()
         {
             InitializeComponent();
             // This code needs to be fixed and optimized
             // Adds the forms to the panel pages
-            addSaleRecord add = new addSaleRecord();
-            editSalesRecord edit = new editSalesRecord();
-            displayRecords display = new displayRecords();
-            generateReports reports = new generateReports();
+            
+            
             
             SetTab(add);
             SetTab(edit);
             SetTab(display);
-            SetTab(reports);
+            SetTab(reportsTab);
         }
 
         protected override void OnShown(EventArgs e)
         {
             loggedIn.Text = "Logged in as: " + _user;
             welcomeLabel.Text = "Welcome, " + _user;
+            add.User = _user;
+            add.edit = edit;
         }
 
         private void addSale_Click(object sender, EventArgs e)

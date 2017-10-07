@@ -39,6 +39,7 @@
             this.productID = new System.Windows.Forms.TextBox();
             this.quantity = new System.Windows.Forms.TextBox();
             this.customer = new System.Windows.Forms.TextBox();
+            this.testLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addSalesRecord
@@ -145,12 +146,22 @@
             this.customer.Size = new System.Drawing.Size(100, 20);
             this.customer.TabIndex = 10;
             // 
+            // testLabel
+            // 
+            this.testLabel.AutoSize = true;
+            this.testLabel.Location = new System.Drawing.Point(189, 155);
+            this.testLabel.Name = "testLabel";
+            this.testLabel.Size = new System.Drawing.Size(35, 13);
+            this.testLabel.TabIndex = 11;
+            this.testLabel.Text = "label1";
+            // 
             // addSaleRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(446, 294);
+            this.Controls.Add(this.testLabel);
             this.Controls.Add(this.customer);
             this.Controls.Add(this.quantity);
             this.Controls.Add(this.productID);
@@ -182,5 +193,6 @@
         private System.Windows.Forms.TextBox productID;
         private System.Windows.Forms.TextBox quantity;
         private System.Windows.Forms.TextBox customer;
+        private System.Windows.Forms.Label testLabel;
     }
 }

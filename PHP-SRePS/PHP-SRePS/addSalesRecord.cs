@@ -16,6 +16,7 @@ namespace PHP_SRePS
     public partial class addSaleRecord : Form
     {
         private string _user;
+        public editSalesRecord edit;
 
         public addSaleRecord()
         {
@@ -99,6 +100,7 @@ namespace PHP_SRePS
             productID.Text = string.Empty;
             quantity.Text = string.Empty;
             customer.Text = string.Empty;
+            edit.ReloadData();
         }
 
         private void backButton_Click(object sender, EventArgs e)

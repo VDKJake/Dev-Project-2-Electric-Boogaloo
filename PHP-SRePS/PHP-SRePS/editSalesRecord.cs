@@ -9,18 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace PHP_SRePS
 {
     public partial class editSalesRecord : Form
     {
+        private DataGridViewCell[] dataCells = new DataGridViewCell[6];
+
         public editSalesRecord()
         {
             InitializeComponent();
             UpdateListbox();
         }
 
-        private void UpdateListbox()
+        public void UpdateListbox()
         {
             //Remove all values in boxlist
             salesRecords.Items.Clear();
@@ -28,7 +31,7 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            
+
             //Command to retrive sales records from database
             string scmd = "SELECT * FROM dbo.saleRecords";
             SqlCommand cmd = new SqlCommand(scmd, con);
@@ -64,21 +67,7 @@ namespace PHP_SRePS
 
         private void salesRecords_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Get the currently selected element of the ListBox
-            string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
-            //Check to see if its the first entry (table headers), if so return else output the values to the text boxes
-            if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
-                return;
-            else
-            {
-                string[] _output = _selected.Split('\t');
-                saleID.Text = _output[0].Trim();
-                productID.Text = _output[1].Trim();
-                userID.Text = _output[2].Trim();
-                saleDate.Text = _output[3].Trim();
-                quantity.Text = _output[4].Trim();
-                customer.Text = _output[5].Trim();
-            }
+
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -86,7 +75,7 @@ namespace PHP_SRePS
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
-            
+
             //Prep query
             string scmd = "UPDATE dbo.SaleRecords SET SaleID = @saleid, ProductID = @productid, UserID = @userid, SaleDate = @date, Quantity = @quantity, Customer = @customer WHERE SaleID = @currentSaleID AND ProductID = @currentProductid AND UserID = @currentUserid AND SaleDate = @currentDate AND Quantity = @currentQuantity AND Customer = @currentCustomer";
             SqlCommand cmd = new SqlCommand(scmd, con);
@@ -155,7 +144,19 @@ namespace PHP_SRePS
             string _customerForm = string.Empty;
             DateTime _dateForm = DateTime.Today;
 
-            string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            //string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            string _selected = "";
+            for (int i = 0; i < dataCells.Length; i++)
+            {
+                if (i == dataCells.Length - 1)
+                {
+                    _selected += dataCells[i].FormattedValue.ToString();
+                }
+                else
+                {
+                    _selected += dataCells[i].FormattedValue.ToString() + " \t ";
+                }
+            }
             if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
                 MessageBox.Show("Please select a valid entry");
             else
@@ -187,7 +188,6 @@ namespace PHP_SRePS
 
                 _dateForm = Convert.ToDateTime(_output[3].Trim());
             }
-
             //Add values for the parameters
             cmd.Parameters["@saleid"].Value = _saleid;
             cmd.Parameters["@productid"].Value = _productid;
@@ -203,7 +203,7 @@ namespace PHP_SRePS
             cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
             //Display a confirmation box - if yes then run the query
-            var editCheck = MessageBox.Show("Are you sure to edit this item?\n" + _saleid + ", " + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
+            var editCheck = MessageBox.Show("Are you sure want to edit this item?\n" + _saleid + ", " + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
             if (editCheck == DialogResult.Yes)
             {
                 con.Open();
@@ -215,6 +215,8 @@ namespace PHP_SRePS
 
             //"Refresh" the listbox
             UpdateListbox();
+            ReloadData();
+            dataGridView1.ClearSelection();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -244,7 +246,19 @@ namespace PHP_SRePS
             DateTime _dateForm = DateTime.Today;
 
             //Convert and check all values from selected listbox item
-            string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            //string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            string _selected = "";
+            for (int i = 0; i < dataCells.Length; i++)
+            {
+                if (i == dataCells.Length - 1)
+                {
+                    _selected += dataCells[i].FormattedValue.ToString();
+                }
+                else
+                {
+                    _selected += dataCells[i].FormattedValue.ToString() + " \t ";
+                }
+            }
             if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer")
                 MessageBox.Show("Please select a valid entry");
             else
@@ -293,7 +307,9 @@ namespace PHP_SRePS
                 else
                     return;
 
-                UpdateListbox();
+                //UpdateListbox();
+                ReloadData();
+                dataGridView1.ClearSelection();
             }
         }
 
@@ -301,12 +317,49 @@ namespace PHP_SRePS
         {
             // TODO: This line of code loads data into the '_PHP_SRePSDataSet.SaleRecords' table. You can move, or remove it, as needed.
             this.saleRecordsTableAdapter.Fill(this._PHP_SRePSDataSet.SaleRecords);
-
         }
 
-        private void salesDataGrid_SelectionChanged(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Clear the row data array, then copy the currently selected row to the array.
+            Array.Clear(dataCells, 0, dataCells.Length);
+            dataGridView1.CurrentRow.Cells.CopyTo(dataCells, 0);
+            string _selected = "";
+            for (int i = 0; i < dataCells.Length; i++)
+            {
+                if (i == dataCells.Length - 1)
+                {
+                    _selected += dataCells[i].FormattedValue.ToString();
+                }
+                else
+                {
+                    _selected += dataCells[i].FormattedValue.ToString() + " \t ";
+                }
+            }
+            //Check to see if its the first entry (table headers), if so return else output the values to the text boxes
+            if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
+                return;
+            else
+            {
+                string[] _output = _selected.Split('\t');
+                saleID.Text = _output[0].Trim();
+                productID.Text = _output[1].Trim();
+                userID.Text = _output[2].Trim();
+                saleDate.Text = _output[3].Trim();
+                quantity.Text = _output[4].Trim();
+                customer.Text = _output[5].Trim();
+            }
+        }
 
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            Array.Clear(dataCells, 0, dataCells.Length);
+            dataGridView1.ClearSelection();
+        }
+
+        public void ReloadData()
+        {
+            saleRecordsTableAdapter.Fill(_PHP_SRePSDataSet.SaleRecords);
         }
     }
 }

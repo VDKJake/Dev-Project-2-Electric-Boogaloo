@@ -60,5 +60,12 @@ namespace PHP_SRePS
         {
             this.Close();
         }
+
+        private void displayRecords_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the '_PHP_SRePSDataSet.SaleRecords' table. You can move, or remove it, as needed.
+            this.saleRecordsTableAdapter.Fill(this._PHP_SRePSDataSet.SaleRecords);
+
+        }
     }
 }
