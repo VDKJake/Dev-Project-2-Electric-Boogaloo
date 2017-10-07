@@ -99,6 +99,7 @@
             // 
             // pickMonth
             // 
+            this.pickMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pickMonth.FormattingEnabled = true;
             this.pickMonth.Items.AddRange(new object[] {
             "January",

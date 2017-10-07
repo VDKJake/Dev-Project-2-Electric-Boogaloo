@@ -16,11 +16,11 @@ namespace PHP_SRePS
     public partial class addSaleRecord : Form
     {
         private string _user;
-        public editSalesRecord edit;
 
         public addSaleRecord()
         {
             InitializeComponent();
+            PopulateCombobox();
         }
 
         private void addSalesRecord_Click(object sender, EventArgs e)
@@ -29,48 +29,29 @@ namespace PHP_SRePS
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
 
-            //Set the SQL command to a string for sercurity and create the command
-            string scmd = "INSERT INTO dbo.SaleRecords (SaleID, ProductID, UserID, SaleDate, Quantity, Customer) VALUES (@saleID, @productID, @user, @date, @quantity, @customer);";
-            SqlCommand cmd = new SqlCommand(scmd, con);
-            //Set up parameters for the SQL command - this is to protect against SQL injection
-            cmd.Parameters.Add("@saleID", SqlDbType.Int);
-            cmd.Parameters.Add("@productID", SqlDbType.Int);
-            cmd.Parameters.Add("@user", SqlDbType.NChar, 10);
-            cmd.Parameters.Add("@date", SqlDbType.Date);
-            cmd.Parameters.Add("@quantity", SqlDbType.Int);
-            cmd.Parameters.Add("@customer", SqlDbType.NChar, 30);
 
             //Check to make sure the user's inputs are valid formats for the query
             //Parse the text values to int, if it is an int value, set variable to be int for the query
             bool result;
             int number;
-            int _saleid = 0;
-            int _productid = 0;
-            int _quantity = 0;
+            List<string> _products = new List<string>();
+            List<int> _quantity = new List<int>();
             string _customer = string.Empty;
-            DateTime _date= DateTime.Today;
-            if (result = int.TryParse(saleID.Text, out number))
-                _saleid = number;
-            else
-            {
-                MessageBox.Show("The sale ID must be a number");
-                return;
-            }
+            DateTime _date = DateTime.Today;
 
-            if (result = int.TryParse(productID.Text, out number))
-                _productid = number;
-            else
+            foreach (string s in products.Items)
             {
-                MessageBox.Show("The product ID must be a number");
-                return;
-            }
-
-            if (result = int.TryParse(quantity.Text, out number))
-                _quantity = number;
-            else
-            {
-                MessageBox.Show("The quantity must be a number");
-                return;
+                if (s == string.Empty)
+                {
+                    MessageBox.Show("Products and their quantity must be added to the record");
+                }
+                else
+                {
+                    string[] output = s.Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
+                    _products.Add(output[0].Trim());
+                    if (result = int.TryParse(output[1].Trim(), out number))
+                        _quantity.Add(number);
+                }
             }
 
             _customer = customer.Text;
@@ -78,29 +59,49 @@ namespace PHP_SRePS
                 MessageBox.Show("Customer can't be left empty");
 
             //Failsafe incase something above doesn't get picked up
-            if (_saleid == 0 || _productid == 0 || _quantity == 0 || _customer == string.Empty)
+            if (_products.Count == 0 || _quantity.Count == 0 || _customer == string.Empty)
                 return;
 
-            //Add values for the parameters
-            cmd.Parameters["@saleID"].Value = _saleid;
-            cmd.Parameters["@productID"].Value = _productid;
+            List<int> _productIDs = new List<int>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+            con.Open();
+            for (int i = 0; i < _products.Count; i++)
+            {
+                cmd.CommandText = "SELECT ProductID FROM dbo.Products WHERE ProductName = '" + _products[i].Trim() + "'";
+                SqlDataReader sdr = cmd.ExecuteReader();
+                while(sdr.Read())
+                    _productIDs.Add((int)sdr["ProductID"]);
+                sdr.Close();
+            }
+
+            string scmd = "INSERT INTO dbo.SaleRecords (ProductID, UserID, SaleDate, Quantity, Customer) VALUES ";
+            for (int i = 0; i < _products.Count; i++)
+            {
+                scmd += "(" + _productIDs[i] + ", '@user', @date, " + _quantity[i] + ", '" + _customer + "')";
+                if (i < _productIDs.Count - 1)
+                    scmd += ",";
+            }
+
+            cmd = new SqlCommand(scmd, con);
+
+            cmd.Parameters.Add("@user", SqlDbType.NChar, 10);
+            cmd.Parameters.Add("@date", SqlDbType.Date);
+
+            ////Add values for the parameters
             cmd.Parameters["@user"].Value = _user;
             cmd.Parameters["@date"].Value =_date;
-            cmd.Parameters["@quantity"].Value = _quantity;
-            cmd.Parameters["@customer"].Value = _customer;
+
 
             //Execute query and then close the connection
-            con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
             //Display a confimation message for the added entry
-            MessageBox.Show("Successfully added: \nSale ID:" + _saleid + "\nProduct ID: " + _productid + "\nUser ID: " + _user + "\nDate: " + _date + "\nQuantity: " + _quantity + "\nCustomer: " + _customer);
+            MessageBox.Show("Successfully added sales data");
             //reset all textboxes to display nothing
-            saleID.Text = string.Empty;
-            productID.Text = string.Empty;
             quantity.Text = string.Empty;
             customer.Text = string.Empty;
-            edit.ReloadData();
+            products.Items.Clear();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -111,6 +112,46 @@ namespace PHP_SRePS
         public string User
         {
             set { _user = value; }
+        }
+
+        private void addProduct_Click(object sender, EventArgs e)
+        {
+            bool result;
+            int number;
+            int _qty;
+
+            if (result = int.TryParse(quantity.Text, out number))
+                _qty = number;
+            else
+            {
+                MessageBox.Show("The quantity must be a number");
+                return;
+            }
+
+            string add = productList.SelectedItem + "\t" + _qty;
+            products.Items.Add(add);
+            quantity.Clear();
+        }
+
+        private void PopulateCombobox()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
+            SqlCommand cmd = new SqlCommand("SELECT ProductName as name FROM Products", con);
+            con.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            while(sdr.Read())
+            {
+                productList.Items.Add(sdr["name"].ToString().Trim());
+            }
+            con.Close();
+        }
+
+        private void removeProduct_Click(object sender, EventArgs e)
+        {
+            if(products.SelectedIndex > 0)
+                products.Items.RemoveAt(products.SelectedIndex);
         }
     }
 }

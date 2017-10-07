@@ -37,7 +37,7 @@ namespace PHP_SRePS
         private void weeklyReport_Click(object sender, EventArgs e)
         {
             DateTime weekStart = startDate.Value;
-            DateTime weekEnd = startDate.Value.AddDays(7);
+            DateTime weekEnd = startDate.Value.AddDays(6);
 
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
@@ -53,6 +53,7 @@ namespace PHP_SRePS
 
             //Until proper UI gets added
             string tempOutput = "Weekly Report: " + weekStart.ToShortDateString() + " to " + weekEnd.ToShortDateString() + ".\n";
+            string csvOutput = "Weekly Report: " + weekStart.ToShortDateString() + " to " + weekEnd.ToShortDateString() + ".\nProductID, SaleCount, QuanititySold";
 
 
             while (reader.Read())
@@ -62,8 +63,12 @@ namespace PHP_SRePS
                 int quantitySold = (int)reader["Quantity"];
 
                 tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
+                csvOutput += "\n" + product + ", " + saleCount + ", " + quantitySold;
             }
 
+            if (reader.HasRows)
+                System.IO.File.WriteAllText(@"C:\Users\Public\WeeklyReport" + weekStart.ToShortDateString() + "-" + weekEnd.ToShortDateString()+".txt", csvOutput);
+                //Temporary Location
 
             //Until proper UI gets added
             if (reader.HasRows)
@@ -169,6 +174,7 @@ namespace PHP_SRePS
 
             //Until proper UI gets added
             string tempOutput = "Monthly Report: " + _selectedMonth + " " + pickYear.Text + ".\n";
+            string csvOutput = "Monthly Report: " + _selectedMonth + " " + pickYear.Text + "\nProductID, SaleCount, QuanititySold";
 
             while (reader.Read())
             {
@@ -177,7 +183,12 @@ namespace PHP_SRePS
                 int quantitySold = (int)reader["Quantity"];
 
                 tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
+                csvOutput += "\n" + product + ", " + saleCount + ", " + quantitySold;
             }
+
+            if (reader.HasRows)
+                System.IO.File.WriteAllText(@"C:\Users\Public\MonthlyReport" + _selectedMonth + pickYear.Text + ".txt", csvOutput);
+                //Temp Location
 
             //Until proper UI gets added
             if (reader.HasRows)
