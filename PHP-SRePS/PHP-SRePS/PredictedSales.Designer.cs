@@ -51,7 +51,7 @@
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(370, 44);
+            this.title.Location = new System.Drawing.Point(369, 5);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(81, 13);
             this.title.TabIndex = 0;
@@ -59,7 +59,7 @@
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(373, 507);
+            this.backButton.Location = new System.Drawing.Point(375, 380);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 1;
@@ -85,9 +85,9 @@
             this.november,
             this.december,
             this.year});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(11, 21);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(779, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(779, 353);
             this.dataGridView1.TabIndex = 2;
             // 
             // Product
@@ -178,7 +178,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 555);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(803, 406);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.title);

@@ -49,7 +49,7 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabImages = new System.Windows.Forms.ImageList(this.components);
             this.panel = new System.Windows.Forms.Panel();
             this.logoutImages = new System.Windows.Forms.ImageList(this.components);
@@ -60,6 +60,7 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // addSale
@@ -289,7 +290,7 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.label5);
+            this.tabPage6.Controls.Add(this.pictureBox1);
             this.tabPage6.ImageKey = "btn_Est.png";
             this.tabPage6.Location = new System.Drawing.Point(4, 54);
             this.tabPage6.Name = "tabPage6";
@@ -299,17 +300,15 @@
             this.tabPage6.Text = "Sales Estimations";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // pictureBox1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.label5.Location = new System.Drawing.Point(18, 18);
-            this.label5.Margin = new System.Windows.Forms.Padding(15);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(547, 75);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Sale Estimations";
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(435, 45);
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
             // 
             // tabImages
             // 
@@ -365,7 +364,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
-            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,8 +392,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ImageList tabImages;
         private System.Windows.Forms.ImageList logoutImages;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

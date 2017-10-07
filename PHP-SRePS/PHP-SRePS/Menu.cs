@@ -18,6 +18,7 @@ namespace PHP_SRePS
         private editSalesRecord edit = new editSalesRecord();
         private displayRecords display = new displayRecords();
         private generateReports reportsTab = new generateReports();
+        private PredictedSales predictedtab = new PredictedSales();
         private bool closing = false;
 
         public Menu()
@@ -32,6 +33,7 @@ namespace PHP_SRePS
             SetTab(edit);
             SetTab(display);
             SetTab(reportsTab);
+            SetTab(predictedtab);
         }
 
         protected override void OnShown(EventArgs e)
