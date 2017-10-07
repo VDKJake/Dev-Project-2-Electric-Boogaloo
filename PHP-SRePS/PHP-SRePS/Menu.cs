@@ -18,6 +18,7 @@ namespace PHP_SRePS
         private editSalesRecord edit = new editSalesRecord();
         private displayRecords display = new displayRecords();
         private generateReports reportsTab = new generateReports();
+        private bool closing = false;
 
         public Menu()
         {
@@ -91,6 +92,7 @@ namespace PHP_SRePS
         {
             
             this.Close();
+            closing = true;
         }
 
         // Sets the next tab page to the inputted form
@@ -118,19 +120,30 @@ namespace PHP_SRePS
             CloseButton.Image = logoutImages.Images[2];
         }
 
-        private void CloseButton_MouseHover(object sender, EventArgs e)
-        {
-            CloseButton.Image = logoutImages.Images[1];
-        }
-
         private void CloseButton_MouseLeave(object sender, EventArgs e)
         {
-            CloseButton.Image = logoutImages.Images[0];
+            if (closing != true)
+            {
+                CloseButton.Image = logoutImages.Images[0];
+            }
         }
 
         private void CloseButton_MouseUp(object sender, MouseEventArgs e)
         {
-            CloseButton.Image = logoutImages.Images[0];
+            if (closing != true)
+            {
+                CloseButton.Image = logoutImages.Images[0];
+            }
+        }
+
+        private void CloseButton_MouseEnter(object sender, EventArgs e)
+        {
+            CloseButton.Image = logoutImages.Images[1];
+        }
+
+        private void Menu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            closing = true;
         }
     }
 }

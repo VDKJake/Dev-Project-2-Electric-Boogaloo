@@ -70,6 +70,9 @@
             // 
             this.editButton.BackColor = System.Drawing.SystemColors.Control;
             this.editButton.FlatAppearance.BorderSize = 0;
+            this.editButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.editButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.editButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
@@ -80,8 +83,8 @@
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
             this.editButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.editButton_MouseDown);
+            this.editButton.MouseEnter += new System.EventHandler(this.editButton_MouseEnter);
             this.editButton.MouseLeave += new System.EventHandler(this.editButton_MouseLeave);
-            this.editButton.MouseHover += new System.EventHandler(this.editButton_MouseHover);
             this.editButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.editButton_MouseUp);
             // 
             // saleIDLabel
@@ -148,6 +151,7 @@
             // 
             this.saleID.Location = new System.Drawing.Point(15, 315);
             this.saleID.Name = "saleID";
+            this.saleID.ReadOnly = true;
             this.saleID.Size = new System.Drawing.Size(100, 20);
             this.saleID.TabIndex = 10;
             // 
@@ -190,6 +194,9 @@
             // 
             this.removeButton.BackColor = System.Drawing.SystemColors.Control;
             this.removeButton.FlatAppearance.BorderSize = 0;
+            this.removeButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.removeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.removeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
@@ -200,8 +207,8 @@
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             this.removeButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.removeButton_MouseDown);
+            this.removeButton.MouseEnter += new System.EventHandler(this.removeButton_MouseEnter);
             this.removeButton.MouseLeave += new System.EventHandler(this.removeButton_MouseLeave);
-            this.removeButton.MouseHover += new System.EventHandler(this.removeButton_MouseHover);
             this.removeButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this.removeButton_MouseUp);
             // 
             // salesRecords

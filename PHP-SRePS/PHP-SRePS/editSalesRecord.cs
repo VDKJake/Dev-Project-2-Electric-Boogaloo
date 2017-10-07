@@ -77,9 +77,8 @@ namespace PHP_SRePS
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
 
             //Prep query
-            string scmd = "UPDATE dbo.SaleRecords SET SaleID = @saleid, ProductID = @productid, UserID = @userid, SaleDate = @date, Quantity = @quantity, Customer = @customer WHERE SaleID = @currentSaleID AND ProductID = @currentProductid AND UserID = @currentUserid AND SaleDate = @currentDate AND Quantity = @currentQuantity AND Customer = @currentCustomer";
+            string scmd = "UPDATE dbo.SaleRecords SET ProductID = @productid, UserID = @userid, SaleDate = @date, Quantity = @quantity, Customer = @customer WHERE SaleID = @currentSaleID AND ProductID = @currentProductid AND UserID = @currentUserid AND SaleDate = @currentDate AND Quantity = @currentQuantity AND Customer = @currentCustomer";
             SqlCommand cmd = new SqlCommand(scmd, con);
-            cmd.Parameters.Add("@saleid", SqlDbType.Int);
             cmd.Parameters.Add("@productid", SqlDbType.Int);
             cmd.Parameters.Add("@userid", SqlDbType.NChar, 10);
             cmd.Parameters.Add("@date", SqlDbType.Date);
@@ -95,20 +94,11 @@ namespace PHP_SRePS
             //Failsafe for correct datatypes
             bool result;
             int number;
-            int _saleid = 0;
             int _productid = 0;
             int _quantity = 0;
             string _customer = string.Empty;
             string _user = string.Empty;
             DateTime _date = Convert.ToDateTime(saleDate.Text);
-            if (result = int.TryParse(saleID.Text, out number))
-                _saleid = number;
-            else
-            {
-                MessageBox.Show("The sale ID must be a number");
-                return;
-            }
-
             if (result = int.TryParse(productID.Text, out number))
                 _productid = number;
             else
@@ -133,7 +123,7 @@ namespace PHP_SRePS
                 MessageBox.Show("User can't be left empty");
 
             //Failsafe incase something above doesn't get picked up
-            if (_saleid == 0 || _productid == 0 || _quantity == 0 || _customer == string.Empty || _user == string.Empty || _date == null)
+            if (_productid == 0 || _quantity == 0 || _customer == string.Empty || _user == string.Empty || _date == null)
                 return;
 
             //Get values from the selected listbox item
@@ -189,7 +179,6 @@ namespace PHP_SRePS
                 _dateForm = Convert.ToDateTime(_output[3].Trim());
             }
             //Add values for the parameters
-            cmd.Parameters["@saleid"].Value = _saleid;
             cmd.Parameters["@productid"].Value = _productid;
             cmd.Parameters["@userid"].Value = _user;
             cmd.Parameters["@date"].Value = _date;
@@ -203,7 +192,7 @@ namespace PHP_SRePS
             cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
             //Display a confirmation box - if yes then run the query
-            var editCheck = MessageBox.Show("Are you sure want to edit this item?\n" + _saleid + ", " + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
+            var editCheck = MessageBox.Show("Are you sure want to edit this item?\n" + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
             if (editCheck == DialogResult.Yes)
             {
                 con.Open();
@@ -217,6 +206,12 @@ namespace PHP_SRePS
             UpdateListbox();
             ReloadData();
             dataGridView1.ClearSelection();
+            saleID.Clear();
+            productID.Clear();
+            userID.Clear();
+            saleDate.Clear();
+            quantity.Clear();
+            customer.Clear();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -310,6 +305,12 @@ namespace PHP_SRePS
                 //UpdateListbox();
                 ReloadData();
                 dataGridView1.ClearSelection();
+                saleID.Clear();
+                productID.Clear();
+                userID.Clear();
+                saleDate.Clear();
+                quantity.Clear();
+                customer.Clear();
             }
         }
 
@@ -367,11 +368,6 @@ namespace PHP_SRePS
             editButton.Image = editImages.Images[2];
         }
 
-        private void editButton_MouseHover(object sender, EventArgs e)
-        {
-            editButton.Image = editImages.Images[1];
-        }
-
         private void editButton_MouseLeave(object sender, EventArgs e)
         {
             editButton.Image = editImages.Images[0];
@@ -387,11 +383,6 @@ namespace PHP_SRePS
             removeButton.Image = removeImages.Images[2];
         }
 
-        private void removeButton_MouseHover(object sender, EventArgs e)
-        {
-            removeButton.Image = removeImages.Images[1];
-        }
-
         private void removeButton_MouseLeave(object sender, EventArgs e)
         {
             removeButton.Image = removeImages.Images[0];
@@ -400,6 +391,16 @@ namespace PHP_SRePS
         private void removeButton_MouseUp(object sender, MouseEventArgs e)
         {
             removeButton.Image = removeImages.Images[0];
+        }
+
+        private void editButton_MouseEnter(object sender, EventArgs e)
+        {
+            editButton.Image = editImages.Images[1];
+        }
+
+        private void removeButton_MouseEnter(object sender, EventArgs e)
+        {
+            removeButton.Image = removeImages.Images[1];
         }
     }
 }

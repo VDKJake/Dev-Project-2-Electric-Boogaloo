@@ -79,20 +79,19 @@ namespace PHP_SRePS
             string scmd = "INSERT INTO dbo.SaleRecords (ProductID, UserID, SaleDate, Quantity, Customer) VALUES ";
             for (int i = 0; i < _products.Count; i++)
             {
-                scmd += "(" + _productIDs[i] + ", '@user', @date, " + _quantity[i] + ", '" + _customer + "')";
+                scmd += "(" + _productIDs[i] + ", '" + _user + "', @date, " + _quantity[i] + ", '" + _customer + "')";
                 if (i < _productIDs.Count - 1)
                     scmd += ",";
             }
 
             cmd = new SqlCommand(scmd, con);
 
-            cmd.Parameters.Add("@user", SqlDbType.NChar, 10);
+            //cmd.Parameters.Add("@user", SqlDbType.NVarChar, 10);
             cmd.Parameters.Add("@date", SqlDbType.Date);
 
             ////Add values for the parameters
-            cmd.Parameters["@user"].Value = _user;
+            //cmd.Parameters["@user"].Value = _user.Trim();
             cmd.Parameters["@date"].Value =_date;
-
 
             //Execute query and then close the connection
             cmd.ExecuteNonQuery();
@@ -161,11 +160,6 @@ namespace PHP_SRePS
             addSalesRecord.Image = addImages.Images[2];
         }
 
-        private void addSalesRecord_MouseHover(object sender, EventArgs e)
-        {
-            addSalesRecord.Image = addImages.Images[1];
-        }
-
         private void addSalesRecord_MouseLeave(object sender, EventArgs e)
         {
             addSalesRecord.Image = addImages.Images[0];
@@ -174,6 +168,11 @@ namespace PHP_SRePS
         private void addSalesRecord_MouseUp(object sender, MouseEventArgs e)
         {
             addSalesRecord.Image = addImages.Images[0];
+        }
+
+        private void addSalesRecord_MouseEnter(object sender, EventArgs e)
+        {
+            addSalesRecord.Image = addImages.Images[1];
         }
     }
 }

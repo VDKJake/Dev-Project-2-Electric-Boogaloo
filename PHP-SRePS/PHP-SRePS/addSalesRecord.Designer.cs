@@ -42,25 +42,28 @@
             this.productList = new System.Windows.Forms.ComboBox();
             this.removeProduct = new System.Windows.Forms.Button();
             this.addImages = new System.Windows.Forms.ImageList(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addSalesRecord
             // 
-            this.addSalesRecord.Location = new System.Drawing.Point(116, 480);
+            this.addSalesRecord.FlatAppearance.BorderSize = 0;
+            this.addSalesRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addSalesRecord.Image = ((System.Drawing.Image)(resources.GetObject("addSalesRecord.Image")));
+            this.addSalesRecord.Location = new System.Drawing.Point(116, 354);
             this.addSalesRecord.Name = "addSalesRecord";
             this.addSalesRecord.Size = new System.Drawing.Size(110, 50);
             this.addSalesRecord.TabIndex = 0;
-            this.addSalesRecord.Text = "Add Sales Record";
             this.addSalesRecord.UseVisualStyleBackColor = true;
             this.addSalesRecord.Click += new System.EventHandler(this.addSalesRecord_Click);
             this.addSalesRecord.MouseDown += new System.Windows.Forms.MouseEventHandler(this.addSalesRecord_MouseDown);
+            this.addSalesRecord.MouseEnter += new System.EventHandler(this.addSalesRecord_MouseEnter);
             this.addSalesRecord.MouseLeave += new System.EventHandler(this.addSalesRecord_MouseLeave);
-            this.addSalesRecord.MouseHover += new System.EventHandler(this.addSalesRecord_MouseHover);
             this.addSalesRecord.MouseUp += new System.Windows.Forms.MouseEventHandler(this.addSalesRecord_MouseUp);
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(264, 507);
+            this.backButton.Location = new System.Drawing.Point(264, 381);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 1;
@@ -124,7 +127,7 @@
             this.products.FormattingEnabled = true;
             this.products.Location = new System.Drawing.Point(50, 106);
             this.products.Name = "products";
-            this.products.Size = new System.Drawing.Size(238, 329);
+            this.products.Size = new System.Drawing.Size(238, 186);
             this.products.TabIndex = 12;
             // 
             // productList
@@ -139,7 +142,7 @@
             // 
             // removeProduct
             // 
-            this.removeProduct.Location = new System.Drawing.Point(90, 441);
+            this.removeProduct.Location = new System.Drawing.Point(90, 315);
             this.removeProduct.Name = "removeProduct";
             this.removeProduct.Size = new System.Drawing.Size(136, 23);
             this.removeProduct.TabIndex = 14;
@@ -155,11 +158,21 @@
             this.addImages.Images.SetKeyName(1, "btn_AddHover.png");
             this.addImages.Images.SetKeyName(2, "btn_AddClick.png");
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(138, 190);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "label1";
+            // 
             // addSaleRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 542);
+            this.ClientSize = new System.Drawing.Size(350, 414);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.removeProduct);
             this.Controls.Add(this.productList);
             this.Controls.Add(this.products);
@@ -192,5 +205,6 @@
         private System.Windows.Forms.ComboBox productList;
         private System.Windows.Forms.Button removeProduct;
         private System.Windows.Forms.ImageList addImages;
+        private System.Windows.Forms.Label label1;
     }
 }
