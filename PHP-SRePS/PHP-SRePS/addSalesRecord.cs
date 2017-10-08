@@ -94,11 +94,10 @@ namespace PHP_SRePS
 
             cmd = new SqlCommand(scmd, con);
 
-            //cmd.Parameters.Add("@user", SqlDbType.NVarChar, 10);
+            //Add parameters to the SqlCommand
             cmd.Parameters.Add("@date", SqlDbType.Date);
 
-            ////Add values for the parameters
-            //cmd.Parameters["@user"].Value = _user.Trim();
+            //Add values for the parameters
             cmd.Parameters["@date"].Value =_date;
 
             //Execute query and then close the connection
