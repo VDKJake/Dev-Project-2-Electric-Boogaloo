@@ -212,9 +212,9 @@
             this.label2.Location = new System.Drawing.Point(18, 18);
             this.label2.Margin = new System.Windows.Forms.Padding(15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 75);
+            this.label2.Size = new System.Drawing.Size(342, 75);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Add Sale";
+            this.label2.Text = "Add Sales";
             // 
             // tabPage3
             // 
@@ -236,9 +236,9 @@
             this.label1.Location = new System.Drawing.Point(18, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(304, 75);
+            this.label1.Size = new System.Drawing.Size(340, 75);
             this.label1.TabIndex = 11;
-            this.label1.Text = "Edit Sale";
+            this.label1.Text = "Edit Sales";
             // 
             // tabPage4
             // 
@@ -260,9 +260,9 @@
             this.label3.Location = new System.Drawing.Point(18, 18);
             this.label3.Margin = new System.Windows.Forms.Padding(15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(330, 75);
+            this.label3.Size = new System.Drawing.Size(366, 75);
             this.label3.TabIndex = 11;
-            this.label3.Text = "View Sale";
+            this.label3.Text = "View Sales";
             // 
             // tabPage5
             // 
@@ -351,6 +351,7 @@
             this.Controls.Add(this.addSale);
             this.Name = "Menu";
             this.Text = "Menu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Menu_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

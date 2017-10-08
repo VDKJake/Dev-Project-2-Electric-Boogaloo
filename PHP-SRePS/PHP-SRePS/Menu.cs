@@ -26,9 +26,6 @@ namespace PHP_SRePS
             InitializeComponent();
             // This code needs to be fixed and optimized
             // Adds the forms to the panel pages
-            
-            
-            
             SetTab(add);
             SetTab(edit);
             SetTab(display);
@@ -42,6 +39,8 @@ namespace PHP_SRePS
             welcomeLabel.Text = "Welcome, " + _user;
             add.User = _user;
             add.edit = edit;
+            add.display = display;
+            edit.display = display;
         }
 
         private void addSale_Click(object sender, EventArgs e)
@@ -97,16 +96,14 @@ namespace PHP_SRePS
             closing = true;
         }
 
-        // Sets the next tab page to the inputted form
+        // Sets the next tab page to the supplied form
         private void SetTab(Form form)
         {
             tabNo += 1;
             form.TopLevel = false;
             form.Visible = true;
             form.FormBorderStyle = FormBorderStyle.None;
-            //form.Location = new Point(266, 171); // Position needs to be changed, just a temporary one for now
             tabControl1.TabPages[tabNo].Controls.Add(form);
-            //form.Size = tabControl1.TabPages[tabNo].Size;
             form.Location = new Point((tabControl1.TabPages[tabNo].Size.Width / 2) - (form.Size.Width / 2), (tabControl1.TabPages[tabNo].Size.Height / 2) - (form.Size.Height / 2));
             form.Anchor = (AnchorStyles.None);
         }
@@ -117,6 +114,9 @@ namespace PHP_SRePS
             set { _user = value; }
         }
 
+        // All of these _MouseDown, _MouseLeave, _MouseUp & _MouseEnter functions
+        // change the image of the buttons when hovering, pressing and taking the 
+        // cursor off the buttons. It's such a bad way to do it but it works.
         private void CloseButton_MouseDown(object sender, MouseEventArgs e)
         {
             CloseButton.Image = logoutImages.Images[2];
@@ -143,6 +143,7 @@ namespace PHP_SRePS
             CloseButton.Image = logoutImages.Images[1];
         }
 
+        // Don't remove this, it makes the logout button not crash the program.
         private void Menu_FormClosing(object sender, FormClosingEventArgs e)
         {
             closing = true;

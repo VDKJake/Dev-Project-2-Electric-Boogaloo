@@ -16,11 +16,13 @@ namespace PHP_SRePS
     public partial class editSalesRecord : Form
     {
         private DataGridViewCell[] dataCells = new DataGridViewCell[6];
+        public displayRecords display;
 
         public editSalesRecord()
         {
             InitializeComponent();
             UpdateListbox();
+            PopulateCombobox();
         }
 
         public void UpdateListbox()
@@ -58,11 +60,6 @@ namespace PHP_SRePS
                 salesRecords.Items.Add(item);
             }
             con.Close();
-        }
-
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void salesRecords_SelectedIndexChanged(object sender, EventArgs e)
@@ -118,7 +115,7 @@ namespace PHP_SRePS
             _customer = customer.Text;
             if (_customer == string.Empty)
                 MessageBox.Show("Customer can't be left empty");
-            _user = userID.Text;
+            _user = userList.SelectedItem.ToString().Trim();
             if (_user == string.Empty)
                 MessageBox.Show("User can't be left empty");
 
@@ -134,7 +131,7 @@ namespace PHP_SRePS
             string _customerForm = string.Empty;
             DateTime _dateForm = DateTime.Today;
 
-            //string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            // Convert and check all values from selected dataGridView row
             string _selected = "";
             for (int i = 0; i < dataCells.Length; i++)
             {
@@ -205,13 +202,32 @@ namespace PHP_SRePS
             //"Refresh" the listbox
             UpdateListbox();
             ReloadData();
+            display.ReloadData();
             dataGridView1.ClearSelection();
+
+            // Clear the input textboxes
             saleID.Clear();
             productID.Clear();
             userID.Clear();
             saleDate.Clear();
             quantity.Clear();
             customer.Clear();
+        }
+
+        // Populates the Users drop down box with all usernames
+        public void PopulateCombobox()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
+            SqlCommand cmd = new SqlCommand("SELECT UserID as name FROM Users", con);
+            con.Open();
+            SqlDataReader sdr = cmd.ExecuteReader();
+
+            while (sdr.Read())
+            {
+                userList.Items.Add(sdr["name"].ToString().Trim());
+            }
+            con.Close();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
@@ -240,8 +256,7 @@ namespace PHP_SRePS
             string _customerForm = string.Empty;
             DateTime _dateForm = DateTime.Today;
 
-            //Convert and check all values from selected listbox item
-            //string _selected = salesRecords.GetItemText(salesRecords.SelectedItem);
+            //Convert and check all values from selected dataGridView row
             string _selected = "";
             for (int i = 0; i < dataCells.Length; i++)
             {
@@ -304,7 +319,10 @@ namespace PHP_SRePS
 
                 //UpdateListbox();
                 ReloadData();
+                display.ReloadData();
                 dataGridView1.ClearSelection();
+
+                // Clear the input textboxes
                 saleID.Clear();
                 productID.Clear();
                 userID.Clear();
@@ -346,6 +364,7 @@ namespace PHP_SRePS
                 saleID.Text = _output[0].Trim();
                 productID.Text = _output[1].Trim();
                 userID.Text = _output[2].Trim();
+                userList.SelectedIndex = userList.FindStringExact(_output[2].Trim());
                 saleDate.Text = _output[3].Trim();
                 quantity.Text = _output[4].Trim();
                 customer.Text = _output[5].Trim();
@@ -354,15 +373,26 @@ namespace PHP_SRePS
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            // For when a header is clicked, just clears the selection
             Array.Clear(dataCells, 0, dataCells.Length);
             dataGridView1.ClearSelection();
+            saleID.Clear();
+            productID.Clear();
+            userID.Clear();
+            saleDate.Clear();
+            quantity.Clear();
+            customer.Clear();
         }
 
+        // Reloads the data in the dataGridView
         public void ReloadData()
         {
             saleRecordsTableAdapter.Fill(_PHP_SRePSDataSet.SaleRecords);
         }
 
+        // All of these _MouseDown, _MouseLeave, _MouseUp & _MouseEnter functions
+        // change the image of the buttons when hovering, pressing and taking the 
+        // cursor off the buttons. It's such a bad way to do it but it works.
         private void editButton_MouseDown(object sender, MouseEventArgs e)
         {
             editButton.Image = editImages.Images[2];
@@ -401,6 +431,91 @@ namespace PHP_SRePS
         private void removeButton_MouseEnter(object sender, EventArgs e)
         {
             removeButton.Image = removeImages.Images[1];
+        }
+
+        private void searchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchText.Text = "";
+        }
+
+        private void searchText_TextChanged(object sender, EventArgs e)
+        {
+            bool result;
+            int number;
+            DataView DV = new DataView(_PHP_SRePSDataSet.SaleRecords);
+            if (searchText.Text == "")
+            {
+                dataGridView1.DataSource = saleRecordsBindingSource;
+            }
+            else
+            {
+                switch (searchBox.SelectedItem)
+                {
+                    case "Sale ID":
+                        if (result = int.TryParse(searchText.Text, out number))
+                        {
+                            DV.RowFilter = ("Convert(SaleID, System.String) LIKE '" + number + "%'");
+                            dataGridView1.DataSource = DV;
+                            errorLabel.Text = "";
+                        }
+                        else
+                        {
+                            errorLabel.Text = "The Sale ID must be a number.";
+                            searchText.Clear();
+                            return;
+                        }
+                        break;
+                    case "Product ID":
+                        if (result = int.TryParse(searchText.Text, out number))
+                        {
+                            DV.RowFilter = ("Convert(ProductID, System.String) LIKE '" + number + "%'");
+                            dataGridView1.DataSource = DV;
+                            errorLabel.Text = "";
+                        }
+                        else
+                        {
+                            errorLabel.Text = "The Product ID must be a number.";
+                            searchText.Clear();
+                            return;
+                        }
+                        break;
+                    case "User ID":
+                        DV.RowFilter = "UserID LIKE '" + searchText.Text.Trim() + "%'";
+                        dataGridView1.DataSource = DV;
+                        errorLabel.Text = "";
+                        break;
+                    case "Sale Date":
+                        DV.RowFilter = "Convert(SaleDate, System.String) LIKE '" + searchText.Text.Trim() + "%'";
+                        dataGridView1.DataSource = DV;
+                        errorLabel.Text = "";
+                        break;
+                    case "Quantity":
+                        if (result = int.TryParse(searchText.Text, out number))
+                        {
+                            DV.RowFilter = ("Convert(Quantity, System.String) LIKE '" + number + "%'");
+                            dataGridView1.DataSource = DV;
+                            errorLabel.Text = "";
+                        }
+                        else
+                        {
+                            ;
+                            errorLabel.Text = "The Quantity must be a number.";
+                            searchText.Clear();
+                            return;
+                        }
+                        break;
+                    case "Customer":
+                        DV.RowFilter = "Customer LIKE '" + searchText.Text.Trim() + "%'";
+                        dataGridView1.DataSource = DV;
+                        errorLabel.Text = "";
+                        break;
+                }
+            }
+        }
+
+        private void errorTimer_Tick(object sender, EventArgs e)
+        {
+            errorLabel.Text = "";
         }
     }
 }

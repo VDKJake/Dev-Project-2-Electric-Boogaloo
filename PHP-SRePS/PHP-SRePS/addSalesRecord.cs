@@ -17,6 +17,7 @@ namespace PHP_SRePS
     {
         private string _user;
         public editSalesRecord edit;
+        public displayRecords display;
 
         public addSaleRecord()
         {
@@ -26,6 +27,7 @@ namespace PHP_SRePS
 
         private void addSalesRecord_Click(object sender, EventArgs e)
         {
+            errorLabel.Text = "";
             //Create connection to db and open the connection
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
@@ -40,24 +42,30 @@ namespace PHP_SRePS
             string _customer = string.Empty;
             DateTime _date = DateTime.Today;
 
-            foreach (string s in products.Items)
+            foreach (ListViewItem s in productListView.Items)
             {
-                if (s == string.Empty)
+                if (productListView.Items.Count == 0)
                 {
-                    MessageBox.Show("Products and their quantity must be added to the record");
+                    //MessageBox.Show("Products and their quantity must be added to the record");
+                    errorLabel.Text = "Products and their quantity must be added to the record";
+                    errorTimer.Start();
                 }
                 else
                 {
-                    string[] output = s.Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
-                    _products.Add(output[0].Trim());
-                    if (result = int.TryParse(output[1].Trim(), out number))
+                    _products.Add(s.Text.Trim());
+                    if (result = int.TryParse(s.SubItems[1].Text.Trim(), out number))
                         _quantity.Add(number);
                 }
             }
 
             _customer = customer.Text;
             if (_customer == string.Empty)
-                MessageBox.Show("Customer can't be left empty");
+            {
+                errorLabel.Text = "Customer can't be left empty";
+                errorTimer.Start();
+            }
+        
+            //MessageBox.Show("Customer can't be left empty");
 
             //Failsafe incase something above doesn't get picked up
             if (_products.Count == 0 || _quantity.Count == 0 || _customer == string.Empty)
@@ -102,12 +110,9 @@ namespace PHP_SRePS
             quantity.Text = string.Empty;
             customer.Text = string.Empty;
             products.Items.Clear();
+            productListView.Items.Clear();
             edit.ReloadData();
-        }
-
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            display.ReloadData();
         }
 
         public string User
@@ -115,8 +120,10 @@ namespace PHP_SRePS
             set { _user = value; }
         }
 
+        // Adds the selected product and quantity to the product list view in appropriate columns
         private void addProduct_Click(object sender, EventArgs e)
         {
+            errorLabel.Text = "";
             bool result;
             int number;
             int _qty;
@@ -125,15 +132,16 @@ namespace PHP_SRePS
                 _qty = number;
             else
             {
-                MessageBox.Show("The quantity must be a number");
+                //MessageBox.Show("The quantity must be a number");
+                errorLabel.Text = "The quantity must be a number";
+                errorTimer.Start();
                 return;
             }
-
-            string add = productList.SelectedItem + "\t" + _qty;
-            products.Items.Add(add);
+            productListView.Items.Add(productList.SelectedItem.ToString()).SubItems.Add(_qty.ToString());
             quantity.Clear();
         }
 
+        // Populates the products drop down box with all product names
         private void PopulateCombobox()
         {
             SqlConnection con = new SqlConnection();
@@ -149,12 +157,16 @@ namespace PHP_SRePS
             con.Close();
         }
 
+        // Removes the selected product from the product list
         private void removeProduct_Click(object sender, EventArgs e)
         {
-            if(products.SelectedIndex > 0)
-                products.Items.RemoveAt(products.SelectedIndex);
+            if(productListView.SelectedItems.Count > 0)
+                productListView.Items.RemoveAt(productListView.SelectedItems[0].Index);
         }
 
+        // All of these _MouseDown, _MouseLeave, _MouseUp & _MouseEnter functions
+        // change the image of the buttons when hovering, pressing and taking the 
+        // cursor off the buttons. It's such a bad way to do it but it works.
         private void addSalesRecord_MouseDown(object sender, MouseEventArgs e)
         {
             addSalesRecord.Image = addImages.Images[2];
@@ -173,6 +185,51 @@ namespace PHP_SRePS
         private void addSalesRecord_MouseEnter(object sender, EventArgs e)
         {
             addSalesRecord.Image = addImages.Images[1];
+        }
+
+        private void removeProduct_MouseDown(object sender, MouseEventArgs e)
+        {
+            removeProduct.Image = removeProductImages.Images[2];
+        }
+
+        private void removeProduct_MouseEnter(object sender, EventArgs e)
+        {
+            removeProduct.Image = removeProductImages.Images[1];
+        }
+
+        private void removeProduct_MouseLeave(object sender, EventArgs e)
+        {
+            removeProduct.Image = removeProductImages.Images[0];
+        }
+
+        private void removeProduct_MouseUp(object sender, MouseEventArgs e)
+        {
+            removeProduct.Image = removeProductImages.Images[0];
+        }
+
+        private void addProduct_MouseDown(object sender, MouseEventArgs e)
+        {
+            addProduct.Image = addProductImages.Images[2];
+        }
+
+        private void addProduct_MouseEnter(object sender, EventArgs e)
+        {
+            addProduct.Image = addProductImages.Images[1];
+        }
+
+        private void addProduct_MouseLeave(object sender, EventArgs e)
+        {
+            addProduct.Image = addProductImages.Images[0];
+        }
+
+        private void addProduct_MouseUp(object sender, MouseEventArgs e)
+        {
+            addProduct.Image = addProductImages.Images[0];
+        }
+
+        private void errorTimer_Tick(object sender, EventArgs e)
+        {
+            errorLabel.Text = "";
         }
     }
 }

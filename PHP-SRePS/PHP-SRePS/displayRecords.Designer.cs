@@ -29,39 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.salesRecords = new System.Windows.Forms.ListBox();
-            this.backButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.saleRecordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._PHP_SRePSDataSet = new PHP_SRePS._PHP_SRePSDataSet();
-            this.saleRecordsTableAdapter = new PHP_SRePS._PHP_SRePSDataSetTableAdapters.SaleRecordsTableAdapter();
             this.saleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saleDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saleRecordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._PHP_SRePSDataSet = new PHP_SRePS._PHP_SRePSDataSet();
+            this.saleRecordsTableAdapter = new PHP_SRePS._PHP_SRePSDataSetTableAdapters.SaleRecordsTableAdapter();
+            this.searchText = new System.Windows.Forms.TextBox();
+            this.searchBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.errorTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.saleRecordsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PHP_SRePSDataSet)).BeginInit();
             this.SuspendLayout();
-            // 
-            // salesRecords
-            // 
-            this.salesRecords.FormattingEnabled = true;
-            this.salesRecords.Location = new System.Drawing.Point(12, 24);
-            this.salesRecords.Name = "salesRecords";
-            this.salesRecords.Size = new System.Drawing.Size(706, 329);
-            this.salesRecords.TabIndex = 18;
-            // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(322, 378);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 19;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -77,24 +63,11 @@
             this.quantityDataGridViewTextBoxColumn,
             this.customerDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.saleRecordsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(726, 329);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(706, 264);
             this.dataGridView1.TabIndex = 20;
-            // 
-            // saleRecordsBindingSource
-            // 
-            this.saleRecordsBindingSource.DataMember = "SaleRecords";
-            this.saleRecordsBindingSource.DataSource = this._PHP_SRePSDataSet;
-            // 
-            // _PHP_SRePSDataSet
-            // 
-            this._PHP_SRePSDataSet.DataSetName = "_PHP_SRePSDataSet";
-            this._PHP_SRePSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // saleRecordsTableAdapter
-            // 
-            this.saleRecordsTableAdapter.ClearBeforeFill = true;
             // 
             // saleIDDataGridViewTextBoxColumn
             // 
@@ -138,15 +111,83 @@
             this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
             this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
             // 
+            // saleRecordsBindingSource
+            // 
+            this.saleRecordsBindingSource.DataMember = "SaleRecords";
+            this.saleRecordsBindingSource.DataSource = this._PHP_SRePSDataSet;
+            // 
+            // _PHP_SRePSDataSet
+            // 
+            this._PHP_SRePSDataSet.DataSetName = "_PHP_SRePSDataSet";
+            this._PHP_SRePSDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // saleRecordsTableAdapter
+            // 
+            this.saleRecordsTableAdapter.ClearBeforeFill = true;
+            // 
+            // searchText
+            // 
+            this.searchText.Location = new System.Drawing.Point(379, 32);
+            this.searchText.Name = "searchText";
+            this.searchText.Size = new System.Drawing.Size(78, 20);
+            this.searchText.TabIndex = 21;
+            this.searchText.TextChanged += new System.EventHandler(this.searchText_TextChanged);
+            // 
+            // searchBox
+            // 
+            this.searchBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchBox.FormattingEnabled = true;
+            this.searchBox.Items.AddRange(new object[] {
+            "Sale ID",
+            "Product ID",
+            "User ID",
+            "Sale Date",
+            "Quantity",
+            "Customer"});
+            this.searchBox.Location = new System.Drawing.Point(254, 31);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(119, 21);
+            this.searchBox.TabIndex = 26;
+            this.searchBox.SelectedIndexChanged += new System.EventHandler(this.searchBox_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(272, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Search By";
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLabel.Location = new System.Drawing.Point(257, 57);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorLabel.TabIndex = 28;
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // errorTimer
+            // 
+            this.errorTimer.Interval = 5000;
+            this.errorTimer.Tick += new System.EventHandler(this.errorTimer_Tick);
+            // 
             // displayRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(750, 413);
+            this.ClientSize = new System.Drawing.Size(734, 354);
+            this.Controls.Add(this.errorLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.searchText);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.backButton);
-            this.Controls.Add(this.salesRecords);
             this.Name = "displayRecords";
             this.Text = "displayRecords";
             this.Load += new System.EventHandler(this.displayRecords_Load);
@@ -154,13 +195,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.saleRecordsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._PHP_SRePSDataSet)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox salesRecords;
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private _PHP_SRePSDataSet _PHP_SRePSDataSet;
         private System.Windows.Forms.BindingSource saleRecordsBindingSource;
@@ -171,5 +210,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn saleDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox searchText;
+        private System.Windows.Forms.ComboBox searchBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Timer errorTimer;
     }
 }

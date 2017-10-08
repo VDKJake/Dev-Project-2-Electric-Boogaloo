@@ -59,6 +59,12 @@
             this.saleRecordsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.editImages = new System.Windows.Forms.ImageList(this.components);
             this.removeImages = new System.Windows.Forms.ImageList(this.components);
+            this.userList = new System.Windows.Forms.ComboBox();
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.ComboBox();
+            this.searchText = new System.Windows.Forms.TextBox();
+            this.errorTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.saleRecordsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHPSRePSDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PHP_SRePSDataSet)).BeginInit();
@@ -76,9 +82,9 @@
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
-            this.editButton.Location = new System.Drawing.Point(247, 349);
+            this.editButton.Location = new System.Drawing.Point(246, 408);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(110, 50);
+            this.editButton.Size = new System.Drawing.Size(110, 46);
             this.editButton.TabIndex = 2;
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
@@ -91,7 +97,7 @@
             // 
             this.saleIDLabel.AutoSize = true;
             this.saleIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleIDLabel.Location = new System.Drawing.Point(37, 294);
+            this.saleIDLabel.Location = new System.Drawing.Point(36, 353);
             this.saleIDLabel.Name = "saleIDLabel";
             this.saleIDLabel.Size = new System.Drawing.Size(53, 17);
             this.saleIDLabel.TabIndex = 4;
@@ -101,7 +107,7 @@
             // 
             this.productIDLabel.AutoSize = true;
             this.productIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productIDLabel.Location = new System.Drawing.Point(154, 294);
+            this.productIDLabel.Location = new System.Drawing.Point(153, 353);
             this.productIDLabel.Name = "productIDLabel";
             this.productIDLabel.Size = new System.Drawing.Size(74, 17);
             this.productIDLabel.TabIndex = 5;
@@ -111,7 +117,7 @@
             // 
             this.userIDLabel.AutoSize = true;
             this.userIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userIDLabel.Location = new System.Drawing.Point(277, 294);
+            this.userIDLabel.Location = new System.Drawing.Point(276, 353);
             this.userIDLabel.Name = "userIDLabel";
             this.userIDLabel.Size = new System.Drawing.Size(55, 17);
             this.userIDLabel.TabIndex = 6;
@@ -121,7 +127,7 @@
             // 
             this.saleDateLabel.AutoSize = true;
             this.saleDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saleDateLabel.Location = new System.Drawing.Point(395, 294);
+            this.saleDateLabel.Location = new System.Drawing.Point(394, 353);
             this.saleDateLabel.Name = "saleDateLabel";
             this.saleDateLabel.Size = new System.Drawing.Size(70, 17);
             this.saleDateLabel.TabIndex = 7;
@@ -131,7 +137,7 @@
             // 
             this.quantityLabel.AutoSize = true;
             this.quantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quantityLabel.Location = new System.Drawing.Point(519, 294);
+            this.quantityLabel.Location = new System.Drawing.Point(518, 353);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(61, 17);
             this.quantityLabel.TabIndex = 8;
@@ -141,7 +147,7 @@
             // 
             this.customerLabel.AutoSize = true;
             this.customerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerLabel.Location = new System.Drawing.Point(633, 294);
+            this.customerLabel.Location = new System.Drawing.Point(632, 353);
             this.customerLabel.Name = "customerLabel";
             this.customerLabel.Size = new System.Drawing.Size(68, 17);
             this.customerLabel.TabIndex = 9;
@@ -149,7 +155,7 @@
             // 
             // saleID
             // 
-            this.saleID.Location = new System.Drawing.Point(15, 315);
+            this.saleID.Location = new System.Drawing.Point(14, 374);
             this.saleID.Name = "saleID";
             this.saleID.ReadOnly = true;
             this.saleID.Size = new System.Drawing.Size(100, 20);
@@ -157,35 +163,35 @@
             // 
             // productID
             // 
-            this.productID.Location = new System.Drawing.Point(142, 315);
+            this.productID.Location = new System.Drawing.Point(141, 374);
             this.productID.Name = "productID";
             this.productID.Size = new System.Drawing.Size(100, 20);
             this.productID.TabIndex = 11;
             // 
             // userID
             // 
-            this.userID.Location = new System.Drawing.Point(257, 315);
+            this.userID.Location = new System.Drawing.Point(256, 374);
             this.userID.Name = "userID";
             this.userID.Size = new System.Drawing.Size(100, 20);
             this.userID.TabIndex = 12;
             // 
             // saleDate
             // 
-            this.saleDate.Location = new System.Drawing.Point(380, 315);
+            this.saleDate.Location = new System.Drawing.Point(379, 374);
             this.saleDate.Name = "saleDate";
             this.saleDate.Size = new System.Drawing.Size(100, 20);
             this.saleDate.TabIndex = 13;
             // 
             // quantity
             // 
-            this.quantity.Location = new System.Drawing.Point(501, 315);
+            this.quantity.Location = new System.Drawing.Point(500, 374);
             this.quantity.Name = "quantity";
             this.quantity.Size = new System.Drawing.Size(100, 20);
             this.quantity.TabIndex = 14;
             // 
             // customer
             // 
-            this.customer.Location = new System.Drawing.Point(621, 315);
+            this.customer.Location = new System.Drawing.Point(620, 374);
             this.customer.Name = "customer";
             this.customer.Size = new System.Drawing.Size(100, 20);
             this.customer.TabIndex = 15;
@@ -200,9 +206,9 @@
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
-            this.removeButton.Location = new System.Drawing.Point(380, 349);
+            this.removeButton.Location = new System.Drawing.Point(379, 408);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(110, 50);
+            this.removeButton.Size = new System.Drawing.Size(110, 46);
             this.removeButton.TabIndex = 16;
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
@@ -214,9 +220,9 @@
             // salesRecords
             // 
             this.salesRecords.FormattingEnabled = true;
-            this.salesRecords.Location = new System.Drawing.Point(15, 10);
+            this.salesRecords.Location = new System.Drawing.Point(14, 69);
             this.salesRecords.Name = "salesRecords";
-            this.salesRecords.Size = new System.Drawing.Size(706, 264);
+            this.salesRecords.Size = new System.Drawing.Size(706, 212);
             this.salesRecords.TabIndex = 17;
             this.salesRecords.SelectedIndexChanged += new System.EventHandler(this.salesRecords_SelectedIndexChanged);
             // 
@@ -253,11 +259,11 @@
             this.quantityDataGridViewTextBoxColumn,
             this.customerDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.saleRecordsBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 10);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 69);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(706, 264);
+            this.dataGridView1.Size = new System.Drawing.Size(706, 260);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
@@ -331,12 +337,79 @@
             this.removeImages.Images.SetKeyName(1, "btn_RemoveHover.png");
             this.removeImages.Images.SetKeyName(2, "btn_RemoveClick.png");
             // 
+            // userList
+            // 
+            this.userList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.userList.FormattingEnabled = true;
+            this.userList.Location = new System.Drawing.Point(256, 374);
+            this.userList.MaxDropDownItems = 9;
+            this.userList.Name = "userList";
+            this.userList.Size = new System.Drawing.Size(100, 21);
+            this.userList.TabIndex = 19;
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLabel.Location = new System.Drawing.Point(259, 51);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorLabel.TabIndex = 32;
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(274, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Search By";
+            // 
+            // searchBox
+            // 
+            this.searchBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchBox.FormattingEnabled = true;
+            this.searchBox.Items.AddRange(new object[] {
+            "Sale ID",
+            "Product ID",
+            "User ID",
+            "Sale Date",
+            "Quantity",
+            "Customer"});
+            this.searchBox.Location = new System.Drawing.Point(256, 25);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(119, 21);
+            this.searchBox.TabIndex = 30;
+            this.searchBox.SelectedIndexChanged += new System.EventHandler(this.searchBox_SelectedIndexChanged);
+            // 
+            // searchText
+            // 
+            this.searchText.Location = new System.Drawing.Point(381, 26);
+            this.searchText.Name = "searchText";
+            this.searchText.Size = new System.Drawing.Size(78, 20);
+            this.searchText.TabIndex = 29;
+            this.searchText.TextChanged += new System.EventHandler(this.searchText_TextChanged);
+            // 
+            // errorTimer
+            // 
+            this.errorTimer.Interval = 5000;
+            this.errorTimer.Tick += new System.EventHandler(this.errorTimer_Tick);
+            // 
             // editSalesRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 411);
+            this.ClientSize = new System.Drawing.Size(734, 459);
+            this.Controls.Add(this.errorLabel);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.searchText);
+            this.Controls.Add(this.userList);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.salesRecords);
             this.Controls.Add(this.removeButton);
@@ -398,5 +471,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.ImageList editImages;
         private System.Windows.Forms.ImageList removeImages;
+        private System.Windows.Forms.ComboBox userList;
+        private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox searchBox;
+        private System.Windows.Forms.TextBox searchText;
+        private System.Windows.Forms.Timer errorTimer;
     }
 }

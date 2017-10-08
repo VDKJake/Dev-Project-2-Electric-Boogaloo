@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(generateReports));
             this.monthlyReport = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
             this.weeklyReport = new System.Windows.Forms.Button();
             this.startDate = new System.Windows.Forms.DateTimePicker();
             this.weeklyLabel = new System.Windows.Forms.Label();
@@ -38,43 +39,55 @@
             this.yearLabel = new System.Windows.Forms.Label();
             this.pickYear = new System.Windows.Forms.TextBox();
             this.output = new System.Windows.Forms.Label();
+            this.weeklyImages = new System.Windows.Forms.ImageList(this.components);
+            this.monthlyImages = new System.Windows.Forms.ImageList(this.components);
+            this.errorLabel = new System.Windows.Forms.Label();
+            this.reportListView = new System.Windows.Forms.ListView();
+            this.productIdHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.saleCountHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.quantityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.reportLabel = new System.Windows.Forms.Label();
+            this.errorTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // monthlyReport
             // 
+            this.monthlyReport.FlatAppearance.BorderSize = 0;
+            this.monthlyReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.monthlyReport.Image = ((System.Drawing.Image)(resources.GetObject("monthlyReport.Image")));
             this.monthlyReport.Location = new System.Drawing.Point(26, 110);
             this.monthlyReport.Name = "monthlyReport";
             this.monthlyReport.Size = new System.Drawing.Size(135, 23);
             this.monthlyReport.TabIndex = 1;
-            this.monthlyReport.Text = "Generate Monthly Report";
             this.monthlyReport.UseVisualStyleBackColor = true;
             this.monthlyReport.Click += new System.EventHandler(this.monthlyReport_Click);
-            // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(26, 432);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 2;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.monthlyReport.MouseDown += new System.Windows.Forms.MouseEventHandler(this.monthlyReport_MouseDown);
+            this.monthlyReport.MouseEnter += new System.EventHandler(this.monthlyReport_MouseEnter);
+            this.monthlyReport.MouseLeave += new System.EventHandler(this.monthlyReport_MouseLeave);
+            this.monthlyReport.MouseUp += new System.Windows.Forms.MouseEventHandler(this.monthlyReport_MouseUp);
             // 
             // weeklyReport
             // 
+            this.weeklyReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.weeklyReport.FlatAppearance.BorderSize = 0;
+            this.weeklyReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.weeklyReport.Image = ((System.Drawing.Image)(resources.GetObject("weeklyReport.Image")));
             this.weeklyReport.Location = new System.Drawing.Point(26, 64);
             this.weeklyReport.Name = "weeklyReport";
             this.weeklyReport.Size = new System.Drawing.Size(135, 23);
             this.weeklyReport.TabIndex = 3;
-            this.weeklyReport.Text = "Generate Weekly Report";
             this.weeklyReport.UseVisualStyleBackColor = true;
             this.weeklyReport.Click += new System.EventHandler(this.weeklyReport_Click);
+            this.weeklyReport.MouseDown += new System.Windows.Forms.MouseEventHandler(this.weeklyReport_MouseDown);
+            this.weeklyReport.MouseEnter += new System.EventHandler(this.weeklyReport_MouseEnter);
+            this.weeklyReport.MouseLeave += new System.EventHandler(this.weeklyReport_MouseLeave);
+            this.weeklyReport.MouseUp += new System.Windows.Forms.MouseEventHandler(this.weeklyReport_MouseUp);
             // 
             // startDate
             // 
             this.startDate.CustomFormat = "dd/MM/yyyy";
             this.startDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDate.Location = new System.Drawing.Point(268, 67);
+            this.startDate.Location = new System.Drawing.Point(285, 67);
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(121, 20);
             this.startDate.TabIndex = 6;
@@ -82,18 +95,20 @@
             // weeklyLabel
             // 
             this.weeklyLabel.AutoSize = true;
-            this.weeklyLabel.Location = new System.Drawing.Point(172, 69);
+            this.weeklyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.weeklyLabel.Location = new System.Drawing.Point(167, 68);
             this.weeklyLabel.Name = "weeklyLabel";
-            this.weeklyLabel.Size = new System.Drawing.Size(90, 13);
+            this.weeklyLabel.Size = new System.Drawing.Size(116, 17);
             this.weeklyLabel.TabIndex = 7;
             this.weeklyLabel.Text = "Week Start Date:";
             // 
             // monthLabel
             // 
             this.monthLabel.AutoSize = true;
-            this.monthLabel.Location = new System.Drawing.Point(175, 115);
+            this.monthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monthLabel.Location = new System.Drawing.Point(168, 113);
             this.monthLabel.Name = "monthLabel";
-            this.monthLabel.Size = new System.Drawing.Size(40, 13);
+            this.monthLabel.Size = new System.Drawing.Size(51, 17);
             this.monthLabel.TabIndex = 8;
             this.monthLabel.Text = "Month:";
             // 
@@ -124,9 +139,10 @@
             // yearLabel
             // 
             this.yearLabel.AutoSize = true;
-            this.yearLabel.Location = new System.Drawing.Point(323, 115);
+            this.yearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yearLabel.Location = new System.Drawing.Point(317, 114);
             this.yearLabel.Name = "yearLabel";
-            this.yearLabel.Size = new System.Drawing.Size(32, 13);
+            this.yearLabel.Size = new System.Drawing.Size(42, 17);
             this.yearLabel.TabIndex = 9;
             this.yearLabel.Text = "Year:";
             // 
@@ -143,10 +159,83 @@
             // output
             // 
             this.output.AutoSize = true;
-            this.output.Location = new System.Drawing.Point(26, 169);
+            this.output.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.output.Location = new System.Drawing.Point(127, 202);
             this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(0, 13);
+            this.output.Size = new System.Drawing.Size(0, 17);
             this.output.TabIndex = 10;
+            // 
+            // weeklyImages
+            // 
+            this.weeklyImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("weeklyImages.ImageStream")));
+            this.weeklyImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.weeklyImages.Images.SetKeyName(0, "btn_WeeklyReportBase.png");
+            this.weeklyImages.Images.SetKeyName(1, "btn_WeeklyReportHover.png");
+            this.weeklyImages.Images.SetKeyName(2, "btn_WeeklyReportClick.png");
+            // 
+            // monthlyImages
+            // 
+            this.monthlyImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("monthlyImages.ImageStream")));
+            this.monthlyImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.monthlyImages.Images.SetKeyName(0, "btn_MonthlyReportBase.png");
+            this.monthlyImages.Images.SetKeyName(1, "btn_MonthlyReportHover.png");
+            this.monthlyImages.Images.SetKeyName(2, "btn_MonthlyReportClick.png");
+            // 
+            // errorLabel
+            // 
+            this.errorLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLabel.Location = new System.Drawing.Point(127, 138);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(0, 13);
+            this.errorLabel.TabIndex = 33;
+            this.errorLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // reportListView
+            // 
+            this.reportListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.productIdHeader,
+            this.saleCountHeader,
+            this.quantityHeader});
+            this.reportListView.GridLines = true;
+            this.reportListView.Location = new System.Drawing.Point(36, 187);
+            this.reportListView.Name = "reportListView";
+            this.reportListView.Size = new System.Drawing.Size(366, 245);
+            this.reportListView.TabIndex = 34;
+            this.reportListView.UseCompatibleStateImageBehavior = false;
+            this.reportListView.View = System.Windows.Forms.View.Details;
+            // 
+            // productIdHeader
+            // 
+            this.productIdHeader.Text = "Product ID";
+            this.productIdHeader.Width = 120;
+            // 
+            // saleCountHeader
+            // 
+            this.saleCountHeader.Text = "Sale Count";
+            this.saleCountHeader.Width = 120;
+            // 
+            // quantityHeader
+            // 
+            this.quantityHeader.Text = "Quantity";
+            this.quantityHeader.Width = 120;
+            // 
+            // reportLabel
+            // 
+            this.reportLabel.AutoSize = true;
+            this.reportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportLabel.Location = new System.Drawing.Point(42, 162);
+            this.reportLabel.Name = "reportLabel";
+            this.reportLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.reportLabel.Size = new System.Drawing.Size(0, 20);
+            this.reportLabel.TabIndex = 35;
+            // 
+            // errorTimer
+            // 
+            this.errorTimer.Interval = 5000;
+            this.errorTimer.Tick += new System.EventHandler(this.errorTimer_Tick);
             // 
             // generateReports
             // 
@@ -154,6 +243,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(443, 467);
+            this.Controls.Add(this.reportLabel);
+            this.Controls.Add(this.reportListView);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.output);
             this.Controls.Add(this.yearLabel);
             this.Controls.Add(this.monthLabel);
@@ -162,10 +254,9 @@
             this.Controls.Add(this.pickYear);
             this.Controls.Add(this.pickMonth);
             this.Controls.Add(this.weeklyReport);
-            this.Controls.Add(this.backButton);
             this.Controls.Add(this.monthlyReport);
             this.Name = "generateReports";
-            this.Text = "PHP-SRePS - Generate Reports";
+            this.Text = "8";
             this.Load += new System.EventHandler(this.generateReports_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -174,7 +265,6 @@
 
         #endregion
         private System.Windows.Forms.Button monthlyReport;
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Button weeklyReport;
         private System.Windows.Forms.DateTimePicker startDate;
         private System.Windows.Forms.Label weeklyLabel;
@@ -183,5 +273,14 @@
         private System.Windows.Forms.Label yearLabel;
         private System.Windows.Forms.TextBox pickYear;
         private System.Windows.Forms.Label output;
+        private System.Windows.Forms.ImageList weeklyImages;
+        private System.Windows.Forms.ImageList monthlyImages;
+        private System.Windows.Forms.Label errorLabel;
+        private System.Windows.Forms.ListView reportListView;
+        private System.Windows.Forms.ColumnHeader productIdHeader;
+        private System.Windows.Forms.ColumnHeader saleCountHeader;
+        private System.Windows.Forms.ColumnHeader quantityHeader;
+        private System.Windows.Forms.Label reportLabel;
+        private System.Windows.Forms.Timer errorTimer;
     }
 }
