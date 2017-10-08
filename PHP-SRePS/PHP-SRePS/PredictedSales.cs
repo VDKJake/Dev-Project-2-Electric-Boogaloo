@@ -31,11 +31,16 @@ namespace PHP_SRePS
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=True";
 
-            string scmd = "SELECT ProductID, Quantity, SaleDate FROM SaleRecords";
-            SqlDataAdapter sda = new SqlDataAdapter(scmd, con);
-            DataTable dt = new DataTable();
-            sda.Fill(dt);
+            string scmd = "SELECT * FROM(SELECT TOP 2147483647 YEAR(SaleDate)[Year], ProductName, DATENAME(MONTH, SaleDate)[Month], SUM(Quantity)[Quantity] FROM dbo.SaleRecords JOIN dbo.Products ON Products.ProductID = SaleRecords.ProductID GROUP BY YEAR(SaleDate), ProductName, DATENAME(MONTH, SaleDate) ORDER BY YEAR(SaleDate)) AS MontlySalesData PIVOT(SUM([Quantity]) FOR Month IN([January],[February],[March],[April],[May],[June],[July],[August],[September],[October],[November],[December])) AS MNamePivot";
 
+            SqlDataAdapter sda = new SqlDataAdapter(scmd, con);
+            con.Open();
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            predictions.DataSource = ds.Tables[0];
+
+            //predections.Rows.Add("product", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "year");
+            con.Close();
         }
     }
 }

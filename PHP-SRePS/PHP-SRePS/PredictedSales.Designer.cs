@@ -30,22 +30,8 @@
         {
             this.title = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.january = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.february = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.march = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.april = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.may = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.june = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.july = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.august = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.september = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.october = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.november = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.december = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.year = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.predictions = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.predictions)).BeginInit();
             this.SuspendLayout();
             // 
             // title
@@ -67,112 +53,16 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // dataGridView1
+            // predictions
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Product,
-            this.january,
-            this.february,
-            this.march,
-            this.april,
-            this.may,
-            this.june,
-            this.july,
-            this.august,
-            this.september,
-            this.october,
-            this.november,
-            this.december,
-            this.year});
-            this.dataGridView1.Location = new System.Drawing.Point(11, 21);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(779, 353);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // Product
-            // 
-            this.Product.HeaderText = "Product Name";
-            this.Product.Name = "Product";
-            this.Product.ReadOnly = true;
-            // 
-            // january
-            // 
-            this.january.HeaderText = "January";
-            this.january.Name = "january";
-            this.january.ReadOnly = true;
-            // 
-            // february
-            // 
-            this.february.HeaderText = "February";
-            this.february.Name = "february";
-            this.february.ReadOnly = true;
-            // 
-            // march
-            // 
-            this.march.HeaderText = "March";
-            this.march.Name = "march";
-            this.march.ReadOnly = true;
-            // 
-            // april
-            // 
-            this.april.HeaderText = "April";
-            this.april.Name = "april";
-            this.april.ReadOnly = true;
-            // 
-            // may
-            // 
-            this.may.HeaderText = "May";
-            this.may.Name = "may";
-            this.may.ReadOnly = true;
-            // 
-            // june
-            // 
-            this.june.HeaderText = "June";
-            this.june.Name = "june";
-            this.june.ReadOnly = true;
-            // 
-            // july
-            // 
-            this.july.HeaderText = "July";
-            this.july.Name = "july";
-            this.july.ReadOnly = true;
-            // 
-            // august
-            // 
-            this.august.HeaderText = "August";
-            this.august.Name = "august";
-            this.august.ReadOnly = true;
-            // 
-            // september
-            // 
-            this.september.HeaderText = "September";
-            this.september.Name = "september";
-            this.september.ReadOnly = true;
-            // 
-            // october
-            // 
-            this.october.HeaderText = "October";
-            this.october.Name = "october";
-            this.october.ReadOnly = true;
-            // 
-            // november
-            // 
-            this.november.HeaderText = "November";
-            this.november.Name = "november";
-            this.november.ReadOnly = true;
-            // 
-            // december
-            // 
-            this.december.HeaderText = "December";
-            this.december.Name = "december";
-            this.december.ReadOnly = true;
-            // 
-            // year
-            // 
-            this.year.HeaderText = "Year";
-            this.year.Name = "year";
-            this.year.ReadOnly = true;
+            this.predictions.AllowUserToAddRows = false;
+            this.predictions.AllowUserToDeleteRows = false;
+            this.predictions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.predictions.Location = new System.Drawing.Point(11, 21);
+            this.predictions.Name = "predictions";
+            this.predictions.ReadOnly = true;
+            this.predictions.Size = new System.Drawing.Size(779, 353);
+            this.predictions.TabIndex = 2;
             // 
             // PredictedSales
             // 
@@ -180,12 +70,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(803, 406);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.predictions);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.title);
             this.Name = "PredictedSales";
             this.Text = "PHP-SRePS - Predicted Sales";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.predictions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,20 +85,6 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Button backButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
-        private System.Windows.Forms.DataGridViewTextBoxColumn january;
-        private System.Windows.Forms.DataGridViewTextBoxColumn february;
-        private System.Windows.Forms.DataGridViewTextBoxColumn march;
-        private System.Windows.Forms.DataGridViewTextBoxColumn april;
-        private System.Windows.Forms.DataGridViewTextBoxColumn may;
-        private System.Windows.Forms.DataGridViewTextBoxColumn june;
-        private System.Windows.Forms.DataGridViewTextBoxColumn july;
-        private System.Windows.Forms.DataGridViewTextBoxColumn august;
-        private System.Windows.Forms.DataGridViewTextBoxColumn september;
-        private System.Windows.Forms.DataGridViewTextBoxColumn october;
-        private System.Windows.Forms.DataGridViewTextBoxColumn november;
-        private System.Windows.Forms.DataGridViewTextBoxColumn december;
-        private System.Windows.Forms.DataGridViewTextBoxColumn year;
+        private System.Windows.Forms.DataGridView predictions;
     }
 }
