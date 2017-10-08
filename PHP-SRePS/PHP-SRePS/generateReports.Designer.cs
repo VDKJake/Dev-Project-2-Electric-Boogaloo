@@ -48,6 +48,7 @@
             this.quantityHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.reportLabel = new System.Windows.Forms.Label();
             this.errorTimer = new System.Windows.Forms.Timer(this.components);
+            this.csvLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // monthlyReport
@@ -237,12 +238,25 @@
             this.errorTimer.Interval = 5000;
             this.errorTimer.Tick += new System.EventHandler(this.errorTimer_Tick);
             // 
+            // csvLabel
+            // 
+            this.csvLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.csvLabel.AutoSize = true;
+            this.csvLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.csvLabel.ForeColor = System.Drawing.Color.Green;
+            this.csvLabel.Location = new System.Drawing.Point(44, 438);
+            this.csvLabel.Name = "csvLabel";
+            this.csvLabel.Size = new System.Drawing.Size(0, 13);
+            this.csvLabel.TabIndex = 36;
+            this.csvLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // generateReports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(443, 467);
+            this.Controls.Add(this.csvLabel);
             this.Controls.Add(this.reportLabel);
             this.Controls.Add(this.reportListView);
             this.Controls.Add(this.errorLabel);
@@ -282,5 +296,6 @@
         private System.Windows.Forms.ColumnHeader quantityHeader;
         private System.Windows.Forms.Label reportLabel;
         private System.Windows.Forms.Timer errorTimer;
+        private System.Windows.Forms.Label csvLabel;
     }
 }

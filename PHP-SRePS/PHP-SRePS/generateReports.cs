@@ -37,6 +37,7 @@ namespace PHP_SRePS
         private void weeklyReport_Click(object sender, EventArgs e)
         {
             reportLabel.Text = "";
+            csvLabel.Text = "";
             reportListView.Items.Clear();
             errorLabel.Text = "";
             DateTime weekStart = startDate.Value;
@@ -75,6 +76,8 @@ namespace PHP_SRePS
 
             if (reader.HasRows)
             {
+                reportListView.Visible = true;
+                output.Text = "";
                 string weekOutput1;
                 string weekOutput2;
                 string[] week1Split = weekStart.ToShortDateString().Split('/');
@@ -82,7 +85,7 @@ namespace PHP_SRePS
                 weekOutput1 = week1Split[0] + "-" + week1Split[1] + "-" + week1Split[2];
                 weekOutput2 = week2Split[0] + "-" + week2Split[1] + "-" + week2Split[2];
                 System.IO.File.WriteAllText(@"C:\Users\Public\WeeklyReport" + weekOutput1 + "to" + weekOutput2 + ".txt", csvOutput);
-
+                csvLabel.Text = "CSV File for report successfully created at\nC:\\Users\\Public\\WeeklyReport" + weekOutput1 + "to" + weekOutput2 + ".txt";
             }
             //Temporary Location
 
@@ -95,6 +98,7 @@ namespace PHP_SRePS
             {
                 output.Text = "No sales during this week";
                 reportListView.Visible = false;
+                csvLabel.Text = "";
             }
 
             reader.Close();
@@ -104,6 +108,7 @@ namespace PHP_SRePS
         private void monthlyReport_Click(object sender, EventArgs e)
         {
             reportLabel.Text = "";
+            csvLabel.Text = "";
             reportListView.Items.Clear();
             errorLabel.Text = "";
             reportListView.Visible = true;
@@ -216,6 +221,8 @@ namespace PHP_SRePS
 
             while (reader.Read())
             {
+                reportListView.Visible = true;
+                output.Text = "";
                 int product = (int)reader["ProductID"];
                 int saleCount = (int)reader["SaleID"];
                 int quantitySold = (int)reader["Quantity"];
@@ -227,10 +234,14 @@ namespace PHP_SRePS
                 //tempOutput += "Product ID: " + product + " - Sale Count: " + saleCount + " - Quantity: " + quantitySold + "\n";
                 reportListView.Items.Add(product.ToString()).SubItems.AddRange(new ListViewItem.ListViewSubItem[] { item1, item2 });
                 csvOutput += "\n" + product + ", " + saleCount + ", " + quantitySold;
+                
             }
 
             if (reader.HasRows)
+            {
                 System.IO.File.WriteAllText(@"C:\Users\Public\MonthlyReport" + _selectedMonth + pickYear.Text + ".txt", csvOutput);
+                csvLabel.Text = "CSV File for report successfully created at\nC:\\Users\\Public\\MonthlyReport" + _selectedMonth + pickYear.Text + ".txt";
+            }
             //Temp Location
 
             reportLabel.Text = tempOutput;
@@ -242,6 +253,7 @@ namespace PHP_SRePS
             else
             {
                 output.Text = "No sales during this month";
+                csvLabel.Text = "";
                 reportListView.Visible = false;
             }
                 

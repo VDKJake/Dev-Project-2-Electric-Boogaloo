@@ -28,30 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.title = new System.Windows.Forms.Label();
-            this.backButton = new System.Windows.Forms.Button();
             this.predictions = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.predictions)).BeginInit();
             this.SuspendLayout();
-            // 
-            // title
-            // 
-            this.title.AutoSize = true;
-            this.title.Location = new System.Drawing.Point(369, 5);
-            this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(81, 13);
-            this.title.TabIndex = 0;
-            this.title.Text = "Predicted Sales";
-            // 
-            // backButton
-            // 
-            this.backButton.Location = new System.Drawing.Point(375, 380);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 1;
-            this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // predictions
             // 
@@ -71,20 +50,14 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(803, 406);
             this.Controls.Add(this.predictions);
-            this.Controls.Add(this.backButton);
-            this.Controls.Add(this.title);
             this.Name = "PredictedSales";
             this.Text = "PHP-SRePS - Predicted Sales";
             ((System.ComponentModel.ISupportInitialize)(this.predictions)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label title;
-        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.DataGridView predictions;
     }
 }

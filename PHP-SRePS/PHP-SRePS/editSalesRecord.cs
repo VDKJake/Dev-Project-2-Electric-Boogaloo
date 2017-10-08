@@ -91,16 +91,29 @@ namespace PHP_SRePS
             //Failsafe for correct datatypes
             bool result;
             int number;
+            DateTime tempDate;
             int _productid = 0;
             int _quantity = 0;
             string _customer = string.Empty;
             string _user = string.Empty;
-            DateTime _date = Convert.ToDateTime(saleDate.Text);
+            DateTime _date;
+            if (result = DateTime.TryParse(saleDate.Text, out tempDate))
+            {
+                _date = tempDate;
+            }
+            else
+            {
+                errorLabel2.Text = "Date must be in valid date format - DD/MM/YYYY";
+                errorTimer.Start();
+                return;
+            }
+
             if (result = int.TryParse(productID.Text, out number))
                 _productid = number;
             else
             {
-                MessageBox.Show("The product ID must be a number");
+                errorLabel2.Text = "The product ID must be a number";
+                errorTimer.Start();
                 return;
             }
 
@@ -108,16 +121,26 @@ namespace PHP_SRePS
                 _quantity = number;
             else
             {
-                MessageBox.Show("The quantity must be a number");
+                errorLabel2.Text = "The quantity must be a number";
+                errorTimer.Start();
                 return;
             }
 
             _customer = customer.Text;
             if (_customer == string.Empty)
-                MessageBox.Show("Customer can't be left empty");
-            _user = userList.SelectedItem.ToString().Trim();
-            if (_user == string.Empty)
-                MessageBox.Show("User can't be left empty");
+            {
+                errorLabel2.Text = "Customer can't be left empty";
+                errorTimer.Start();
+            }
+            if (userList.SelectedIndex == -1)
+            {
+                errorLabel2.Text = "User can't be left empty";
+                errorTimer.Start();
+            }
+            else
+            {
+                _user = userList.SelectedItem.ToString().Trim();
+            }
 
             //Failsafe incase something above doesn't get picked up
             if (_productid == 0 || _quantity == 0 || _customer == string.Empty || _user == string.Empty || _date == null)
@@ -145,7 +168,7 @@ namespace PHP_SRePS
                 }
             }
             if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer" || _selected == string.Empty)
-                MessageBox.Show("Please select a valid entry");
+                errorLabel2.Text = "Please select a valid entry";
             else
             {
                 bool resultForm;
@@ -153,25 +176,37 @@ namespace PHP_SRePS
                 if (resultForm = int.TryParse(_output[0].Trim(), out number))
                     _saleidForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
 
                 if (resultForm = int.TryParse(_output[1].Trim(), out number))
                     _productidForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
-
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
                 if (resultForm = int.TryParse(_output[4].Trim(), out number))
                     _quantityForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
-
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
                 _customerForm = _output[5].Trim();
                 if (_customerForm == string.Empty)
-                    MessageBox.Show("Customer can't be left empty");
-
+                {
+                    errorLabel2.Text = "Customer can't be left empty";
+                    errorTimer.Start();
+                }
                 _userForm = _output[2].Trim();
                 if (_userForm == string.Empty)
-                    MessageBox.Show("User can't be left empty");
+                {
+                    errorLabel2.Text = "User can't be left empty";
+                    errorTimer.Start();
+                }
 
                 _dateForm = Convert.ToDateTime(_output[3].Trim());
             }
@@ -189,7 +224,7 @@ namespace PHP_SRePS
             cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
             //Display a confirmation box - if yes then run the query
-            var editCheck = MessageBox.Show("Are you sure want to edit this item?\n" + _productid + ", " + _user + ", " + _date.ToShortDateString() + ", " + _quantity + ", " + _customer + "\nto\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Edit item", MessageBoxButtons.YesNo);
+            var editCheck = MessageBox.Show("Are you sure want to edit this item?\n\nSale ID: " + _saleidForm + "\nProduct ID: " + _productidForm + "\nUser ID: " + _userForm + "\nDate: " + _dateForm.ToShortDateString() + "\nQuantity: " + _quantityForm + "\nCustomer: " + _customerForm + "\n\nWill be changed to:\n\nProduct ID: " + _productid + "\nUser ID: " + _user + "\nDate: " + _date.ToShortDateString() + "\nQuantity: " + _quantity + "\nCustomer: " + _customer,"Edit item", MessageBoxButtons.YesNo);
             if (editCheck == DialogResult.Yes)
             {
                 con.Open();
@@ -212,6 +247,10 @@ namespace PHP_SRePS
             saleDate.Clear();
             quantity.Clear();
             customer.Clear();
+            userList.SelectedIndex = -1;
+            removeButton.Enabled = false;
+            editButton.Enabled = false;
+            errorLabel2.Text = "";
         }
 
         // Populates the Users drop down box with all usernames
@@ -270,7 +309,7 @@ namespace PHP_SRePS
                 }
             }
             if (_selected == "Sale ID \t Product ID \t User ID   \t Sale Date \t Quantity \t Customer")
-                MessageBox.Show("Please select a valid entry");
+                errorLabel2.Text = "Please select a valid entry";
             else
             {
                 bool resultForm;
@@ -278,25 +317,40 @@ namespace PHP_SRePS
                 if (resultForm = int.TryParse(_output[0].Trim(), out number))
                     _saleidForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
 
                 if (resultForm = int.TryParse(_output[1].Trim(), out number))
                     _productidForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
 
                 if (resultForm = int.TryParse(_output[4].Trim(), out number))
                     _quantityForm = number;
                 else
-                    MessageBox.Show("Sale ID must be a number");
+                {
+                    errorLabel2.Text = "Sale ID must be a number";
+                    errorTimer.Start();
+                }
 
                 _customerForm = _output[5].Trim();
                 if (_customerForm == string.Empty)
-                    MessageBox.Show("Customer can't be left empty");
+                {
+                    errorLabel2.Text = "Customer can't be left empty";
+                    errorTimer.Start();
+                }
 
                 _userForm = _output[2].Trim();
                 if (_userForm == string.Empty)
-                    MessageBox.Show("User can't be left empty");
+                {
+                    errorLabel2.Text = "User can't be left empty";
+                    errorTimer.Start();
+                }
 
                 _dateForm = Convert.ToDateTime(_output[3].Trim());
 
@@ -308,7 +362,7 @@ namespace PHP_SRePS
                 cmd.Parameters["@currentQuantity"].Value = _quantityForm;
                 cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
-                var editCheck = MessageBox.Show("Are you sure to delete this item?\n" + _saleidForm + ", " + _productidForm + ", " + _userForm + ", " + _dateForm.ToShortDateString() + ", " + _quantityForm + ", " + _customerForm, "Delete item", MessageBoxButtons.YesNo);
+                var editCheck = MessageBox.Show("Are you sure to delete this item?\nSale ID: " + _saleidForm + "\nProduct ID: " + _productidForm + "\nUser ID: " + _userForm + "\nDate: " + _dateForm.ToShortDateString() + "\nQuantity " + _quantityForm + "\nCustomer " + _customerForm, "Delete item", MessageBoxButtons.YesNo);
                 if (editCheck == DialogResult.Yes)
                 {
                     cmd.ExecuteNonQuery();
@@ -329,6 +383,10 @@ namespace PHP_SRePS
                 saleDate.Clear();
                 quantity.Clear();
                 customer.Clear();
+                userList.SelectedIndex = -1;
+                removeButton.Enabled = false;
+                editButton.Enabled = false;
+                errorLabel2.Text = "";
             }
         }
 
@@ -336,6 +394,9 @@ namespace PHP_SRePS
         {
             // TODO: This line of code loads data into the '_PHP_SRePSDataSet.SaleRecords' table. You can move, or remove it, as needed.
             this.saleRecordsTableAdapter.Fill(this._PHP_SRePSDataSet.SaleRecords);
+            dataGridView1.ClearSelection();
+            removeButton.Enabled = false;
+            editButton.Enabled = false;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -344,6 +405,8 @@ namespace PHP_SRePS
             Array.Clear(dataCells, 0, dataCells.Length);
             dataGridView1.CurrentRow.Cells.CopyTo(dataCells, 0);
             string _selected = "";
+            removeButton.Enabled = true;
+            editButton.Enabled = true;
             for (int i = 0; i < dataCells.Length; i++)
             {
                 if (i == dataCells.Length - 1)
@@ -382,6 +445,8 @@ namespace PHP_SRePS
             saleDate.Clear();
             quantity.Clear();
             customer.Clear();
+            removeButton.Enabled = false;
+            editButton.Enabled = false;
         }
 
         // Reloads the data in the dataGridView
@@ -436,6 +501,17 @@ namespace PHP_SRePS
         private void searchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchText.Text = "";
+            Array.Clear(dataCells, 0, dataCells.Length);
+            dataGridView1.ClearSelection();
+            saleID.Clear();
+            productID.Clear();
+            userID.Clear();
+            saleDate.Clear();
+            quantity.Clear();
+            customer.Clear();
+            userList.SelectedIndex = -1;
+            removeButton.Enabled = false;
+            editButton.Enabled = false;
         }
 
         private void searchText_TextChanged(object sender, EventArgs e)
@@ -461,6 +537,7 @@ namespace PHP_SRePS
                         else
                         {
                             errorLabel.Text = "The Sale ID must be a number.";
+                            errorTimer.Start();
                             searchText.Clear();
                             return;
                         }
@@ -475,6 +552,7 @@ namespace PHP_SRePS
                         else
                         {
                             errorLabel.Text = "The Product ID must be a number.";
+                            errorTimer.Start();
                             searchText.Clear();
                             return;
                         }
@@ -500,6 +578,7 @@ namespace PHP_SRePS
                         {
                             ;
                             errorLabel.Text = "The Quantity must be a number.";
+                            errorTimer.Start();
                             searchText.Clear();
                             return;
                         }
@@ -516,6 +595,7 @@ namespace PHP_SRePS
         private void errorTimer_Tick(object sender, EventArgs e)
         {
             errorLabel.Text = "";
+            errorLabel2.Text = "";
         }
     }
 }

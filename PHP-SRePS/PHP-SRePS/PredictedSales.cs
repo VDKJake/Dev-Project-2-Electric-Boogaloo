@@ -21,11 +21,6 @@ namespace PHP_SRePS
             PredictSales();
         }
 
-        private void backButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void PredictSales()
         {
             SqlConnection con = new SqlConnection();

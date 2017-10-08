@@ -65,6 +65,7 @@
             this.searchBox = new System.Windows.Forms.ComboBox();
             this.searchText = new System.Windows.Forms.TextBox();
             this.errorTimer = new System.Windows.Forms.Timer(this.components);
+            this.errorLabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.saleRecordsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHPSRePSDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._PHP_SRePSDataSet)).BeginInit();
@@ -399,12 +400,25 @@
             this.errorTimer.Interval = 5000;
             this.errorTimer.Tick += new System.EventHandler(this.errorTimer_Tick);
             // 
+            // errorLabel2
+            // 
+            this.errorLabel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.errorLabel2.AutoSize = true;
+            this.errorLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel2.ForeColor = System.Drawing.Color.DarkRed;
+            this.errorLabel2.Location = new System.Drawing.Point(256, 335);
+            this.errorLabel2.Name = "errorLabel2";
+            this.errorLabel2.Size = new System.Drawing.Size(0, 13);
+            this.errorLabel2.TabIndex = 33;
+            this.errorLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // editSalesRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(734, 459);
+            this.Controls.Add(this.errorLabel2);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchBox);
@@ -477,5 +491,6 @@
         private System.Windows.Forms.ComboBox searchBox;
         private System.Windows.Forms.TextBox searchText;
         private System.Windows.Forms.Timer errorTimer;
+        private System.Windows.Forms.Label errorLabel2;
     }
 }
