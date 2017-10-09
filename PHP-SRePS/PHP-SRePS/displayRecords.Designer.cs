@@ -63,7 +63,7 @@
             this.quantityDataGridViewTextBoxColumn,
             this.customerDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.saleRecordsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 78);
+            this.dataGridView1.Location = new System.Drawing.Point(14, 69);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(706, 264);
@@ -127,7 +127,7 @@
             // 
             // searchText
             // 
-            this.searchText.Location = new System.Drawing.Point(379, 32);
+            this.searchText.Location = new System.Drawing.Point(381, 26);
             this.searchText.Name = "searchText";
             this.searchText.Size = new System.Drawing.Size(78, 20);
             this.searchText.TabIndex = 21;
@@ -144,7 +144,7 @@
             "Sale Date",
             "Quantity",
             "Customer"});
-            this.searchBox.Location = new System.Drawing.Point(254, 31);
+            this.searchBox.Location = new System.Drawing.Point(256, 25);
             this.searchBox.Name = "searchBox";
             this.searchBox.Size = new System.Drawing.Size(119, 21);
             this.searchBox.TabIndex = 26;
@@ -154,7 +154,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(272, 11);
+            this.label1.Location = new System.Drawing.Point(274, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 17);
             this.label1.TabIndex = 27;
@@ -166,7 +166,7 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLabel.Location = new System.Drawing.Point(257, 57);
+            this.errorLabel.Location = new System.Drawing.Point(257, 111);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 28;
@@ -182,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 354);
+            this.ClientSize = new System.Drawing.Size(734, 462);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchBox);

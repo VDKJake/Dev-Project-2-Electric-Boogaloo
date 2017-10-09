@@ -38,6 +38,7 @@
             this.displayRecords = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.welcomeLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -49,10 +50,15 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabImages = new System.Windows.Forms.ImageList(this.components);
             this.panel = new System.Windows.Forms.Panel();
             this.logoutImages = new System.Windows.Forms.ImageList(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -60,7 +66,6 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // addSale
@@ -159,6 +164,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.welcomeLabel);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -169,13 +175,26 @@
             this.tabPage1.Size = new System.Drawing.Size(1204, 507);
             this.tabPage1.TabIndex = 0;
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
+            this.label6.Location = new System.Drawing.Point(262, 237);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(678, 75);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Select a Tab to Begin";
+            // 
             // welcomeLabel
             // 
             this.welcomeLabel.AutoSize = true;
             this.welcomeLabel.BackColor = System.Drawing.Color.Transparent;
             this.welcomeLabel.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.welcomeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.welcomeLabel.Location = new System.Drawing.Point(194, 39);
+            this.welcomeLabel.Location = new System.Drawing.Point(206, 20);
             this.welcomeLabel.Name = "welcomeLabel";
             this.welcomeLabel.Size = new System.Drawing.Size(314, 75);
             this.welcomeLabel.TabIndex = 9;
@@ -193,6 +212,7 @@
             // tabPage2
             // 
             this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.ImageKey = "btn_Add.png";
             this.tabPage2.Location = new System.Drawing.Point(4, 54);
@@ -207,7 +227,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.label2.Location = new System.Drawing.Point(18, 18);
+            this.label2.Location = new System.Drawing.Point(206, 20);
             this.label2.Margin = new System.Windows.Forms.Padding(15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(342, 75);
@@ -216,6 +236,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.ImageKey = "btn_Edit.png";
             this.tabPage3.Location = new System.Drawing.Point(4, 54);
@@ -230,7 +251,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.label1.Location = new System.Drawing.Point(18, 18);
+            this.label1.Location = new System.Drawing.Point(206, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(340, 75);
@@ -239,6 +260,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.panel4);
             this.tabPage4.Controls.Add(this.label3);
             this.tabPage4.ImageKey = "btn_View.png";
             this.tabPage4.Location = new System.Drawing.Point(4, 54);
@@ -253,7 +275,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.label3.Location = new System.Drawing.Point(18, 18);
+            this.label3.Location = new System.Drawing.Point(206, 20);
             this.label3.Margin = new System.Windows.Forms.Padding(15);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(366, 75);
@@ -262,6 +284,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.panel5);
             this.tabPage5.Controls.Add(this.label4);
             this.tabPage5.ImageKey = "btn_Reports.png";
             this.tabPage5.Location = new System.Drawing.Point(4, 54);
@@ -276,7 +299,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
-            this.label4.Location = new System.Drawing.Point(18, 18);
+            this.label4.Location = new System.Drawing.Point(206, 20);
             this.label4.Margin = new System.Windows.Forms.Padding(15);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(425, 75);
@@ -285,7 +308,8 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.Controls.Add(this.pictureBox1);
+            this.tabPage6.Controls.Add(this.panel6);
+            this.tabPage6.Controls.Add(this.label5);
             this.tabPage6.ImageKey = "btn_Est.png";
             this.tabPage6.Location = new System.Drawing.Point(4, 54);
             this.tabPage6.Name = "tabPage6";
@@ -294,15 +318,17 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // label5
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(435, 45);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(84)))), ((int)(((byte)(84)))));
+            this.label5.Location = new System.Drawing.Point(206, 20);
+            this.label5.Margin = new System.Windows.Forms.Padding(15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(583, 75);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Sales Estimations";
             // 
             // tabImages
             // 
@@ -329,6 +355,51 @@
             this.logoutImages.Images.SetKeyName(0, "btn_LogoutBase.png");
             this.logoutImages.Images.SetKeyName(1, "btn_LogoutHover.png");
             this.logoutImages.Images.SetKeyName(2, "btn_LogoutClick.png");
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Location = new System.Drawing.Point(21, 20);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(167, 167);
+            this.panel2.TabIndex = 11;
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel3.BackgroundImage")));
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel3.Location = new System.Drawing.Point(21, 20);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(167, 167);
+            this.panel3.TabIndex = 12;
+            // 
+            // panel4
+            // 
+            this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel4.Location = new System.Drawing.Point(21, 20);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(167, 167);
+            this.panel4.TabIndex = 12;
+            // 
+            // panel5
+            // 
+            this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel5.Location = new System.Drawing.Point(21, 20);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(167, 167);
+            this.panel5.TabIndex = 12;
+            // 
+            // panel6
+            // 
+            this.panel6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel6.BackgroundImage")));
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel6.Location = new System.Drawing.Point(21, 20);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(167, 167);
+            this.panel6.TabIndex = 14;
             // 
             // Menu
             // 
@@ -359,7 +430,7 @@
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -389,6 +460,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ImageList tabImages;
         private System.Windows.Forms.ImageList logoutImages;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }

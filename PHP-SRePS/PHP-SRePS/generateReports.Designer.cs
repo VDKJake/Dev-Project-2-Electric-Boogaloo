@@ -56,7 +56,7 @@
             this.monthlyReport.FlatAppearance.BorderSize = 0;
             this.monthlyReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.monthlyReport.Image = ((System.Drawing.Image)(resources.GetObject("monthlyReport.Image")));
-            this.monthlyReport.Location = new System.Drawing.Point(26, 110);
+            this.monthlyReport.Location = new System.Drawing.Point(26, 67);
             this.monthlyReport.Name = "monthlyReport";
             this.monthlyReport.Size = new System.Drawing.Size(135, 23);
             this.monthlyReport.TabIndex = 1;
@@ -73,7 +73,7 @@
             this.weeklyReport.FlatAppearance.BorderSize = 0;
             this.weeklyReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.weeklyReport.Image = ((System.Drawing.Image)(resources.GetObject("weeklyReport.Image")));
-            this.weeklyReport.Location = new System.Drawing.Point(26, 64);
+            this.weeklyReport.Location = new System.Drawing.Point(26, 21);
             this.weeklyReport.Name = "weeklyReport";
             this.weeklyReport.Size = new System.Drawing.Size(135, 23);
             this.weeklyReport.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             this.startDate.CustomFormat = "dd/MM/yyyy";
             this.startDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDate.Location = new System.Drawing.Point(285, 67);
+            this.startDate.Location = new System.Drawing.Point(285, 24);
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(121, 20);
             this.startDate.TabIndex = 6;
@@ -97,7 +97,7 @@
             // 
             this.weeklyLabel.AutoSize = true;
             this.weeklyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weeklyLabel.Location = new System.Drawing.Point(167, 68);
+            this.weeklyLabel.Location = new System.Drawing.Point(167, 25);
             this.weeklyLabel.Name = "weeklyLabel";
             this.weeklyLabel.Size = new System.Drawing.Size(116, 17);
             this.weeklyLabel.TabIndex = 7;
@@ -107,7 +107,7 @@
             // 
             this.monthLabel.AutoSize = true;
             this.monthLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monthLabel.Location = new System.Drawing.Point(168, 113);
+            this.monthLabel.Location = new System.Drawing.Point(168, 70);
             this.monthLabel.Name = "monthLabel";
             this.monthLabel.Size = new System.Drawing.Size(51, 17);
             this.monthLabel.TabIndex = 8;
@@ -130,7 +130,7 @@
             "October",
             "November",
             "December"});
-            this.pickMonth.Location = new System.Drawing.Point(221, 112);
+            this.pickMonth.Location = new System.Drawing.Point(221, 69);
             this.pickMonth.Name = "pickMonth";
             this.pickMonth.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pickMonth.Size = new System.Drawing.Size(95, 21);
@@ -141,7 +141,7 @@
             // 
             this.yearLabel.AutoSize = true;
             this.yearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yearLabel.Location = new System.Drawing.Point(317, 114);
+            this.yearLabel.Location = new System.Drawing.Point(317, 71);
             this.yearLabel.Name = "yearLabel";
             this.yearLabel.Size = new System.Drawing.Size(42, 17);
             this.yearLabel.TabIndex = 9;
@@ -149,7 +149,7 @@
             // 
             // pickYear
             // 
-            this.pickYear.Location = new System.Drawing.Point(361, 113);
+            this.pickYear.Location = new System.Drawing.Point(361, 70);
             this.pickYear.MaxLength = 4;
             this.pickYear.Name = "pickYear";
             this.pickYear.Size = new System.Drawing.Size(47, 20);
@@ -161,7 +161,7 @@
             // 
             this.output.AutoSize = true;
             this.output.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.output.Location = new System.Drawing.Point(127, 202);
+            this.output.Location = new System.Drawing.Point(127, 159);
             this.output.Name = "output";
             this.output.Size = new System.Drawing.Size(0, 17);
             this.output.TabIndex = 10;
@@ -188,7 +188,7 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLabel.Location = new System.Drawing.Point(127, 138);
+            this.errorLabel.Location = new System.Drawing.Point(127, 82);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 33;
@@ -201,7 +201,7 @@
             this.saleCountHeader,
             this.quantityHeader});
             this.reportListView.GridLines = true;
-            this.reportListView.Location = new System.Drawing.Point(36, 187);
+            this.reportListView.Location = new System.Drawing.Point(36, 144);
             this.reportListView.Name = "reportListView";
             this.reportListView.Size = new System.Drawing.Size(366, 245);
             this.reportListView.TabIndex = 34;
@@ -227,7 +227,7 @@
             // 
             this.reportLabel.AutoSize = true;
             this.reportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reportLabel.Location = new System.Drawing.Point(42, 162);
+            this.reportLabel.Location = new System.Drawing.Point(42, 119);
             this.reportLabel.Name = "reportLabel";
             this.reportLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.reportLabel.Size = new System.Drawing.Size(0, 20);
@@ -244,7 +244,7 @@
             this.csvLabel.AutoSize = true;
             this.csvLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.csvLabel.ForeColor = System.Drawing.Color.Green;
-            this.csvLabel.Location = new System.Drawing.Point(44, 438);
+            this.csvLabel.Location = new System.Drawing.Point(74, 382);
             this.csvLabel.Name = "csvLabel";
             this.csvLabel.Size = new System.Drawing.Size(0, 13);
             this.csvLabel.TabIndex = 36;
@@ -255,7 +255,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(443, 467);
+            this.ClientSize = new System.Drawing.Size(443, 441);
             this.Controls.Add(this.csvLabel);
             this.Controls.Add(this.reportLabel);
             this.Controls.Add(this.reportListView);

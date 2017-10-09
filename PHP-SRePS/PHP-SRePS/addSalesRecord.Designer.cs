@@ -189,7 +189,7 @@
             this.quantityColumn});
             this.productListView.FullRowSelect = true;
             this.productListView.GridLines = true;
-            this.productListView.Location = new System.Drawing.Point(50, 112);
+            this.productListView.Location = new System.Drawing.Point(53, 112);
             this.productListView.MultiSelect = false;
             this.productListView.Name = "productListView";
             this.productListView.Size = new System.Drawing.Size(238, 188);

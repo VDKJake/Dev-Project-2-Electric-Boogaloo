@@ -85,7 +85,7 @@
             this.editButton.Image = ((System.Drawing.Image)(resources.GetObject("editButton.Image")));
             this.editButton.Location = new System.Drawing.Point(246, 408);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(110, 46);
+            this.editButton.Size = new System.Drawing.Size(110, 50);
             this.editButton.TabIndex = 2;
             this.editButton.UseVisualStyleBackColor = false;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
@@ -209,7 +209,7 @@
             this.removeButton.Image = ((System.Drawing.Image)(resources.GetObject("removeButton.Image")));
             this.removeButton.Location = new System.Drawing.Point(379, 408);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(110, 46);
+            this.removeButton.Size = new System.Drawing.Size(110, 50);
             this.removeButton.TabIndex = 16;
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
@@ -354,7 +354,7 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLabel.Location = new System.Drawing.Point(259, 51);
+            this.errorLabel.Location = new System.Drawing.Point(259, 53);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 32;
@@ -406,7 +406,7 @@
             this.errorLabel2.AutoSize = true;
             this.errorLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel2.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLabel2.Location = new System.Drawing.Point(256, 335);
+            this.errorLabel2.Location = new System.Drawing.Point(256, 337);
             this.errorLabel2.Name = "errorLabel2";
             this.errorLabel2.Size = new System.Drawing.Size(0, 13);
             this.errorLabel2.TabIndex = 33;
@@ -417,7 +417,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 459);
+            this.ClientSize = new System.Drawing.Size(734, 462);
             this.Controls.Add(this.errorLabel2);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label1);

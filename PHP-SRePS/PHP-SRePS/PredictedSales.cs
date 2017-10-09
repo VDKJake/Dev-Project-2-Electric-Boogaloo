@@ -19,12 +19,13 @@ namespace PHP_SRePS
     {
         private DataGridViewCell[] selectedItem = new DataGridViewCell[14];
         private DataSet ds = new DataSet();
+        private DataView dv = new DataView();
         private int targetMonth;
+        private string allCsvOutput = "";
 
         public PredictedSales()
         {
             InitializeComponent();
-            //PredictSales();
             // Get the current month and set the target month to the next month
             switch (/*pickMonth.SelectedItem.ToString()*/DateTime.Today.Month)
             {
@@ -82,8 +83,12 @@ namespace PHP_SRePS
             con.Close();
             predictions.Visible = false;
             PopulateAllSales();
-            listView1.Columns[1].Text = GetMonth(DateTime.Today.Month) + "'s Sales";
-            listView1.Columns[2].Text = GetMonth(DateTime.Today.Month + 1) + "'s Predicted Sales";
+            estListView.Columns[1].Text = GetMonth(DateTime.Today.Month - 1) + "'s Sales";
+            estListView.Columns[2].Text = GetMonth(DateTime.Today.Month) + "'s Sales";
+            estListView.Columns[3].Text = GetMonth(DateTime.Today.Month + 1) + "'s Predicted Sales";
+            estListViewAll.Columns[1].Text = GetMonth(DateTime.Today.Month - 1) + "'s Sales";
+            estListViewAll.Columns[2].Text = GetMonth(DateTime.Today.Month) + "'s Sales";
+            estListViewAll.Columns[3].Text = GetMonth(DateTime.Today.Month + 1) + "'s Predicted Sales";
         }
         
         private string GetMonth(int num)
@@ -142,34 +147,22 @@ namespace PHP_SRePS
             con.Open();
             sda.Fill(ds);
             predictions.DataSource = ds.Tables[0];
-            //predections.Rows.Add("product", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec", "year");
+            dv.Table = ds.Tables[0];
             con.Close();
             for (int i = 2; i < 14; i++)
             {
                 predictions.Columns[i].Width = 65;
             }
-            // To make this actually predict sales we need to add in a function that reads the
-            // percentage increase/decrease in sales from month to month and averages it out.
-            // Then it needs to apply that percentage increase to each following month. Maybe only to the end of the year or something.
-            // Also need to differentiate for single items and all items, and add CSV output
         }
         
-        public void Predict(DataGridViewRow r)
+        public void Predict(DataGridViewRow r, string type)
         {
             Array.Clear(selectedItem, 0, selectedItem.Length);
-            //predictions.Rows[1].Cells.CopyTo(selectedItem, 0);
             r.Cells.CopyTo(selectedItem, 0);
-            //float[] percentageChange = new float[11];
             float percentageChange;
-            /*for (int i = 0; i < selectedItem.Length; i++)
-            {
-                Debug.Write(selectedItem[i].FormattedValue.ToString());
-            }*/
-            //Debug.Write(selectedItem[2].ToString());
-            float change = 0;
             float no1;
             float no2;
-            predictLabel.Text = ("\n" + selectedItem[1].FormattedValue.ToString() + ": ");
+            string nextMonthValue = "";
             if (selectedItem[targetMonth - 2].FormattedValue.ToString() != "" && selectedItem[targetMonth - 1].FormattedValue.ToString() != "")
             {
                 no1 = float.Parse(selectedItem[targetMonth - 2].FormattedValue.ToString(), CultureInfo.InvariantCulture.NumberFormat);
@@ -178,75 +171,241 @@ namespace PHP_SRePS
                 if (no1 < no2)
                 {
                     percentageChange = ((no2 - no1) / no1) * 100;
-                    predictLabel.Text = (Math.Round(no2 + (no2 * percentageChange / 100))).ToString();
+                    nextMonthValue = (Math.Round(no2 + (no2 * percentageChange / 100))).ToString();
+                    if (type == "single")
+                    {
+                        messageLabel.Text = "Based on " + GetMonth(DateTime.Today.Month - 1) + "'s and " 
+                            + GetMonth(DateTime.Today.Month) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + ",\n" + GetMonth(DateTime.Today.Month + 1) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + " will be " + nextMonthValue + " items.";
+                    }
                 }
                 else if (no2 < no1)
                 {
                     percentageChange = ((no1 - no2) / no1 * 100);
-                    predictLabel.Text = (Math.Round(no2 - (no2 * percentageChange / 100))).ToString();
+                    nextMonthValue = (Math.Round(no2 - (no2 * percentageChange / 100))).ToString();
+                    if (type == "single")
+                    {
+                        messageLabel.Text = "Based on " + GetMonth(DateTime.Today.Month - 1) + "'s and "
+                            + GetMonth(DateTime.Today.Month) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + ",\n" + GetMonth(DateTime.Today.Month + 1) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + " will be " + nextMonthValue + " items.";
+                    }
                 }
                 else
                 {
                     percentageChange = 0;
-                    predictLabel.Text = "\n no change";
+                    nextMonthValue = no2.ToString();
+                    if (type == "single")
+                    {
+                        messageLabel.Text = "Based on " + GetMonth(DateTime.Today.Month - 1) + "'s and "
+                            + GetMonth(DateTime.Today.Month) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + ",\n" + GetMonth(DateTime.Today.Month + 1) + "'s sales for " + selectedItem[1].FormattedValue.ToString()
+                            + " will be " + nextMonthValue + " items.";
+                    }
+                }
+
+                if (type == "single")
+                {
+                    ListViewItem.ListViewSubItem item1 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem item2 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem item3 = new ListViewItem.ListViewSubItem();
+                    item1.Text = no1.ToString();
+                    item2.Text = no2.ToString();
+                    item3.Text = nextMonthValue.ToString();
+                    estListView.Items.Add(selectedItem[1].FormattedValue.ToString()).SubItems.AddRange(new ListViewItem.ListViewSubItem[] { item1, item2, item3 });
+                    string csvOutput = selectedItem[1].FormattedValue.ToString() + " Estimated Sales for " + GetMonth(DateTime.Today.Month + 1) + ".\nPredictedSaleAmount\n" + nextMonthValue.ToString();
+                    System.IO.File.WriteAllText(@"C:\Users\Public\" + selectedItem[1].FormattedValue.ToString().Replace(" ", "") + GetMonth(DateTime.Today.Month + 1) + "SalesEstimation.txt", csvOutput);
+                    csvLabel.Text = "CSV File for estimation successfully created at\nC:\\Users\\Public\\" + selectedItem[1].FormattedValue.ToString().Replace(" ", "") + GetMonth(DateTime.Today.Month + 1) + "SalesEstimation.txt";
+                }
+                else if (type == "all")
+                {
+                    ListViewItem.ListViewSubItem item1 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem item2 = new ListViewItem.ListViewSubItem();
+                    ListViewItem.ListViewSubItem item3 = new ListViewItem.ListViewSubItem();
+                    item1.Text = no1.ToString();
+                    item2.Text = no2.ToString();
+                    item3.Text = nextMonthValue.ToString();
+                    estListViewAll.Items.Add(selectedItem[1].FormattedValue.ToString()).SubItems.AddRange(new ListViewItem.ListViewSubItem[] { item1, item2, item3 });
+                    allCsvOutput += "\n" + selectedItem[1].FormattedValue.ToString() + ", " + nextMonthValue.ToString();
                 }
             }
             else
             {
-                predictLabel.Text = "Insufficient data for accurate prediction";
+                if (type == "single")
+                {
+                    errorLabel.Text = "Insufficient sales data for accurate prediction";
+                }
+                else if (type == "all")
+                {
+                    errorLabel2.Text = "Unable to produce an accurate prediction for some products\ndue to insufficient sales data.";
+                }
             }
-
+            
             Debug.Write("\n");
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {            
-            DataGridViewRow r = predictions.SelectedRows[0];
-            Predict(r);
+        private void allProducts_Click(object sender, EventArgs e)
+        {
+            messageLabel.Text = "";
+            errorLabel.Text = "";
+            errorLabel2.Text = "";
+            csvLabel.Text = "";
+            selectItemLabel.Visible = false;
+            singleItemPick.Visible = false;
+            singleItemPick.Enabled = false;
+            produceSinglePrediction.Visible = false;
+            produceSinglePrediction.Enabled = false;
+            estListView.Visible = false;
+            estListView.Enabled = false;
+            predictions.Visible = false;
+            produceAllPredictions.Visible = true;
+            produceAllPredictions.Enabled = true;
+            estListViewAll.Enabled = true;
+        }
+
+        private void produceAllPredictions_Click(object sender, EventArgs e)
+        {
+            estListViewAll.Visible = true;
+            estListViewAll.Clear();
+            estListViewAll.Columns.Add("Product Name", 80);
+            estListViewAll.Columns.Add(GetMonth(DateTime.Today.Month - 1) + "'s Sales", 100);
+            estListViewAll.Columns.Add(GetMonth(DateTime.Today.Month) + "'s Sales", 100);
+            estListViewAll.Columns.Add(GetMonth(DateTime.Today.Month + 1) + "'s Predicted Sales", 160);
+            errorLabel2.Text = "";
+            for (int i = 1; i < predictions.Rows.Count; i++)
+            {
+                Predict(predictions.Rows[i], "all");
+            }
+            string csvHeader = "Estimated Sales for All Products for " + GetMonth(DateTime.Today.Month + 1) + ".\nProductName, PredictedSaleAmount" + allCsvOutput;
+            System.IO.File.WriteAllText(@"C:\Users\Public\" + GetMonth(DateTime.Today.Month + 1) + "AllProductsSalesEstimation.txt", csvHeader);
+            csvLabel.Text = "CSV File for estimation successfully created at\nC:\\Users\\Public\\" + GetMonth(DateTime.Today.Month + 1) + "AllProductsSalesEstimation.txt";
         }
 
         private void PredictedSales_Shown(object sender, EventArgs e)
         {
-            productTitleLabel.Text = "Product Sales for " + DateTime.Today.Year.ToString();
-            Debug.Write(DateTime.Today.Year.ToString());
         }
 
         private void singleProduct_Click(object sender, EventArgs e)
         {
+            messageLabel.Text = "";
+            errorLabel.Text = "";
+            errorLabel2.Text = "";
+            csvLabel.Text = "";
             selectItemLabel.Visible = true;
             singleItemPick.Visible = true;
+            singleItemPick.Enabled = true;
+            produceSinglePrediction.Visible = true;
+            produceSinglePrediction.Enabled = false;
+            estListView.Enabled = true;
             predictions.Visible = false;
-            listView1.Visible = true;
+            produceAllPredictions.Visible = false;
+            produceAllPredictions.Enabled = false;
+            estListViewAll.Visible = false;
+            estListViewAll.Enabled = false;
         }
 
         private void singleItemPick_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataGridView DGV = new DataGridView();
-            DGV.Columns.Add("year", "2017");
-            DGV.Columns.Add("product", "Product Name");
-            DGV.Columns.Add("jan", "January");
-            DGV.Columns.Add("feb", "February");
-            DGV.Columns.Add("march", "March");
-            DGV.Columns.Add("april", "April");
-            DGV.Columns.Add("may", "May");
-            DGV.Columns.Add("june", "June");
-            DGV.Columns.Add("july", "July");
-            DGV.Columns.Add("aug", "August");
-            DGV.Columns.Add("sep", "September");
-            DGV.Columns.Add("oct", "October");
-            DGV.Columns.Add("nov", "November");
-            DGV.Columns.Add("dec", "December");
-            //DGV.Rows.Add(predictions.Rows[0]);
-            for (int i = 2; i < 14; i++)
-            {
-                predictions.Columns[i].Width = 65;
-            }
+            dv.RowFilter = "ProductName = '" + singleItemPick.SelectedItem.ToString() + "'";
+            dataGridView1.DataSource = dv;
+            produceSinglePrediction.Enabled = true;
         }
 
         private void produceSinglePrediction_Click(object sender, EventArgs e)
         {
-            singleItemPick.SelectedItem.ToString();
+            if (singleItemPick.SelectedItem != null)
+            {
+                messageLabel.Text = "";
+                errorLabel.Text = "";
+                estListView.Visible = true;
+                estListView.Clear();
+                estListView.Columns.Add("Product Name", 80);
+                estListView.Columns.Add(GetMonth(DateTime.Today.Month - 1) + "'s Sales", 100);
+                estListView.Columns.Add(GetMonth(DateTime.Today.Month) + "'s Sales", 100);
+                estListView.Columns.Add(GetMonth(DateTime.Today.Month + 1) + "'s Predicted Sales", 160);
+                Predict(dataGridView1.Rows[0], "single");
+            }
+        }
 
+        private void singleProduct_MouseDown(object sender, MouseEventArgs e)
+        {
+            singleProduct.Image = singleImages.Images[2];
+        }
+
+        private void singleProduct_MouseEnter(object sender, EventArgs e)
+        {
+            singleProduct.Image = singleImages.Images[1];
+        }
+
+        private void singleProduct_MouseLeave(object sender, EventArgs e)
+        {
+            singleProduct.Image = singleImages.Images[0];
+        }
+
+        private void singleProduct_MouseUp(object sender, MouseEventArgs e)
+        {
+            singleProduct.Image = singleImages.Images[0];
+        }
+
+        private void allProducts_MouseDown(object sender, MouseEventArgs e)
+        {
+            allProducts.Image = allImages.Images[2];
+        }
+
+        private void allProducts_MouseEnter(object sender, EventArgs e)
+        {
+            allProducts.Image = allImages.Images[1];
+        }
+
+        private void allProducts_MouseLeave(object sender, EventArgs e)
+        {
+            allProducts.Image = allImages.Images[0];
+        }
+
+        private void allProducts_MouseUp(object sender, MouseEventArgs e)
+        {
+            allProducts.Image = allImages.Images[0];
+        }
+
+        private void produceSinglePrediction_MouseDown(object sender, MouseEventArgs e)
+        {
+            produceSinglePrediction.Image = produceImages.Images[2];
+        }
+
+        private void produceSinglePrediction_MouseEnter(object sender, EventArgs e)
+        {
+            produceSinglePrediction.Image = produceImages.Images[1];
+        }
+
+        private void produceSinglePrediction_MouseLeave(object sender, EventArgs e)
+        {
+            produceSinglePrediction.Image = produceImages.Images[0];
+        }
+
+        private void produceSinglePrediction_MouseUp(object sender, MouseEventArgs e)
+        {
+            produceSinglePrediction.Image = produceImages.Images[0];
+        }
+
+        private void produceAllPredictions_MouseDown(object sender, MouseEventArgs e)
+        {
+            produceAllPredictions.Image = produceImages.Images[2];
+        }
+
+        private void produceAllPredictions_MouseEnter(object sender, EventArgs e)
+        {
+            produceAllPredictions.Image = produceImages.Images[1];
+        }
+
+        private void produceAllPredictions_MouseLeave(object sender, EventArgs e)
+        {
+            produceAllPredictions.Image = produceImages.Images[0];
+        }
+
+        private void produceAllPredictions_MouseUp(object sender, MouseEventArgs e)
+        {
+            produceAllPredictions.Image = produceImages.Images[0];
         }
     }
 }
