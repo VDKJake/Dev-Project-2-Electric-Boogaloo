@@ -36,6 +36,7 @@ namespace PHP_SRePS
 
         private void weeklyReport_Click(object sender, EventArgs e)
         {
+            // Clear everything to make sure no GUI overlaps
             reportLabel.Text = "";
             csvLabel.Text = "";
             reportListView.Items.Clear();
@@ -43,10 +44,12 @@ namespace PHP_SRePS
             DateTime weekStart = startDate.Value;
             DateTime weekEnd = startDate.Value.AddDays(6);
 
+            // Setup new sql connection and query
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\PHP-SRePS.mdf;Integrated Security=true";
             string scmd = "SELECT ProductID, COUNT(SaleID) AS SaleID, SUM(Quantity) AS Quantity FROM dbo.SaleRecords WHERE SaleDate BETWEEN @weekStart AND @weekEnd GROUP BY ProductID;";
 
+            // Add query parameters
             SqlCommand cmd = new SqlCommand(scmd, con);
             cmd.Parameters.Add("@weekStart", SqlDbType.Date);
             cmd.Parameters.Add("@weekEnd", SqlDbType.Date);
@@ -249,7 +252,6 @@ namespace PHP_SRePS
             if (reader.HasRows)
             {
             }
-            //output.Text = tempOutput;
             else
             {
                 output.Text = "No sales during this month";

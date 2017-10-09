@@ -34,32 +34,15 @@ namespace PHP_SRePS
 
         private void productIdSearch_TextChanged(object sender, EventArgs e)
         {
-            /*bool result;
-            int number;
-            if (productIdSearch.Text == "")
-            {
-                dataGridView1.DataSource = saleRecordsBindingSource;
-
-            }
-            else if (result = int.TryParse(productIdSearch.Text, out number))
-            {
-                DataView DV = new DataView(_PHP_SRePSDataSet.SaleRecords);
-                DV.RowFilter += ("Convert(ProductID, System.String) LIKE '" + number + "%'");
-                dataGridView1.DataSource = DV;
-            }
-            else
-            {
-                MessageBox.Show("The product ID must be a number");
-                productIdSearch.Clear();
-                return;
-            }*/
         }
 
+        // When another value is selected in the drop box reset the search text
         private void searchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchText.Text = "";
         }
 
+        // Whenever the search text is changed, 're-search the data table with new filters
         private void searchText_TextChanged(object sender, EventArgs e)
         {
             bool result;
@@ -134,6 +117,7 @@ namespace PHP_SRePS
             }
         }
 
+        // When the error timer ticks over reset the error message.
         private void errorTimer_Tick(object sender, EventArgs e)
         {
             errorLabel.Text = "";

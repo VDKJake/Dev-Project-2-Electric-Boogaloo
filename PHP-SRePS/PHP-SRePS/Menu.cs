@@ -41,6 +41,7 @@ namespace PHP_SRePS
             add.edit = edit;
             add.display = display;
             edit.display = display;
+            tabControl1.ItemSize = new Size(tabControl1.Width / 6 - 1, tabControl1.ItemSize.Height);
         }
 
         private void addSale_Click(object sender, EventArgs e)

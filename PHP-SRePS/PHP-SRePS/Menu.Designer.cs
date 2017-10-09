@@ -168,7 +168,6 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1204, 507);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Home";
             // 
             // welcomeLabel
             // 
@@ -201,7 +200,6 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1204, 507);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Add Sales";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -225,7 +223,6 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1204, 507);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Edit Sales";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -249,7 +246,6 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(1204, 507);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "View Sales";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -273,7 +269,6 @@
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(1204, 507);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Sales Reports";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -297,7 +292,6 @@
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage6.Size = new System.Drawing.Size(1204, 507);
             this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Sales Estimations";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // pictureBox1

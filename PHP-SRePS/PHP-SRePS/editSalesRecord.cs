@@ -240,7 +240,7 @@ namespace PHP_SRePS
             display.ReloadData();
             dataGridView1.ClearSelection();
 
-            // Clear the input textboxes
+            // Clear the input textboxes, clear the error message and disable the buttons
             saleID.Clear();
             productID.Clear();
             userID.Clear();
@@ -376,7 +376,7 @@ namespace PHP_SRePS
                 display.ReloadData();
                 dataGridView1.ClearSelection();
 
-                // Clear the input textboxes
+                // Clear the input textboxes, the error message and disable the buttons
                 saleID.Clear();
                 productID.Clear();
                 userID.Clear();
@@ -498,6 +498,9 @@ namespace PHP_SRePS
             removeButton.Image = removeImages.Images[1];
         }
 
+        // When another value is selected in the drop box reset the search text,
+        // clear the current array of selected data, clear the data view selection,
+        // clear the input boxes and disable the edit and remove buttons.
         private void searchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchText.Text = "";
