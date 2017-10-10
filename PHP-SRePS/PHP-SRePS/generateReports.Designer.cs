@@ -188,7 +188,7 @@
             this.errorLabel.AutoSize = true;
             this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorLabel.ForeColor = System.Drawing.Color.DarkRed;
-            this.errorLabel.Location = new System.Drawing.Point(127, 82);
+            this.errorLabel.Location = new System.Drawing.Point(116, 99);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(0, 13);
             this.errorLabel.TabIndex = 33;
@@ -244,7 +244,7 @@
             this.csvLabel.AutoSize = true;
             this.csvLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.csvLabel.ForeColor = System.Drawing.Color.Green;
-            this.csvLabel.Location = new System.Drawing.Point(74, 382);
+            this.csvLabel.Location = new System.Drawing.Point(74, 399);
             this.csvLabel.Name = "csvLabel";
             this.csvLabel.Size = new System.Drawing.Size(0, 13);
             this.csvLabel.TabIndex = 36;

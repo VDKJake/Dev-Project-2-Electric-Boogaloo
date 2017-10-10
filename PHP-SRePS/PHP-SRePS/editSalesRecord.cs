@@ -362,7 +362,7 @@ namespace PHP_SRePS
                 cmd.Parameters["@currentQuantity"].Value = _quantityForm;
                 cmd.Parameters["@currentCustomer"].Value = _customerForm;
 
-                var editCheck = MessageBox.Show("Are you sure to delete this item?\nSale ID: " + _saleidForm + "\nProduct ID: " + _productidForm + "\nUser ID: " + _userForm + "\nDate: " + _dateForm.ToShortDateString() + "\nQuantity " + _quantityForm + "\nCustomer " + _customerForm, "Delete item", MessageBoxButtons.YesNo);
+                var editCheck = MessageBox.Show("Are you sure you want to delete this item?\nSale ID: " + _saleidForm + "\nProduct ID: " + _productidForm + "\nUser ID: " + _userForm + "\nDate: " + _dateForm.ToShortDateString() + "\nQuantity: " + _quantityForm + "\nCustomer: " + _customerForm, "Delete item", MessageBoxButtons.YesNo);
                 if (editCheck == DialogResult.Yes)
                 {
                     cmd.ExecuteNonQuery();
